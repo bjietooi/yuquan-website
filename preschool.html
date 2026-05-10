@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuquan Preschool — Healthy · Happy · Wise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #264653;
+            --teal-light: #2a9d8f;
+            --coral: #e8634a;
+            --amber: #f4a261;
+            --sand: #e9c46a;
+            --cream: #fdf6ee;
+            --cream-dark: #f5ebe0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+            background: var(--cream);
+            color: var(--teal);
+            overflow-x: hidden;
+        }
+
+        /* ============ INTERACTIVE BG ============ */
+        .interactive-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .interactive-bg .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(42,157,143,0.07) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: left 0.8s ease-out, top 0.8s ease-out;
+            will-change: left, top;
+        }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            padding: 10px 40px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--teal);
+        }
+
+        .nav-logo .logo-mark {
+            height: 36px;
+            width: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .nav-logo .logo-text { font-weight: 900; font-size: 20px; letter-spacing: 1px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--teal-light);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--teal);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--teal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(42,157,143,0.3);
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px; height: 3px;
+            background: var(--teal);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .hero-slide.active { opacity: 1; }
+
+        .hero-slide .slide-bg {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45);
+            animation: kenBurns 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 5;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: fadeInDown 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, var(--sand), var(--amber));
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease-out 0.7s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.9s both;
+        }
+
+        .btn-primary {
+            padding: 16px 36px;
+            background: var(--teal-light);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--teal);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(42,157,143,0.4);
+        }
+
+        .btn-outline {
+            padding: 16px 36px;
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 100px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; gap: 12px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 40px; height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .slider-dot.active {
+            background: white;
+            width: 60px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Floating hero images */
+        .hero-floating {
+            position: absolute;
+            z-index: 4;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            opacity: 0.6;
+        }
+
+        .hero-floating img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-float-1 {
+            width: 160px; height: 120px;
+            top: 15%; left: 5%;
+            animation: float1 8s ease-in-out infinite;
+        }
+
+        .hero-float-2 {
+            width: 140px; height: 100px;
+            bottom: 20%; right: 5%;
+            animation: float2 9s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(-3deg); }
+            50% { transform: translate(15px, -20px) rotate(3deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(2deg); }
+            50% { transform: translate(-15px, -15px) rotate(-2deg); }
+        }
+
+        /* ============ WORD STRIPE ============ */
+        .word-stripe {
+            padding: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .word-stripe.teal { background: var(--teal); }
+        .word-stripe.teal-light { background: var(--teal-light); }
+        .word-stripe.coral-stripe { background: var(--coral); }
+
+        .word-stripe-track {
+            display: flex;
+            animation: scrollStripe 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .word-stripe.reverse .word-stripe-track { animation-direction: reverse; }
+
+        .word-stripe-track span {
+            font-size: 16px;
+            font-weight: 800;
+            color: white;
+            padding: 0 40px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .word-stripe-track .dot { padding: 0 8px; opacity: 0.4; }
+
+        @keyframes scrollStripe {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ============ ICON LOOP ============ */
+        .icon-loop {
+            padding: 30px 0;
+            overflow: hidden;
+            background: white;
+        }
+
+        .icon-loop-track {
+            display: flex;
+            animation: scrollIcons 20s linear infinite;
+            align-items: center;
+        }
+
+        .icon-loop-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 40px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .icon-loop-item .icon-emoji {
+            font-size: 28px;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        .icon-loop-item:nth-child(2n) .icon-emoji { animation-delay: -0.5s; }
+        .icon-loop-item:nth-child(3n) .icon-emoji { animation-delay: -1s; }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .icon-loop-item span:last-child {
+            font-weight: 700;
+            color: var(--teal);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        @keyframes scrollIcons {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ============ SECTIONS ============ */
+        .section { padding: 100px 40px; position: relative; z-index: 1; }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 18px;
+            background: var(--teal-light);
+            color: white;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ============ ABOUT ============ */
+        .about { background: white; overflow: hidden; }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-images { position: relative; height: 520px; }
+
+        .about-img {
+            position: absolute;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            transition: transform 0.5s ease;
+        }
+
+        .about-img:hover { transform: scale(1.03) rotate(-1deg); }
+
+        .about-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-img-1 { width: 300px; height: 380px; top: 0; left: 0; z-index: 2; }
+        .about-img-2 { width: 260px; height: 320px; bottom: 0; right: 0; z-index: 1; }
+
+        .about-floating-badge {
+            position: absolute;
+            bottom: 80px; left: 220px;
+            background: var(--coral);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 16px;
+            z-index: 3;
+            box-shadow: 0 8px 24px rgba(232,99,74,0.3);
+            animation: floatBadge 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .about-floating-badge .badge-number { font-size: 32px; font-weight: 900; }
+        .about-floating-badge .badge-text { font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+
+        /* Decorative floating photos */
+        .floating-photo {
+            position: absolute;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .floating-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        .about-text h3 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .about-text .chinese-subtitle {
+            font-size: 18px;
+            color: var(--coral);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-values {
+            display: flex;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--cream);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .value-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+
+        .value-item .value-emoji { font-size: 24px; }
+        .value-item span:last-child { font-weight: 800; font-size: 14px; }
+
+        /* ============ FLIP CARDS (PROGRAMS) ============ */
+        .programs { background: var(--cream); }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 420px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%; height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .flip-card-front .card-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .flip-card-front .card-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .flip-card:hover .flip-card-front .card-img img { transform: scale(1.1); }
+
+        .flip-card-front .card-body {
+            padding: 24px;
+        }
+
+        .flip-card-front .card-age {
+            display: inline-block;
+            padding: 4px 14px;
+            background: var(--cream);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--teal-light);
+            margin-bottom: 10px;
+        }
+
+        .flip-card-front .card-body h3 {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .flip-card-front .card-body p {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .flip-card-front .hover-hint {
+            position: absolute;
+            bottom: 20px; right: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--teal-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .flip-card-back .back-icon { font-size: 48px; margin-bottom: 16px; }
+
+        .flip-card-back h3 {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .flip-card-back p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .flip-card-back .back-btn {
+            padding: 12px 28px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .flip-card-back .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* ============ PHILOSOPHY ============ */
+        .philosophy {
+            background: var(--teal);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-animated-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg,
+                rgba(42,157,143,0.3) 0%,
+                rgba(233,196,106,0.1) 25%,
+                rgba(232,99,74,0.1) 50%,
+                rgba(42,157,143,0.2) 75%,
+                rgba(38,70,83,0.3) 100%);
+            background-size: 400% 400%;
+            animation: meshGradient 12s ease infinite;
+        }
+
+        @keyframes meshGradient {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .philosophy-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy .chinese-motto {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--sand), var(--amber), var(--sand));
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .philosophy .english-motto {
+            font-size: 22px;
+            font-weight: 700;
+            opacity: 0.8;
+            margin-bottom: 32px;
+            letter-spacing: 4px;
+        }
+
+        .philosophy p {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .philosophy-pillars {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 48px;
+        }
+
+        .pillar {
+            text-align: center;
+            padding: 32px 24px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            width: 200px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .pillar:hover {
+            transform: translateY(-8px) scale(1.03);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+        }
+
+        .pillar .pillar-icon { font-size: 40px; margin-bottom: 16px; }
+        .pillar .pillar-cn { font-size: 24px; font-weight: 900; margin-bottom: 4px; }
+        .pillar .pillar-en { font-size: 14px; font-weight: 700; opacity: 0.7; letter-spacing: 1px; }
+
+        /* ============ ENRICHMENT ============ */
+        .enrichment { background: white; overflow: hidden; }
+
+        .enrichment-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .enrichment-item {
+            text-align: center;
+            padding: 32px 16px;
+            background: var(--cream);
+            border-radius: 20px;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enrichment-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--teal-light), var(--teal));
+            opacity: 0;
+            transition: opacity 0.4s;
+            border-radius: 20px;
+        }
+
+        .enrichment-item:hover::before { opacity: 1; }
+
+        .enrichment-item:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 12px 32px rgba(42,157,143,0.2);
+        }
+
+        .enrichment-item .enrich-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+            position: relative;
+            z-index: 1;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        .enrichment-item:nth-child(2n) .enrich-icon { animation-delay: -0.5s; }
+        .enrichment-item:nth-child(3n) .enrich-icon { animation-delay: -1s; }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-8deg); }
+            75% { transform: rotate(8deg); }
+        }
+
+        .enrichment-item h4 {
+            font-size: 14px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+            transition: color 0.4s;
+        }
+
+        .enrichment-item:hover h4 { color: white; }
+
+        /* ============ GALLERY ============ */
+        .gallery { background: var(--cream); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img { transform: scale(1.08); }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(38,70,83,0.7), transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        .gallery-overlay span {
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* ============ STATS ============ */
+        .stats-bar {
+            background: linear-gradient(135deg, var(--teal-light), var(--teal));
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+            padding: 60px 40px;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item { text-align: center; color: white; }
+
+        .stat-item .stat-number { font-size: 48px; font-weight: 900; }
+        .stat-item .stat-label {
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0.8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* ============ TESTIMONIALS ============ */
+        .testimonials { background: white; }
+
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            padding: 48px;
+            text-align: center;
+        }
+
+        .testimonial-card .stars {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--sand);
+        }
+
+        .testimonial-card blockquote {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #444;
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-card .parent-name {
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--teal);
+        }
+
+        .testimonial-card .parent-detail {
+            font-size: 13px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .testimonial-nav button {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--teal);
+            background: transparent;
+            color: var(--teal);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .testimonial-nav button:hover {
+            background: var(--teal);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* ============ FAQ ============ */
+        .faq { background: var(--cream); }
+
+        .faq-list { max-width: 800px; margin: 0 auto; }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .faq-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+
+        .faq-question {
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--teal);
+        }
+
+        .faq-toggle {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-toggle {
+            background: var(--teal);
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.open .faq-answer { max-height: 300px; }
+
+        .faq-answer p {
+            padding: 0 28px 24px;
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ============ CTA ============ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 50%, var(--teal) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='white' fill-opacity='0.04'/%3E%3C/svg%3E");
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            from { transform: translate(0, 0); }
+            to { transform: translate(60px, 60px); }
+        }
+
+        .cta-content {
+            position: relative; z-index: 1;
+            max-width: 600px; margin: 0 auto;
+        }
+
+        .cta-content h2 { font-size: 42px; font-weight: 900; margin-bottom: 16px; }
+
+        .cta-content p {
+            font-size: 16px;
+            opacity: 0.85;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta-form input {
+            flex: 1;
+            padding: 16px 24px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .cta-form input::placeholder { color: rgba(255,255,255,0.5); }
+        .cta-form input:focus { border-color: rgba(255,255,255,0.5); }
+
+        .cta-form button {
+            padding: 16px 32px;
+            background: var(--sand);
+            color: var(--teal);
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .cta-form button:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--teal);
+            color: white;
+            padding: 80px 40px 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 48px;
+        }
+
+        .footer-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .footer-logo-img {
+            height: 40px;
+            width: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 6px 12px;
+        }
+
+        .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 300px; }
+
+        .footer-col h4 {
+            font-size: 14px; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 20px; opacity: 0.6;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+
+        .footer-col a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col a:hover { opacity: 1; }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 4px 16px rgba(38,70,83,0.3);
+        }
+
+        .back-to-top.visible { opacity: 1; transform: translateY(0); }
+
+        .back-to-top:hover {
+            background: var(--teal-light);
+            transform: translateY(-3px);
+        }
+
+        /* ============ PARALLAX FLOATING PHOTOS ============ */
+        .section-floater {
+            position: absolute;
+            border-radius: 12px;
+            overflow: hidden;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-floater img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        /* ============ NEWSPAPER TESTIMONIALS ============ */
+        .newspaper-section {
+            background: linear-gradient(135deg, var(--teal) 0%, #1a3a47 50%, var(--teal) 100%);
+            background-size: 300% 300%;
+            animation: meshGradient 10s ease infinite;
+            color: white;
+            overflow: hidden;
+        }
+
+        .newspaper-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        .newspaper-intro h2 { font-size: 44px; font-weight: 900; margin-bottom: 12px; }
+        .newspaper-intro p { font-size: 16px; opacity: 0.7; line-height: 1.7; }
+
+        .newspaper-grid {
+            display: flex;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            cursor: grab;
+        }
+
+        .newspaper-grid::-webkit-scrollbar { display: none; }
+
+        .newspaper-card {
+            min-width: 280px;
+            max-width: 280px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .newspaper-card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+        }
+
+        .newspaper-card img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .newspaper-card:hover img { transform: scale(1.03); }
+
+        .newspaper-card .newspaper-label { padding: 16px; background: white; }
+
+        .newspaper-card .newspaper-source {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .newspaper-card .newspaper-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal);
+            line-height: 1.4;
+        }
+
+        .newspaper-scroll-hint {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 13px;
+            opacity: 0.5;
+            letter-spacing: 2px;
+        }
+
+        /* ============ SCROLL REVEAL ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .enrichment-grid { grid-template-columns: repeat(3, 1fr); }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 200px);
+            }
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(4) { grid-column: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-content h1 { font-size: 36px; }
+            .hero-content p { font-size: 15px; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .hero-floating { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-images { height: 350px; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .flip-card { height: 380px; }
+            .enrichment-grid { grid-template-columns: repeat(2, 1fr); }
+            .philosophy-pillars { flex-direction: column; align-items: center; }
+            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .gallery-grid .gallery-item { height: 200px; }
+            .stats-grid { flex-direction: column; gap: 30px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .section { padding: 60px 20px; }
+            .section-header h2 { font-size: 32px; }
+            .cta-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTERACTIVE MOUSE-FOLLOW BG -->
+    <div class="interactive-bg">
+        <div class="glow" id="mouseGlow"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <img class="logo-mark" src="https://ik.imagekit.io/cr8hodb6q/yuquan/logo-Yuquan.png?updatedAt=1777262376085" alt="Yuquan">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#curriculum">Curriculum</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#press">Press</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="enrichment.html" style="color:var(--coral);font-weight:800;">Enrichment →</a></li>
+            <li><a href="#enquiry" class="nav-cta">Enquire Now</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!-- HERO SLIDER -->
+    <section class="hero">
+        <div class="hero-slider" id="heroSlider">
+            <div class="hero-slide active">
+                <img class="slide-bg" src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Yuquan Kindergarten">
+            </div>
+            <div class="hero-slide">
+                <img class="slide-bg" src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6353.jpeg" alt="Yuquan Kindergarten">
+            </div>
+            <div class="hero-slide">
+                <img class="slide-bg" src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Yuquan Kindergarten">
+            </div>
+        </div>
+
+        <!-- Floating small images on hero -->
+        <div class="hero-floating hero-float-1">
+            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6683.jpeg" alt="">
+        </div>
+        <div class="hero-floating hero-float-2">
+            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6353.jpeg" alt="">
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">🌏 Bilingual Childcare Since 2005</div>
+            <h1>Where Every Child<br><span class="highlight">Blossoms Bilingually</span></h1>
+            <p>Healthy in body, happy in heart, and wise in mind — we prepare every child for a confident start in life.</p>
+            <div class="hero-buttons">
+                <a href="#enquiry" class="btn-primary">Book a Visit →</a>
+                <a href="#programs" class="btn-outline">Explore Programs</a>
+            </div>
+        </div>
+
+        <div class="slider-dots">
+            <div class="slider-dot active" onclick="goToSlide(0)"></div>
+            <div class="slider-dot" onclick="goToSlide(1)"></div>
+            <div class="slider-dot" onclick="goToSlide(2)"></div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12m0 0l-4-4m4 4l4-4" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+    </section>
+
+    <!-- WORD STRIPE -->
+    <div class="word-stripe teal">
+        <div class="word-stripe-track">
+            <span>健康 Healthy</span><span class="dot">✦</span>
+            <span>快乐 Happy</span><span class="dot">✦</span>
+            <span>睿智 Wise</span><span class="dot">✦</span>
+            <span>Bilingual Education</span><span class="dot">✦</span>
+            <span>Since 2005</span><span class="dot">✦</span>
+            <span>18 Months to 6 Years</span><span class="dot">✦</span>
+            <span>健康 Healthy</span><span class="dot">✦</span>
+            <span>快乐 Happy</span><span class="dot">✦</span>
+            <span>睿智 Wise</span><span class="dot">✦</span>
+            <span>Bilingual Education</span><span class="dot">✦</span>
+            <span>Since 2005</span><span class="dot">✦</span>
+            <span>18 Months to 6 Years</span><span class="dot">✦</span>
+        </div>
+    </div>
+
+    <!-- ICON LOOP -->
+    <div class="icon-loop">
+        <div class="icon-loop-track">
+            <div class="icon-loop-item"><span class="icon-emoji">🎨</span><span>Art & Craft</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🏓</span><span>Table Tennis</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🍵</span><span>Tea Appreciation</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🎵</span><span>Melodica</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🖌️</span><span>Chinese Painting</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">✍️</span><span>Calligraphy</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">📖</span><span>Mandarin</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🌿</span><span>Nature Play</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🎨</span><span>Art & Craft</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🏓</span><span>Table Tennis</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🍵</span><span>Tea Appreciation</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🎵</span><span>Melodica</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🖌️</span><span>Chinese Painting</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">✍️</span><span>Calligraphy</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">📖</span><span>Mandarin</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🌿</span><span>Nature Play</span></div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+        <!-- Decorative floating photos in background -->
+        <div class="section-floater" style="width:150px;height:100px;top:20px;right:60px;transform:rotate(8deg);">
+            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="">
+        </div>
+        <div class="section-floater" style="width:120px;height:80px;bottom:40px;left:30px;transform:rotate(-5deg);">
+            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6683.jpeg" alt="">
+        </div>
+
+        <div class="about-grid">
+            <div class="about-images reveal-left">
+                <div class="about-img about-img-1">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Children learning">
+                </div>
+                <div class="about-img about-img-2">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Classroom activities">
+                </div>
+                <div class="about-floating-badge">
+                    <div class="badge-number">20+</div>
+                    <div class="badge-text">Years of Trust</div>
+                </div>
+            </div>
+            <div class="about-text reveal-right">
+                <div class="section-tag">Our Story</div>
+                <h3>A Mother's Vision,<br>A Bilingual Mission</h3>
+                <p class="chinese-subtitle">育泉的故事</p>
+                <p>Founded in 2005, Yuquan Preschool was inspired by a mother's vision for her child. With extensive experience in early childhood education and Chinese language teaching, our founder recognised a gap — the lack of preschools able to truly develop strong bilingual foundations.</p>
+                <p>She established Yuquan as a place where bilingualism is not just an add-on, but a core philosophy, thoughtfully and systematically nurtured from the earliest years.</p>
+                <div class="about-values">
+                    <div class="value-item"><span class="value-emoji">💚</span><span>Healthy</span></div>
+                    <div class="value-item"><span class="value-emoji">😊</span><span>Happy</span></div>
+                    <div class="value-item"><span class="value-emoji">🧠</span><span>Wise</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORD STRIPE 2 -->
+    <div class="word-stripe teal-light reverse">
+        <div class="word-stripe-track">
+            <span>Proprietary Chinese Curriculum</span><span class="dot">★</span>
+            <span>Free Enrichment Programs</span><span class="dot">★</span>
+            <span>Truly Bilingual</span><span class="dot">★</span>
+            <span>Nurturing Environment</span><span class="dot">★</span>
+            <span>Strong Foundations</span><span class="dot">★</span>
+            <span>Proprietary Chinese Curriculum</span><span class="dot">★</span>
+            <span>Free Enrichment Programs</span><span class="dot">★</span>
+            <span>Truly Bilingual</span><span class="dot">★</span>
+            <span>Nurturing Environment</span><span class="dot">★</span>
+            <span>Strong Foundations</span><span class="dot">★</span>
+        </div>
+    </div>
+
+    <!-- PROGRAMS (FLIP CARDS) -->
+    <section class="section programs" id="programs">
+        <div class="section-header reveal">
+            <div class="section-tag">Our Programs</div>
+            <h2>Growing Together,<br>Step by Step</h2>
+            <p>Hover over each card to discover more about our carefully designed programmes.</p>
+        </div>
+        <div class="programs-grid">
+            <div class="flip-card reveal" style="transition-delay: 0.1s">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-img">
+                            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6353.jpeg" alt="Playgroup">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-age">18 months – 2 years</span>
+                            <h3>Playgroup</h3>
+                            <p>Gentle introduction to learning through play</p>
+                        </div>
+                        <span class="hover-hint">Hover to learn more →</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-icon">🍼</div>
+                        <h3>Playgroup</h3>
+                        <p>A gentle introduction to learning through play, building early social skills and bilingual exposure in a safe, nurturing environment. Children explore, create, and discover alongside caring teachers.</p>
+                        <a href="#enquiry" class="back-btn">Enquire Now →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card reveal" style="transition-delay: 0.2s">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-img">
+                            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Nursery">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-age">3 – 4 years</span>
+                            <h3>Nursery</h3>
+                            <p>Building confidence and curiosity</p>
+                        </div>
+                        <span class="hover-hint">Hover to learn more →</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-icon">🌱</div>
+                        <h3>Nursery</h3>
+                        <p>Building confidence and curiosity through our structured bilingual curriculum, creative play, and guided discovery activities. Your child will flourish in our supportive environment.</p>
+                        <a href="#enquiry" class="back-btn">Enquire Now →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card reveal" style="transition-delay: 0.3s">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-img">
+                            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6683.jpeg" alt="Kindergarten">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-age">5 – 6 years</span>
+                            <h3>Kindergarten</h3>
+                            <p>Preparing for Primary 1 with confidence</p>
+                        </div>
+                        <span class="hover-hint">Hover to learn more →</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-icon">🎓</div>
+                        <h3>Kindergarten</h3>
+                        <p>Preparing children for Primary 1 with strong bilingual literacy, numeracy, and essential life skills. A confident transition starts here.</p>
+                        <a href="#enquiry" class="back-btn">Enquire Now →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="section philosophy" id="curriculum">
+        <div class="philosophy-animated-bg"></div>
+        <div class="philosophy-content">
+            <div class="section-tag" style="background: rgba(255,255,255,0.15);">Our Philosophy</div>
+            <div class="chinese-motto reveal">健康 · 快乐 · 睿智</div>
+            <div class="english-motto reveal">Healthy · Happy · Wise</div>
+            <p class="reveal">健康为本，快乐为桥，睿智为远。Healthy in body, happy in heart, and wise in mind — we prepare every child for a confident start in life.</p>
+            <div class="philosophy-pillars">
+                <div class="pillar reveal" style="transition-delay: 0.1s">
+                    <div class="pillar-icon">💪</div>
+                    <div class="pillar-cn">健康</div>
+                    <div class="pillar-en">Healthy</div>
+                </div>
+                <div class="pillar reveal" style="transition-delay: 0.2s">
+                    <div class="pillar-icon">🌈</div>
+                    <div class="pillar-cn">快乐</div>
+                    <div class="pillar-en">Happy</div>
+                </div>
+                <div class="pillar reveal" style="transition-delay: 0.3s">
+                    <div class="pillar-icon">📚</div>
+                    <div class="pillar-cn">睿智</div>
+                    <div class="pillar-en">Wise</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENRICHMENT -->
+    <section class="section enrichment" id="enrichment">
+        <div class="section-header reveal">
+            <div class="section-tag">Enrichment</div>
+            <h2>Beyond the Classroom</h2>
+            <p>A wide range of enrichment programmes included at no additional charge.</p>
+        </div>
+        <div class="enrichment-grid">
+            <div class="enrichment-item reveal"><span class="enrich-icon">🏓</span><h4>Table Tennis</h4></div>
+            <div class="enrichment-item reveal"><span class="enrich-icon">🍵</span><h4>Tea Appreciation</h4></div>
+            <div class="enrichment-item reveal"><span class="enrich-icon">🎵</span><h4>Melodica</h4></div>
+            <div class="enrichment-item reveal"><span class="enrich-icon">🎨</span><h4>Chinese Painting</h4></div>
+            <div class="enrichment-item reveal"><span class="enrich-icon">✍️</span><h4>Calligraphy</h4></div>
+            <div class="enrichment-item reveal"><span class="enrich-icon">🤸</span><h4>Physical Play</h4></div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item reveal"><div class="stat-number" data-target="20">0</div><div class="stat-label">Years of Excellence</div></div>
+            <div class="stat-item reveal"><div class="stat-number" data-target="500">0</div><div class="stat-label">Happy Graduates</div></div>
+            <div class="stat-item reveal"><div class="stat-number" data-target="6">0</div><div class="stat-label">Enrichment Programs</div></div>
+            <div class="stat-item reveal"><div class="stat-number" data-target="2">0</div><div class="stat-label">Languages Mastered</div></div>
+        </div>
+    </div>
+
+    <!-- GALLERY -->
+    <section class="section gallery" id="gallery">
+        <div class="section-header reveal">
+            <div class="section-tag">Gallery</div>
+            <h2>A Glimpse Into Our World</h2>
+            <p>See our children learning, exploring, and growing every day.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item reveal">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Classroom Activities">
+                <div class="gallery-overlay"><span>Learning Through Play</span></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6353.jpeg" alt="Outdoor Fun">
+                <div class="gallery-overlay"><span>Outdoor Adventures</span></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Art Time">
+                <div class="gallery-overlay"><span>Creative Expression</span></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6683.jpeg" alt="Chinese Culture">
+                <div class="gallery-overlay"><span>Cultural Activities</span></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Sports">
+                <div class="gallery-overlay"><span>Active Play</span></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6353.jpeg" alt="Graduation">
+                <div class="gallery-overlay"><span>Celebrations</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORD STRIPE 3 -->
+    <div class="word-stripe coral-stripe">
+        <div class="word-stripe-track">
+            <span>Enquire Today</span><span class="dot">♥</span>
+            <span>Book a Visit</span><span class="dot">♥</span>
+            <span>Join Our Family</span><span class="dot">♥</span>
+            <span>Limited Places Available</span><span class="dot">♥</span>
+            <span>Enquire Today</span><span class="dot">♥</span>
+            <span>Book a Visit</span><span class="dot">♥</span>
+            <span>Join Our Family</span><span class="dot">♥</span>
+            <span>Limited Places Available</span><span class="dot">♥</span>
+            <span>Enquire Today</span><span class="dot">♥</span>
+            <span>Book a Visit</span><span class="dot">♥</span>
+        </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials">
+        <div class="section-header reveal">
+            <div class="section-tag">Testimonials</div>
+            <h2>Loved by Parents</h2>
+        </div>
+        <div class="testimonial-slider reveal">
+            <div class="testimonial-track" id="testimonialTrack">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"We were amazed at how quickly our daughter picked up Mandarin. The bilingual environment at Yuquan is truly immersive."</blockquote>
+                    <div class="parent-name">Mrs. Tan</div>
+                    <div class="parent-detail">Parent of K2 student</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"The enrichment programmes are a wonderful bonus. My son loves calligraphy and table tennis — all included!"</blockquote>
+                    <div class="parent-name">Mr. & Mrs. Lee</div>
+                    <div class="parent-detail">Parents of Nursery student</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"The teachers are incredibly warm and dedicated. My child looks forward to school every single day."</blockquote>
+                    <div class="parent-name">Mrs. Wong</div>
+                    <div class="parent-detail">Parent of Playgroup student</div>
+                </div>
+            </div>
+            <div class="testimonial-nav">
+                <button onclick="moveTestimonial(-1)">←</button>
+                <button onclick="moveTestimonial(1)">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSPAPER TESTIMONIALS -->
+    <section class="section newspaper-section" id="press">
+        <div class="newspaper-intro">
+            <div class="section-tag" style="background:rgba(255,255,255,0.15);">As Featured In</div>
+            <h2>Press Coverage</h2>
+            <p>Yuquan's bilingual approach has been recognised and featured in Shin Min Daily News.</p>
+        </div>
+        <div class="newspaper-grid" id="newspaperGrid">
+            <div class="newspaper-card reveal" style="transition-delay:0.1s">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2003-11-11.TIF" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Featured Article · 2011</div>
+                </div>
+            </div>
+            <div class="newspaper-card reveal" style="transition-delay:0.15s">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-17.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Bilingual Education Feature</div>
+                </div>
+            </div>
+            <div class="newspaper-card reveal" style="transition-delay:0.2s">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-21.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Preschool Excellence</div>
+                </div>
+            </div>
+            <div class="newspaper-card reveal" style="transition-delay:0.25s">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-20.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Language Education</div>
+                </div>
+            </div>
+            <div class="newspaper-card reveal" style="transition-delay:0.3s">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-19.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Chinese Curriculum</div>
+                </div>
+            </div>
+            <div class="newspaper-card reveal" style="transition-delay:0.35s">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-18.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Early Childhood</div>
+                </div>
+            </div>
+            <div class="newspaper-card reveal" style="transition-delay:0.4s">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/ShinMin%2004-11-17a.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Community Recognition</div>
+                </div>
+            </div>
+        </div>
+        <div class="newspaper-scroll-hint">← SCROLL TO SEE MORE →</div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+        <div class="section-header reveal">
+            <div class="section-tag">FAQ</div>
+            <h2>Common Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>What ages do you accept?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>We welcome children from 18 months to 6 years old. Our programmes are designed for each developmental stage — Playgroup, Nursery, and Kindergarten.</p></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>What makes Yuquan truly bilingual?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>We have our own proprietary Chinese curriculum and structured teaching system. Children build strong foundations in both Chinese and English through immersive, daily bilingual exposure.</p></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>Are enrichment programmes included?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>Yes! We offer table tennis, tea appreciation, melodica, Chinese painting, and calligraphy — all at no additional charge.</p></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>How can I visit the centre?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>Simply fill in the enquiry form below or contact us directly. We'd love to show you around and introduce you to our learning environment.</p></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>What is your operating schedule?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>We operate on weekdays with both half-day and full-day programmes. Contact us for detailed schedules and availability.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section" id="enquiry">
+        <div class="cta-content reveal">
+            <h2>Ready to Begin?</h2>
+            <p>Take the first step toward giving your child a confident, bilingual start. Enquire today or book a visit.</p>
+            <div class="cta-form">
+                <input type="email" placeholder="Enter your email...">
+                <button type="button">Enquire Now →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img class="footer-logo-img" src="https://ik.imagekit.io/cr8hodb6q/yuquan/logo-Yuquan.png?updatedAt=1777262376085" alt="Yuquan">
+                </div>
+                <p>Healthy · Happy · Wise — nurturing bilingual learners since 2005.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="#">Playgroup</a></li>
+                    <li><a href="#">Nursery</a></li>
+                    <li><a href="#">Kindergarten</a></li>
+                    <li><a href="#">Enrichment</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Philosophy</a></li>
+                    <li><a href="#">Curriculum</a></li>
+                    <li><a href="#">Happenings</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">yuquan.com.sg</a></li>
+                    <li><a href="#">Enquire Now</a></li>
+                    <li><a href="#">Locations</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2025 Yuquan Preschool. All rights reserved.</span>
+            <span><a href="index.html" style="color:white;text-decoration:none;">← Back to Home</a></span>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // Mouse-follow glow
+        const glow = document.getElementById('mouseGlow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+
+        function goToSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => goToSlide((currentSlide + 1) % slides.length), 5000);
+
+        // Testimonial Slider
+        let testimonialIndex = 0;
+        function moveTestimonial(dir) {
+            const track = document.getElementById('testimonialTrack');
+            const cards = track.children.length;
+            testimonialIndex = (testimonialIndex + dir + cards) % cards;
+            track.style.transform = `translateX(-${testimonialIndex * 100}%)`;
+        }
+
+        setInterval(() => moveTestimonial(1), 6000);
+
+        // FAQ
+        function toggleFaq(el) {
+            el.parentElement.classList.toggle('open');
+        }
+
+        // Navbar + Back to top
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 80);
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+        // Stats Counter
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    let current = 0;
+                    const step = target / 60;
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) { current = target; clearInterval(timer); }
+                        el.textContent = Math.floor(current) + '+';
+                    }, 30);
+                    statObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+
+        // Parallax floating photos on scroll
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            document.querySelectorAll('.section-floater').forEach((el, i) => {
+                el.style.transform = `translateY(${scrollY * 0.03 * (i % 2 === 0 ? 1 : -1)}px) rotate(${i % 2 === 0 ? 8 : -5}deg)`;
+            });
+            document.querySelectorAll('.hero-floating').forEach((el, i) => {
+                el.style.transform = `translateY(${scrollY * -0.15}px)`;
+            });
+        });
+
+        // Newspaper grid drag-scroll
+        const grid = document.getElementById('newspaperGrid');
+        if (grid) {
+            let isDown = false, startX, scrollLeft;
+            grid.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - grid.offsetLeft; scrollLeft = grid.scrollLeft; grid.style.cursor = 'grabbing'; });
+            grid.addEventListener('mouseleave', () => { isDown = false; grid.style.cursor = 'grab'; });
+            grid.addEventListener('mouseup', () => { isDown = false; grid.style.cursor = 'grab'; });
+            grid.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); const x = e.pageX - grid.offsetLeft; grid.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+        }
+    </script>
+</body>
+</html>
