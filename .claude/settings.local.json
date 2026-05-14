@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/jiet/Desktop/**)",
+      "Read(//private/tmp/**)",
+      "Bash(unzip -o /Users/jiet/Desktop/Yuquan-handoff.zip -d yuquan-handoff)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Initial Yuquan website build from Claude Design handoff *)"
+    ]
+  }
+}
