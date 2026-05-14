@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuquan Enrichment Programmes — Bilingual Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #264653;
+            --teal-light: #2a9d8f;
+            --coral: #e8634a;
+            --coral-light: #f07c65;
+            --amber: #f4a261;
+            --sand: #e9c46a;
+            --cream: #fdf6ee;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+            background: var(--cream);
+            color: var(--teal);
+            overflow-x: hidden;
+        }
+
+        /* ============ INTERACTIVE BG ============ */
+        .interactive-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .interactive-bg .glow {
+            position: absolute;
+            width: 700px; height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,99,74,0.06) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: left 0.8s ease-out, top 0.8s ease-out;
+            will-change: left, top;
+        }
+
+        /* ============ MOVING MESH GRADIENT (idle bg for sections) ============ */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes meshGradient {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            padding: 10px 40px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--teal);
+        }
+
+        .nav-logo .logo-mark {
+            height: 36px;
+            width: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--coral);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--coral);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--coral-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(232,99,74,0.3);
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px; height: 3px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #e8634a 0%, #f4a261 40%, #e9c46a 80%, #e8634a 100%);
+            background-size: 300% 300%;
+            animation: meshGradient 12s ease infinite;
+            z-index: 0;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='20' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E");
+            animation: patternDrift 30s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes patternDrift {
+            from { transform: translate(0, 0); }
+            to { transform: translate(80px, 80px); }
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            animation: morphFloat 20s ease-in-out infinite;
+        }
+
+        .hero-shape:nth-child(1) { width: 400px; height: 400px; top: -100px; right: -100px; animation-delay: 0s; }
+        .hero-shape:nth-child(2) { width: 300px; height: 300px; bottom: -80px; left: -80px; animation-delay: -7s; }
+        .hero-shape:nth-child(3) { width: 200px; height: 200px; top: 40%; left: 60%; animation-delay: -14s; }
+        .hero-shape:nth-child(4) { width: 150px; height: 150px; top: 20%; left: 20%; animation-delay: -4s; border-radius: 30%; }
+
+        @keyframes morphFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(30px, -30px) rotate(90deg) scale(1.1); }
+            50% { transform: translate(-20px, 20px) rotate(180deg) scale(0.95); }
+            75% { transform: translate(15px, 15px) rotate(270deg) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            align-items: center;
+        }
+
+        .hero-text { color: white; }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            animation: fadeInDown 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            opacity: 0.9;
+            line-height: 1.7;
+            margin-bottom: 36px;
+            animation: fadeInUp 0.8s ease-out 0.7s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease-out 0.9s both;
+        }
+
+        .btn-primary {
+            padding: 16px 36px;
+            background: white;
+            color: var(--coral);
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .btn-outline {
+            padding: 16px 36px;
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-image-main {
+            width: 100%;
+            height: 450px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+        }
+
+        .hero-image-main img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            animation: kenBurns 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        .hero-float-card {
+            position: absolute;
+            background: white;
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            animation: floatCard 3s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .hero-float-card.card-1 { top: -20px; left: -30px; animation-delay: 0s; }
+        .hero-float-card.card-2 { bottom: 30px; right: -20px; animation-delay: -1.5s; }
+
+        .hero-float-card .card-emoji { font-size: 28px; margin-bottom: 4px; }
+        .hero-float-card .card-text { font-size: 13px; font-weight: 800; color: var(--teal); }
+        .hero-float-card .card-sub { font-size: 11px; color: #999; font-weight: 600; }
+
+        /* Floating hero mini photos */
+        .hero-mini-float {
+            position: absolute;
+            z-index: 4;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            opacity: 0.5;
+        }
+
+        .hero-mini-float img { width: 100%; height: 100%; object-fit: cover; }
+
+        .hero-mini-1 {
+            width: 120px; height: 90px;
+            top: 12%; left: 3%;
+            animation: float1 7s ease-in-out infinite;
+        }
+
+        .hero-mini-2 {
+            width: 100px; height: 75px;
+            bottom: 15%; left: 8%;
+            animation: float2 8s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(-3deg); }
+            50% { transform: translate(10px, -18px) rotate(3deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(2deg); }
+            50% { transform: translate(-12px, -12px) rotate(-3deg); }
+        }
+
+        /* ============ WORD STRIPE ============ */
+        .word-stripe {
+            padding: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .word-stripe.coral-stripe { background: var(--coral); }
+        .word-stripe.teal-stripe { background: var(--teal); }
+        .word-stripe.amber-stripe {
+            background: linear-gradient(90deg, var(--amber), var(--sand), var(--amber));
+            background-size: 200% 100%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        .word-stripe-track {
+            display: flex;
+            animation: scrollStripe 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .word-stripe.reverse .word-stripe-track { animation-direction: reverse; }
+
+        .word-stripe-track span {
+            font-size: 16px;
+            font-weight: 800;
+            color: white;
+            padding: 0 40px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .word-stripe-track .dot { padding: 0 8px; opacity: 0.4; }
+
+        @keyframes scrollStripe {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ============ ICON LOOP ============ */
+        .icon-loop {
+            padding: 30px 0;
+            overflow: hidden;
+            background: white;
+        }
+
+        .icon-loop-track {
+            display: flex;
+            animation: scrollIcons 22s linear infinite;
+            align-items: center;
+        }
+
+        .icon-loop-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 40px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .icon-loop-item .icon-emoji {
+            font-size: 28px;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        .icon-loop-item:nth-child(2n) .icon-emoji { animation-delay: -0.5s; }
+        .icon-loop-item:nth-child(3n) .icon-emoji { animation-delay: -1s; }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .icon-loop-item span:last-child {
+            font-weight: 700;
+            color: var(--teal);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        @keyframes scrollIcons {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ============ SECTIONS ============ */
+        .section { padding: 100px 40px; position: relative; z-index: 1; }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 18px;
+            background: var(--coral);
+            color: white;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Decorative floaters */
+        .section-floater {
+            position: absolute;
+            border-radius: 12px;
+            overflow: hidden;
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-floater img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ============ WHY TUITION ============ */
+        .why-section { background: white; overflow: hidden; }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .why-image { position: relative; }
+
+        .why-image-main {
+            width: 100%; height: 480px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+        }
+
+        .why-image-main img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .why-image-main:hover img { transform: scale(1.05); }
+
+        .why-image-secondary {
+            position: absolute;
+            width: 180px; height: 135px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            bottom: -20px; left: -20px;
+            border: 4px solid white;
+            z-index: 2;
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        .why-image-secondary img { width: 100%; height: 100%; object-fit: cover; }
+
+        .why-image-badge {
+            position: absolute;
+            bottom: -20px; right: -20px;
+            background: var(--teal);
+            color: white;
+            padding: 20px 28px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(38,70,83,0.3);
+            animation: floatCard 3s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .why-image-badge .badge-icon { font-size: 28px; margin-bottom: 4px; }
+        .why-image-badge .badge-text { font-size: 14px; font-weight: 800; }
+
+        .why-text h3 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .why-text p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .why-checklist { list-style: none; margin-top: 24px; }
+
+        .why-checklist li {
+            padding: 12px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .why-checklist li:last-child { border: none; }
+
+        .why-checklist .check {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: var(--coral);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ============ PROGRAMS (FLIP CARDS) ============ */
+        .programs { background: var(--cream); }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 360px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%; height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            display: flex;
+        }
+
+        .flip-card-front .card-accent {
+            width: 8px;
+            flex-shrink: 0;
+        }
+
+        .fc-1 .card-accent { background: var(--coral); }
+        .fc-2 .card-accent { background: var(--teal-light); }
+        .fc-3 .card-accent { background: var(--amber); }
+        .fc-4 .card-accent { background: var(--teal); }
+
+        .flip-card-front .card-body {
+            padding: 36px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .flip-card-front .card-icon {
+            width: 56px; height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .fc-1 .card-icon { background: #fce8e4; }
+        .fc-2 .card-icon { background: #e0f5f1; }
+        .fc-3 .card-icon { background: #fef3e2; }
+        .fc-4 .card-icon { background: #e2edf2; }
+
+        .flip-card-front .card-body h3 { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+        .flip-card-front .card-age { font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 12px; }
+        .flip-card-front .card-body p { font-size: 14px; color: #777; line-height: 1.6; }
+
+        .flip-card-front .hover-hint {
+            position: absolute;
+            bottom: 20px; right: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--coral);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, var(--coral), var(--amber));
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .flip-card-back .back-icon { font-size: 48px; margin-bottom: 16px; }
+        .flip-card-back h3 { font-size: 24px; font-weight: 900; margin-bottom: 16px; }
+        .flip-card-back p { font-size: 15px; line-height: 1.7; opacity: 0.9; margin-bottom: 24px; }
+
+        .flip-card-back .back-btn {
+            padding: 12px 28px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .flip-card-back .back-btn:hover { background: rgba(255,255,255,0.3); }
+
+        /* ============ APPROACH ============ */
+        .approach {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--amber) 50%, var(--coral) 100%);
+            background-size: 300% 300%;
+            animation: meshGradient 10s ease infinite;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approach-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .approach-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 48px;
+        }
+
+        .approach-step {
+            text-align: center;
+            padding: 32px 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .approach-step:hover {
+            transform: translateY(-8px) scale(1.03);
+            background: rgba(255,255,255,0.18);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+        }
+
+        .approach-step .step-number {
+            font-size: 14px; font-weight: 800;
+            opacity: 0.5; margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .approach-step .step-icon {
+            font-size: 40px; margin-bottom: 16px; display: block;
+        }
+
+        .approach-step h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+        .approach-step p { font-size: 13px; opacity: 0.8; line-height: 1.5; }
+
+        /* ============ PRICING ============ */
+        .pricing { background: white; }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            border: 2px solid #eee;
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--coral);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(232,99,74,0.12);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--coral);
+            background: linear-gradient(to bottom, #fff5f2, white);
+        }
+
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 16px; right: -28px;
+            background: var(--coral);
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 32px;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+        }
+
+        .pricing-card .pricing-icon { font-size: 40px; margin-bottom: 16px; }
+        .pricing-card h3 { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+        .pricing-card .pricing-age { font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 20px; }
+        .pricing-card .pricing-amount { font-size: 14px; color: #999; margin-bottom: 24px; line-height: 1.6; }
+
+        .pricing-card .pricing-features { list-style: none; text-align: left; margin-bottom: 28px; }
+
+        .pricing-card .pricing-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .pricing-card .pricing-features li:last-child { border: none; }
+        .pricing-card .pricing-features .feat-check { color: var(--teal-light); font-weight: 900; }
+
+        .pricing-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: 2px solid var(--coral);
+            color: var(--coral);
+            background: transparent;
+        }
+
+        .pricing-btn:hover {
+            background: var(--coral);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .pricing-card.featured .pricing-btn { background: var(--coral); color: white; }
+        .pricing-card.featured .pricing-btn:hover { background: var(--coral-light); }
+
+        /* ============ GALLERY (TUITION PHOTOS) ============ */
+        .gallery { background: var(--cream); overflow: hidden; }
+
+        .gallery-scroll-wrapper {
+            overflow: hidden;
+            margin: 0 -40px;
+            padding: 0 40px;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 20px;
+            animation: galleryScroll 35s linear infinite;
+            width: max-content;
+        }
+
+        .gallery-card {
+            width: 320px; height: 240px;
+            border-radius: 20px;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+
+        .gallery-card img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-card:hover img { transform: scale(1.08); }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 16px; left: 16px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        @keyframes galleryScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ============ NEWSPAPER TESTIMONIALS ============ */
+        .newspaper-section {
+            background: linear-gradient(135deg, var(--teal) 0%, #1a3a47 50%, var(--teal) 100%);
+            background-size: 300% 300%;
+            animation: meshGradient 10s ease infinite;
+            color: white;
+            overflow: hidden;
+        }
+
+        .newspaper-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        .newspaper-intro h2 { font-size: 44px; font-weight: 900; margin-bottom: 12px; }
+        .newspaper-intro p { font-size: 16px; opacity: 0.7; line-height: 1.7; }
+
+        .newspaper-grid {
+            display: flex;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .newspaper-grid::-webkit-scrollbar { display: none; }
+
+        .newspaper-card {
+            min-width: 280px;
+            max-width: 280px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .newspaper-card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+        }
+
+        .newspaper-card img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .newspaper-card:hover img { transform: scale(1.03); }
+
+        .newspaper-card .newspaper-label {
+            padding: 16px;
+            background: white;
+        }
+
+        .newspaper-card .newspaper-source {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .newspaper-card .newspaper-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal);
+            line-height: 1.4;
+        }
+
+        .newspaper-scroll-hint {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 13px;
+            opacity: 0.5;
+            letter-spacing: 2px;
+        }
+
+        /* ============ TESTIMONIALS (TEXT) ============ */
+        .testimonials { background: var(--cream); }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-card .stars { font-size: 18px; margin-bottom: 16px; color: var(--sand); }
+
+        .testimonial-card blockquote {
+            font-size: 15px; line-height: 1.7;
+            color: #555; font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card .parent-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-card .parent-avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--coral);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .testimonial-card .parent-name { font-weight: 800; font-size: 14px; color: var(--teal); }
+        .testimonial-card .parent-detail { font-size: 12px; color: #999; }
+
+        /* ============ FAQ ============ */
+        .faq { background: white; }
+
+        .faq-list { max-width: 800px; margin: 0 auto; }
+
+        .faq-item {
+            background: var(--cream);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .faq-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+
+        .faq-question {
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--teal);
+        }
+
+        .faq-toggle {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-toggle {
+            background: var(--coral);
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-item.open .faq-answer { max-height: 300px; }
+
+        .faq-answer p {
+            padding: 0 28px 24px;
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ============ CTA ============ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--amber) 50%, var(--coral) 100%);
+            background-size: 300% 300%;
+            animation: meshGradient 8s ease infinite;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='white' fill-opacity='0.04'/%3E%3C/svg%3E");
+            animation: patternDrift 20s linear infinite;
+        }
+
+        .cta-content {
+            position: relative; z-index: 1;
+            max-width: 600px; margin: 0 auto;
+        }
+
+        .cta-content h2 { font-size: 42px; font-weight: 900; margin-bottom: 16px; }
+
+        .cta-content p {
+            font-size: 16px; opacity: 0.9;
+            line-height: 1.7; margin-bottom: 36px;
+        }
+
+        .cta-form {
+            display: flex; gap: 12px;
+            max-width: 500px; margin: 0 auto;
+        }
+
+        .cta-form input {
+            flex: 1;
+            padding: 16px 24px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .cta-form input::placeholder { color: rgba(255,255,255,0.5); }
+        .cta-form input:focus { border-color: rgba(255,255,255,0.5); }
+
+        .cta-form button {
+            padding: 16px 32px;
+            background: var(--teal);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .cta-form button:hover {
+            background: var(--teal-light);
+            transform: translateY(-2px);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--teal);
+            color: white;
+            padding: 80px 40px 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 48px;
+        }
+
+        .footer-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .footer-logo-img {
+            height: 40px;
+            width: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 6px 12px;
+        }
+        .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 300px; }
+
+        .footer-col h4 {
+            font-size: 14px; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 20px; opacity: 0.6;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+
+        .footer-col a {
+            color: white; text-decoration: none;
+            font-size: 15px; opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col a:hover { opacity: 1; }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: var(--coral);
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 4px 16px rgba(232,99,74,0.3);
+        }
+
+        .back-to-top.visible { opacity: 1; transform: translateY(0); }
+        .back-to-top:hover { background: var(--coral-light); transform: translateY(-3px); }
+
+        /* ============ SCROLL REVEAL ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .approach-steps { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .testimonial-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 36px; }
+            .hero-buttons { justify-content: center; }
+            .hero-image { display: none; }
+            .hero-mini-float { display: none; }
+            .why-grid { grid-template-columns: 1fr; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .flip-card { height: 320px; }
+            .approach-steps { grid-template-columns: 1fr; }
+            .newspaper-card { min-width: 240px; max-width: 240px; }
+            .section { padding: 60px 20px; }
+            .section-header h2 { font-size: 32px; }
+            .cta-form { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTERACTIVE MOUSE-FOLLOW BG -->
+    <div class="interactive-bg">
+        <div class="glow" id="mouseGlow"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <img class="logo-mark" src="https://ik.imagekit.io/cr8hodb6q/yuquan/logo-Yuquan.png?updatedAt=1777262376085" alt="Yuquan">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#why">Why Yuquan</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="preschool.html" style="color:var(--teal-light);font-weight:800;">Preschool →</a></li>
+            <li><a href="#enquiry" class="nav-cta">Enquire Now</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-shapes">
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+        </div>
+
+        <!-- Floating mini photos -->
+        <div class="hero-mini-float hero-mini-1">
+            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09683.JPG?updatedAt=1778372098808" alt="">
+        </div>
+        <div class="hero-mini-float hero-mini-2">
+            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09688.JPG?updatedAt=1778372099077" alt="">
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">📚 Enrichment Programmes</div>
+                <h1>Build Stronger Bilingual Foundations</h1>
+                <p>Structured Chinese & English enrichment that cultivates real bilingual ability — with our own proprietary curriculum and teaching system.</p>
+                <div class="hero-buttons">
+                    <a href="#enquiry" class="btn-primary">Start Learning →</a>
+                    <a href="#programs" class="btn-outline">View Programs</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-main">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09682.JPG?updatedAt=1778372098570" alt="Yuquan Tuition">
+                </div>
+                <div class="hero-float-card card-1">
+                    <div class="card-emoji">🏆</div>
+                    <div class="card-text">20+ Years</div>
+                    <div class="card-sub">of Excellence</div>
+                </div>
+                <div class="hero-float-card card-2">
+                    <div class="card-emoji">🌏</div>
+                    <div class="card-text">Truly Bilingual</div>
+                    <div class="card-sub">Chinese & English</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORD STRIPE -->
+    <div class="word-stripe coral-stripe">
+        <div class="word-stripe-track">
+            <span>Chinese Mastery</span><span class="dot">✦</span>
+            <span>English Fluency</span><span class="dot">✦</span>
+            <span>Bilingual Confidence</span><span class="dot">✦</span>
+            <span>Proprietary Curriculum</span><span class="dot">✦</span>
+            <span>Small Class Sizes</span><span class="dot">✦</span>
+            <span>Experienced Teachers</span><span class="dot">✦</span>
+            <span>Chinese Mastery</span><span class="dot">✦</span>
+            <span>English Fluency</span><span class="dot">✦</span>
+            <span>Bilingual Confidence</span><span class="dot">✦</span>
+            <span>Proprietary Curriculum</span><span class="dot">✦</span>
+            <span>Small Class Sizes</span><span class="dot">✦</span>
+            <span>Experienced Teachers</span><span class="dot">✦</span>
+        </div>
+    </div>
+
+    <!-- ICON LOOP -->
+    <div class="icon-loop">
+        <div class="icon-loop-track">
+            <div class="icon-loop-item"><span class="icon-emoji">📝</span><span>Chinese Writing</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">📖</span><span>Reading</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🗣️</span><span>Oral Skills</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">✍️</span><span>Composition</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">📚</span><span>Vocabulary</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🧮</span><span>Grammar</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🎯</span><span>Exam Prep</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">💡</span><span>Critical Thinking</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">📝</span><span>Chinese Writing</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">📖</span><span>Reading</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🗣️</span><span>Oral Skills</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">✍️</span><span>Composition</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">📚</span><span>Vocabulary</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🧮</span><span>Grammar</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">🎯</span><span>Exam Prep</span></div>
+            <div class="icon-loop-item"><span class="icon-emoji">💡</span><span>Critical Thinking</span></div>
+        </div>
+    </div>
+
+    <!-- WHY TUITION -->
+    <section class="section why-section" id="why">
+        <div class="section-floater" style="width:140px;height:100px;top:30px;right:50px;transform:rotate(6deg);">
+            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09688.JPG?updatedAt=1778372099077" alt="">
+        </div>
+        <div class="section-floater" style="width:120px;height:85px;bottom:50px;left:40px;transform:rotate(-4deg);">
+            <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09683.JPG?updatedAt=1778372098808" alt="">
+        </div>
+
+        <div class="why-grid">
+            <div class="why-image reveal-left">
+                <div class="why-image-main">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09684.JPG?updatedAt=1778372099086" alt="Tuition class">
+                </div>
+                <div class="why-image-secondary">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09688.JPG?updatedAt=1778372099077" alt="Students learning">
+                </div>
+                <div class="why-image-badge">
+                    <div class="badge-icon">📖</div>
+                    <div class="badge-text">Proprietary Curriculum</div>
+                </div>
+            </div>
+            <div class="why-text reveal-right">
+                <div class="section-tag">Why Yuquan Tuition</div>
+                <h3>Not Just Bilingual Exposure — Real Bilingual Ability</h3>
+                <p>While many centres provide bilingual exposure, we aim to cultivate real bilingual ability. With our own proprietary Chinese curriculum and structured teaching system, children build strong foundations in both Chinese and English from an early age.</p>
+                <ul class="why-checklist">
+                    <li><span class="check">✓</span> Proprietary Chinese curriculum developed in-house</li>
+                    <li><span class="check">✓</span> Structured teaching system for both languages</li>
+                    <li><span class="check">✓</span> Small class sizes for personalised attention</li>
+                    <li><span class="check">✓</span> Experienced bilingual educators</li>
+                    <li><span class="check">✓</span> Proven results over 20+ years</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORD STRIPE 2 -->
+    <div class="word-stripe teal-stripe reverse">
+        <div class="word-stripe-track">
+            <span>Strong Foundations</span><span class="dot">★</span>
+            <span>Confident Learners</span><span class="dot">★</span>
+            <span>Academic Success</span><span class="dot">★</span>
+            <span>Bilingual Fluency</span><span class="dot">★</span>
+            <span>Proven Results</span><span class="dot">★</span>
+            <span>Strong Foundations</span><span class="dot">★</span>
+            <span>Confident Learners</span><span class="dot">★</span>
+            <span>Academic Success</span><span class="dot">★</span>
+            <span>Bilingual Fluency</span><span class="dot">★</span>
+            <span>Proven Results</span><span class="dot">★</span>
+        </div>
+    </div>
+
+    <!-- PROGRAMS (FLIP CARDS) -->
+    <section class="section programs" id="programs">
+        <div class="section-header reveal">
+            <div class="section-tag">Our Programs</div>
+            <h2>Tuition for Every Level</h2>
+            <p>Hover over each card to discover more about our structured programmes.</p>
+        </div>
+        <div class="programs-grid">
+            <div class="flip-card fc-1 reveal" style="transition-delay:0.1s">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <div class="card-icon">🌱</div>
+                            <h3>Chinese Enrichment</h3>
+                            <div class="card-age">K1 – K2 · Ages 5–6</div>
+                            <p>Build strong Chinese foundations with our proprietary curriculum.</p>
+                        </div>
+                        <span class="hover-hint">Flip →</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-icon">🌱</div>
+                        <h3>Chinese Enrichment</h3>
+                        <p>Focus on character recognition, reading comprehension, and oral skills. Our proprietary curriculum ensures children develop real Chinese language ability, not just surface-level exposure.</p>
+                        <a href="#enquiry" class="back-btn">Enquire Now →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card fc-2 reveal" style="transition-delay:0.2s">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <div class="card-icon">📖</div>
+                            <h3>English Enrichment</h3>
+                            <div class="card-age">K1 – K2 · Ages 5–6</div>
+                            <p>Strengthen English literacy through phonics and creative writing.</p>
+                        </div>
+                        <span class="hover-hint">Flip →</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-icon">📖</div>
+                        <h3>English Enrichment</h3>
+                        <p>Strengthen English literacy through phonics, reading comprehension, creative writing, and vocabulary building. Fun, engaging lessons that build confidence in English.</p>
+                        <a href="#enquiry" class="back-btn">Enquire Now →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card fc-3 reveal" style="transition-delay:0.3s">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <div class="card-icon">🎓</div>
+                            <h3>P1 Prep Programme</h3>
+                            <div class="card-age">K2 · Ages 6</div>
+                            <p>Comprehensive Primary 1 preparation for a smooth transition.</p>
+                        </div>
+                        <span class="hover-hint">Flip →</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-icon">🎓</div>
+                        <h3>P1 Prep Programme</h3>
+                        <p>Comprehensive preparation covering Chinese, English, and essential skills. Mock assessments and parent workshops included to ensure a confident school transition.</p>
+                        <a href="#enquiry" class="back-btn">Enquire Now →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card fc-4 reveal" style="transition-delay:0.4s">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <div class="card-icon">✍️</div>
+                            <h3>Chinese Calligraphy</h3>
+                            <div class="card-age">Ages 4–6</div>
+                            <p>Develop fine motor skills and cultural appreciation.</p>
+                        </div>
+                        <span class="hover-hint">Flip →</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-icon">✍️</div>
+                        <h3>Chinese Calligraphy</h3>
+                        <p>Develop fine motor skills and cultural appreciation through the art of Chinese brush calligraphy and painting. A beautiful blend of art and language learning.</p>
+                        <a href="#enquiry" class="back-btn">Enquire Now →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="section approach">
+        <div class="approach-content">
+            <div class="section-header" style="color:white;">
+                <div class="section-tag" style="background:rgba(255,255,255,0.2);">Our Approach</div>
+                <h2>How We Teach</h2>
+                <p style="color:rgba(255,255,255,0.8);">A structured, proven methodology that makes bilingual learning effective and enjoyable.</p>
+            </div>
+            <div class="approach-steps">
+                <div class="approach-step reveal" style="transition-delay:0.1s">
+                    <div class="step-number">STEP 01</div>
+                    <span class="step-icon">🎯</span>
+                    <h4>Assess</h4>
+                    <p>Evaluate each child's current level and growth areas.</p>
+                </div>
+                <div class="approach-step reveal" style="transition-delay:0.2s">
+                    <div class="step-number">STEP 02</div>
+                    <span class="step-icon">📋</span>
+                    <h4>Plan</h4>
+                    <p>Personalised learning roadmap tailored to each child.</p>
+                </div>
+                <div class="approach-step reveal" style="transition-delay:0.3s">
+                    <div class="step-number">STEP 03</div>
+                    <span class="step-icon">📚</span>
+                    <h4>Teach</h4>
+                    <p>Engaging lessons with our proprietary curriculum.</p>
+                </div>
+                <div class="approach-step reveal" style="transition-delay:0.4s">
+                    <div class="step-number">STEP 04</div>
+                    <span class="step-icon">📈</span>
+                    <h4>Track</h4>
+                    <p>Regular progress updates and parent communication.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY (TUITION PHOTOS) -->
+    <section class="section gallery" id="gallery">
+        <div class="section-header reveal">
+            <div class="section-tag">Gallery</div>
+            <h2>Learning in Action</h2>
+        </div>
+        <div class="gallery-scroll-wrapper">
+            <div class="gallery-scroll">
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09682.JPG?updatedAt=1778372098570" alt="Chinese Class"><div class="gallery-label">Chinese Class</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09684.JPG?updatedAt=1778372099086" alt="English Workshop"><div class="gallery-label">English Workshop</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09688.JPG?updatedAt=1778372099077" alt="Reading Time"><div class="gallery-label">Reading Time</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09683.JPG?updatedAt=1778372098808" alt="Group Work"><div class="gallery-label">Group Work</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Calligraphy"><div class="gallery-label">Calligraphy</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Creative Writing"><div class="gallery-label">Creative Writing</div></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09682.JPG?updatedAt=1778372098570" alt="Chinese Class"><div class="gallery-label">Chinese Class</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09684.JPG?updatedAt=1778372099086" alt="English Workshop"><div class="gallery-label">English Workshop</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09688.JPG?updatedAt=1778372099077" alt="Reading Time"><div class="gallery-label">Reading Time</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09683.JPG?updatedAt=1778372098808" alt="Group Work"><div class="gallery-label">Group Work</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Calligraphy"><div class="gallery-label">Calligraphy</div></div>
+                <div class="gallery-card"><img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Creative Writing"><div class="gallery-label">Creative Writing</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORD STRIPE 3 -->
+    <div class="word-stripe amber-stripe">
+        <div class="word-stripe-track">
+            <span>Enquire Today</span><span class="dot">♥</span>
+            <span>Trial Class Available</span><span class="dot">♥</span>
+            <span>20+ Years of Trust</span><span class="dot">♥</span>
+            <span>Parent Recommended</span><span class="dot">♥</span>
+            <span>Enquire Today</span><span class="dot">♥</span>
+            <span>Trial Class Available</span><span class="dot">♥</span>
+            <span>20+ Years of Trust</span><span class="dot">♥</span>
+            <span>Parent Recommended</span><span class="dot">♥</span>
+            <span>Enquire Today</span><span class="dot">♥</span>
+            <span>Trial Class Available</span><span class="dot">♥</span>
+        </div>
+    </div>
+
+    <!-- PRICING -->
+    <section class="section pricing" id="pricing">
+        <div class="section-header reveal">
+            <div class="section-tag">Pricing</div>
+            <h2>Transparent & Fair</h2>
+            <p>Quality bilingual tuition at competitive rates. All materials included.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card reveal" style="transition-delay:0.1s">
+                <div class="pricing-icon">🌱</div>
+                <h3>Single Subject</h3>
+                <div class="pricing-age">Chinese or English</div>
+                <div class="pricing-amount">Contact us for current rates.<br>1 session per week.</div>
+                <ul class="pricing-features">
+                    <li><span class="feat-check">✓</span> 1 subject (Chinese or English)</li>
+                    <li><span class="feat-check">✓</span> Small group setting</li>
+                    <li><span class="feat-check">✓</span> Materials included</li>
+                    <li><span class="feat-check">✓</span> Progress reports</li>
+                </ul>
+                <a href="#enquiry" class="pricing-btn">Enquire Now</a>
+            </div>
+            <div class="pricing-card featured reveal" style="transition-delay:0.2s">
+                <div class="pricing-icon">📚</div>
+                <h3>Dual Language</h3>
+                <div class="pricing-age">Chinese + English</div>
+                <div class="pricing-amount">Contact us for bundle pricing.<br>2 sessions per week.</div>
+                <ul class="pricing-features">
+                    <li><span class="feat-check">✓</span> Both Chinese & English</li>
+                    <li><span class="feat-check">✓</span> Bundle savings</li>
+                    <li><span class="feat-check">✓</span> Materials included</li>
+                    <li><span class="feat-check">✓</span> Priority scheduling</li>
+                </ul>
+                <a href="#enquiry" class="pricing-btn">Enquire Now</a>
+            </div>
+            <div class="pricing-card reveal" style="transition-delay:0.3s">
+                <div class="pricing-icon">🎓</div>
+                <h3>P1 Prep Bundle</h3>
+                <div class="pricing-age">Full Preparation</div>
+                <div class="pricing-amount">Contact us for package details.<br>Comprehensive prep.</div>
+                <ul class="pricing-features">
+                    <li><span class="feat-check">✓</span> Chinese + English + Skills</li>
+                    <li><span class="feat-check">✓</span> Exam preparation</li>
+                    <li><span class="feat-check">✓</span> Mock assessments</li>
+                    <li><span class="feat-check">✓</span> Parent workshops</li>
+                </ul>
+                <a href="#enquiry" class="pricing-btn">Enquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS (TEXT) -->
+    <section class="section testimonials">
+        <div class="section-header reveal">
+            <div class="section-tag">Testimonials</div>
+            <h2>What Parents Say</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card reveal" style="transition-delay:0.1s">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <blockquote>"My son's Chinese improved dramatically within just a few months. The structured curriculum really works!"</blockquote>
+                <div class="parent-info">
+                    <div class="parent-avatar">L</div>
+                    <div>
+                        <div class="parent-name">Mrs. Lim</div>
+                        <div class="parent-detail">K2 Parent</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal" style="transition-delay:0.2s">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <blockquote>"The teachers are patient and experienced. My daughter now reads Chinese books on her own!"</blockquote>
+                <div class="parent-info">
+                    <div class="parent-avatar">C</div>
+                    <div>
+                        <div class="parent-name">Mr. Chen</div>
+                        <div class="parent-detail">K1 Parent</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal" style="transition-delay:0.3s">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <blockquote>"The P1 prep programme gave us so much peace of mind. Smooth transition into primary school."</blockquote>
+                <div class="parent-info">
+                    <div class="parent-avatar">T</div>
+                    <div>
+                        <div class="parent-name">Mrs. Tan</div>
+                        <div class="parent-detail">P1 Parent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+        <div class="section-header reveal">
+            <div class="section-tag">FAQ</div>
+            <h2>Common Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>What ages are your tuition programmes for?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>Our tuition programmes are designed for children aged 4 to 6 years old, covering K1, K2, and P1 preparation levels.</p></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>How is Yuquan different from other tuition centres?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>We use our own proprietary Chinese curriculum developed over 20+ years, with a structured teaching system and small class sizes for personalised attention.</p></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>What is the class size?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>We maintain small class sizes to ensure each child receives adequate attention and guidance. Contact us for specific details about current availability.</p></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>Can I try a class before enrolling?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>Yes! We offer trial classes so you and your child can experience our teaching approach firsthand. Fill in the enquiry form to arrange a trial.</p></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>Are materials included in the fees?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>Yes, all learning materials — including our proprietary worksheets, workbooks, and resources — are included. No hidden costs.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section" id="enquiry">
+        <div class="cta-content reveal">
+            <h2>Start Your Child's Bilingual Journey</h2>
+            <p>Enquire today for a free consultation and trial class. Let's build your child's confidence in both Chinese and English.</p>
+            <div class="cta-form">
+                <input type="email" placeholder="Enter your email...">
+                <button type="button">Get Started →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img class="footer-logo-img" src="https://ik.imagekit.io/cr8hodb6q/yuquan/logo-Yuquan.png?updatedAt=1777262376085" alt="Yuquan">
+                </div>
+                <p>Building bilingual confidence since 2005. Proprietary curriculum, proven results.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="#">Chinese Enrichment</a></li>
+                    <li><a href="#">English Enrichment</a></li>
+                    <li><a href="#">P1 Preparation</a></li>
+                    <li><a href="#">Calligraphy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Our Approach</a></li>
+                    <li><a href="#">Teachers</a></li>
+                    <li><a href="#">Results</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">yuquan.com.sg</a></li>
+                    <li><a href="#">Enquire Now</a></li>
+                    <li><a href="#">Locations</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2025 Yuquan Enrichment Programmes. All rights reserved.</span>
+            <span><a href="index.html" style="color:white;text-decoration:none;">← Back to Home</a></span>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // Mouse-follow glow
+        const glow = document.getElementById('mouseGlow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Navbar + Back to top
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 80);
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // FAQ
+        function toggleFaq(el) {
+            el.parentElement.classList.toggle('open');
+        }
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+        // Parallax floating photos
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            document.querySelectorAll('.section-floater').forEach((el, i) => {
+                el.style.transform = `translateY(${scrollY * 0.03 * (i % 2 === 0 ? 1 : -1)}px) rotate(${i % 2 === 0 ? 6 : -4}deg)`;
+            });
+        });
+
+    </script>
+</body>
+</html>
