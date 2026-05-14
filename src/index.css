@@ -336,6 +336,168 @@ img { display: block; max-width: 100%; }
   to   { transform: translate(-50%, -50%) scale(0); }
 }
 
+/* ----------- School Selector ----------- */
+.school-selector {
+  padding: 100px 0 80px;
+  position: relative;
+  background: linear-gradient(180deg, rgba(230, 251, 241, 0.4) 0%, transparent 100%);
+}
+
+.selector-content {
+  text-align: center;
+}
+
+.selector-title {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.selector-subtitle {
+  font-size: 19px;
+  color: var(--ink-soft);
+  margin-bottom: 60px;
+}
+
+.school-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 820px) {
+  .school-cards-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.school-card {
+  border-radius: var(--r-xl);
+  padding: 48px 40px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.4s var(--bounce), box-shadow 0.4s var(--soft), background 0.3s var(--soft);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.school-card:hover {
+  transform: translateY(-12px) rotate(-1.5deg) scale(1.02);
+  box-shadow: var(--shadow-pop);
+}
+
+.school-card.preschool-card {
+  background: linear-gradient(160deg, #ffe7d3 0%, #ffc9a8 100%);
+  color: #5a2d10;
+}
+
+.school-card.language-card {
+  background: linear-gradient(160deg, #d6eefb 0%, #a8d3f0 100%);
+  color: #16415e;
+}
+
+.school-logo-wrapper {
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.school-logo-large {
+  height: 140px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.08));
+  transition: transform 0.4s var(--bounce);
+}
+
+.school-card:hover .school-logo-large {
+  transform: scale(1.12) rotate(-3deg);
+}
+
+.school-name {
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.school-subtitle-small {
+  font-size: 16px;
+  opacity: 0.75;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.school-desc {
+  font-size: 17px;
+  opacity: 0.8;
+  margin-bottom: 32px;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.school-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  transition: transform 0.3s var(--bounce);
+  position: relative;
+}
+
+.school-cta .arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.12);
+  display: grid;
+  place-items: center;
+  transition: transform 0.35s var(--bounce), background 0.25s;
+  font-size: 18px;
+}
+
+.school-card:hover .school-cta .arrow {
+  transform: translateX(8px) rotate(-20deg);
+  background: rgba(0,0,0,0.2);
+}
+
+/* Decorative shape accent */
+.school-card::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  z-index: 0;
+  transition: transform 0.5s var(--bounce);
+}
+
+.school-card:hover::before {
+  transform: scale(1.2) translateX(-20px);
+}
+
+.school-card > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* ----------- Hero ----------- */
 .hero {
   position: relative;

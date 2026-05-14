@@ -6,6 +6,44 @@ import Founder from '../components/Founder';
 export default function HomePage({ go, fireConfetti }) {
   return (
     <div className="page">
+      {/* SCHOOL SELECTION */}
+      <section className="school-selector">
+        <div className="container">
+          <div className="selector-content">
+            <Reveal>
+              <h2 className="selector-title">Welcome to Yuquan</h2>
+              <p className="selector-subtitle">Two connected learning spaces under one community</p>
+            </Reveal>
+
+            <div className="school-cards-container">
+              <Reveal delay={100}>
+                <div className="school-card preschool-card" onClick={() => go('preschool')}>
+                  <div className="school-logo-wrapper">
+                    <img className="school-logo-large" src={IMG.preschoolLogo} alt="Yuquan Preschool" />
+                  </div>
+                  <h3 className="school-name">Yuquan Preschool</h3>
+                  <p className="school-subtitle-small">18 months to 6 years</p>
+                  <p className="school-desc">Bilingual play-based learning. Curious. Confident. Wonder-full.</p>
+                  <div className="school-cta">Explore <span className="arrow">→</span></div>
+                </div>
+              </Reveal>
+
+              <Reveal delay={200}>
+                <div className="school-card language-card" onClick={() => go('language-school')}>
+                  <div className="school-logo-wrapper">
+                    <img className="school-logo-large" src={IMG.logo} alt="Yuquan Language School" />
+                  </div>
+                  <h3 className="school-name">Language School</h3>
+                  <p className="school-subtitle-small">Ages 4 to grown-ups</p>
+                  <p className="school-desc">Structured Chinese & English. Bold voices. Real fluency.</p>
+                  <div className="school-cta">Explore <span className="arrow">→</span></div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* HERO */}
       <section className="hero">
         <div className="container">

@@ -14,7 +14,7 @@ export default function Footer({ go }) {
           <div className="footer-col">
             <h4>Programmes</h4>
             <a href="#" onClick={(e) => { e.preventDefault(); go('preschool'); }}>Preschool</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); go('enrichment'); }}>Enrichment</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); go('language-school'); }}>Language School</a>
             <a href="#">Holiday camps</a>
             <a href="#">Parent-child classes</a>
           </div>

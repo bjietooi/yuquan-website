@@ -1,18 +1,18 @@
 import { IMG } from '../data/images';
 import Reveal from '../components/Reveal';
 
-export default function EnrichmentPage({ go, fireConfetti }) {
+export default function LanguageSchoolPage({ go, fireConfetti }) {
   return (
     <div className="page">
       <section className="page-hero">
         <div className="container">
-          <span className="section-kicker">Enrichment · 课程补习</span>
+          <span className="section-kicker">Language School · 课程补习</span>
           <h1 className="hero-title" style={{ fontSize: 'clamp(48px, 7vw, 92px)' }}>
             Bigger words.<br />Bolder voices.
           </h1>
           <div className="hero-zh" style={{ marginTop: 18 }}>中英补习课程</div>
           <p className="page-hero-lede">
-            Small-group Chinese and English enrichment for ages 4 through to
+            Small-group Chinese and English language classes for ages 4 through to
             grown-ups. Structured where it should be, joyful everywhere else.
           </p>
           <div className="hero-ctas" style={{ justifyContent: 'center', marginTop: 30 }}>
@@ -25,7 +25,7 @@ export default function EnrichmentPage({ go, fireConfetti }) {
           </div>
           <Reveal>
             <div className="hero-collage">
-              <div className="collage-item"><img src={IMG.tuition[0]} alt="Enrichment class" /></div>
+              <div className="collage-item"><img src={IMG.tuition[0]} alt="Language School class" /></div>
               <div className="collage-item"><img src={IMG.tuition[1]} alt="Composition class" /></div>
               <div className="collage-item"><img src={IMG.students[1]} alt="Yuquan students" /></div>
             </div>
@@ -48,7 +48,7 @@ export default function EnrichmentPage({ go, fireConfetti }) {
             <Reveal>
               <div className="enrich-card chinese">
                 <div className="enrich-zh">中文</div>
-                <div className="enrich-en">Chinese Enrichment</div>
+                <div className="enrich-en">Chinese</div>
                 <p className="enrich-desc">
                   Reading, writing, characters, conversation. From first strokes
                   through to confident essay writing.
@@ -69,7 +69,7 @@ export default function EnrichmentPage({ go, fireConfetti }) {
             <Reveal delay={120}>
               <div className="enrich-card english">
                 <div className="enrich-zh" style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>Abc</div>
-                <div className="enrich-en">English Enrichment</div>
+                <div className="enrich-en">English</div>
                 <p className="enrich-desc">
                   Phonics, vocabulary, creative writing, public speaking.
                   Confidence with grammar and a little flair.

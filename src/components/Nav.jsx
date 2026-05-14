@@ -4,7 +4,7 @@ import { IMG } from '../data/images';
 const LINKS = [
   { key: 'home', label: 'Home' },
   { key: 'preschool', label: 'Preschool' },
-  { key: 'enrichment', label: 'Enrichment' },
+  { key: 'language-school', label: 'Language School' },
   { key: 'about', label: 'About' },
 ];
 

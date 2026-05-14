@@ -5,13 +5,13 @@ import FloatingShapes from './components/FloatingShapes';
 import { useConfetti } from './components/Confetti';
 import HomePage from './pages/HomePage';
 import PreschoolPage from './pages/PreschoolPage';
-import EnrichmentPage from './pages/EnrichmentPage';
+import LanguageSchoolPage from './pages/LanguageSchoolPage';
 import AboutPage from './pages/AboutPage';
 
 const PAGES = {
   home: HomePage,
   preschool: PreschoolPage,
-  enrichment: EnrichmentPage,
+  'language-school': LanguageSchoolPage,
   about: AboutPage,
 };
 
