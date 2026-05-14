@@ -158,18 +158,18 @@ export default function HomePage({ go, fireConfetti }) {
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="prog-card sky" onClick={() => go('enrichment')}>
+              <div className="prog-card sky" onClick={() => go('language-school')}>
                 <div className="prog-card-logo">
-                  <img src={IMG.enrichmentLogo} alt="Enrichment" />
+                  <img src={IMG.logo} alt="Language School" />
                 </div>
                 <svg className="prog-shape" width="220" height="220" viewBox="0 0 100 100">
                   <path d="M50 5 C55 35 65 45 95 50 C65 55 55 65 50 95 C45 65 35 55 5 50 C35 45 45 35 50 5 Z" fill="rgba(255,255,255,0.4)"/>
                 </svg>
                 <div style={{ position: 'relative', maxWidth: '60%' }}>
                   <div className="prog-zh">课程补习</div>
-                  <div className="prog-title">Enrichment</div>
+                  <div className="prog-title">Language School</div>
                   <p className="prog-desc">
-                    Structured Chinese & English enrichment for children, teens,
+                    Structured Chinese & English for children, teens,
                     and grown-ups too.
                   </p>
                 </div>
@@ -177,7 +177,7 @@ export default function HomePage({ go, fireConfetti }) {
                   Step inside <span className="arrow">→</span>
                 </div>
                 <div className="prog-card-photo">
-                  <img src={IMG.tuition[0]} alt="Yuquan enrichment" />
+                  <img src={IMG.tuition[0]} alt="Yuquan Language School" />
                 </div>
               </div>
             </Reveal>
