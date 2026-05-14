@@ -16,16 +16,23 @@ export default function Nav({ current, go, onCta }) {
     setMenuOpen(false);
   };
 
+  const showLogo = current !== 'home';
+  const logoSrc = current === 'preschool' ? IMG.preschoolLogo :
+                  current === 'language-school' ? IMG.logo :
+                  IMG.logo;
+
   return (
     <nav className="nav">
       <div className="container">
         <div className="nav-inner">
-          <a className="brand" href="#" onClick={(e) => { e.preventDefault(); handleNav('home'); }}>
-            <img className="brand-logo" src={IMG.logo} alt="Yuquan" />
-          </a>
+          {showLogo && (
+            <a className="brand" href="#" onClick={(e) => { e.preventDefault(); handleNav('home'); }}>
+              <img className="brand-logo" src={logoSrc} alt="Yuquan" />
+            </a>
+          )}
 
           {/* Desktop links */}
-          <div className="nav-links">
+          <div className="nav-links" style={!showLogo ? { marginLeft: 'auto' } : {}}>
             {LINKS.map(l => (
               <button
                 key={l.key}

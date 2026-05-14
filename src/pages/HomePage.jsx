@@ -6,44 +6,6 @@ import Founder from '../components/Founder';
 export default function HomePage({ go, fireConfetti }) {
   return (
     <div className="page">
-      {/* SCHOOL SELECTION */}
-      <section className="school-selector">
-        <div className="container">
-          <div className="selector-content">
-            <Reveal>
-              <h2 className="selector-title">Welcome to Yuquan</h2>
-              <p className="selector-subtitle">Two connected learning spaces under one community</p>
-            </Reveal>
-
-            <div className="school-cards-container">
-              <Reveal delay={100}>
-                <div className="school-card preschool-card" onClick={() => go('preschool')}>
-                  <div className="school-logo-wrapper">
-                    <img className="school-logo-large" src={IMG.preschoolLogo} alt="Yuquan Preschool" />
-                  </div>
-                  <h3 className="school-name">Yuquan Preschool</h3>
-                  <p className="school-subtitle-small">18 months to 6 years</p>
-                  <p className="school-desc">Bilingual play-based learning. Curious. Confident. Wonder-full.</p>
-                  <div className="school-cta">Explore <span className="arrow">→</span></div>
-                </div>
-              </Reveal>
-
-              <Reveal delay={200}>
-                <div className="school-card language-card" onClick={() => go('language-school')}>
-                  <div className="school-logo-wrapper">
-                    <img className="school-logo-large" src={IMG.logo} alt="Yuquan Language School" />
-                  </div>
-                  <h3 className="school-name">Language School</h3>
-                  <p className="school-subtitle-small">Ages 4 to grown-ups</p>
-                  <p className="school-desc">Structured Chinese & English. Bold voices. Real fluency.</p>
-                  <div className="school-cta">Explore <span className="arrow">→</span></div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* HERO */}
       <section className="hero">
         <div className="container">
@@ -118,69 +80,40 @@ export default function HomePage({ go, fireConfetti }) {
         </div>
       </div>
 
-      {/* Programmes */}
-      <section className="section">
+      {/* SCHOOL SELECTION */}
+      <section className="school-selector">
         <div className="container">
-          <Reveal>
-            <span className="section-kicker">Our Programmes</span>
-            <h2 className="section-title">Two paths, one playful philosophy.</h2>
-            <p className="section-lede">
-              Whether your little one is starting their journey at 18 months
-              or topping up their Chinese and English along the way — we have a
-              cosy spot for them.
-            </p>
-          </Reveal>
-
-          <div className="programmes">
+          <div className="selector-content">
             <Reveal>
-              <div className="prog-card peach" onClick={() => go('preschool')}>
-                <div className="prog-card-logo">
-                  <img src={IMG.preschoolLogo} alt="Preschool" />
-                </div>
-                <svg className="prog-shape" width="220" height="220" viewBox="0 0 100 100">
-                  <path d="M50 5 C75 5 95 25 95 50 C95 78 70 95 50 95 C26 95 5 75 5 50 C5 22 27 5 50 5 Z" fill="rgba(255,255,255,0.4)"/>
-                </svg>
-                <div style={{ position: 'relative', maxWidth: '60%' }}>
-                  <div className="prog-zh">幼儿园</div>
-                  <div className="prog-title">Preschool</div>
-                  <p className="prog-desc">
-                    A bilingual nest for ages 18 months to 6 years. Play, music,
-                    mandarin, mess, magic.
-                  </p>
-                </div>
-                <div className="prog-cta" style={{ position: 'relative' }}>
-                  Step inside <span className="arrow">→</span>
-                </div>
-                <div className="prog-card-photo">
-                  <img src={IMG.kindergarten} alt="Yuquan preschool" />
-                </div>
-              </div>
+              <h2 className="selector-title">Welcome to Yuquan</h2>
+              <p className="selector-subtitle">Two connected learning spaces under one community</p>
             </Reveal>
 
-            <Reveal delay={120}>
-              <div className="prog-card sky" onClick={() => go('language-school')}>
-                <div className="prog-card-logo">
-                  <img src={IMG.logo} alt="Language School" />
+            <div className="school-cards-container">
+              <Reveal delay={100}>
+                <div className="school-card preschool-card" onClick={() => go('preschool')}>
+                  <div className="school-logo-wrapper">
+                    <img className="school-logo-large" src={IMG.preschoolLogo} alt="Yuquan Preschool" />
+                  </div>
+                  <h3 className="school-name">Yuquan Preschool</h3>
+                  <p className="school-subtitle-small">18 months to 6 years</p>
+                  <p className="school-desc">Bilingual play-based learning. Curious. Confident. Wonder-full.</p>
+                  <div className="school-cta">Explore <span className="arrow">→</span></div>
                 </div>
-                <svg className="prog-shape" width="220" height="220" viewBox="0 0 100 100">
-                  <path d="M50 5 C55 35 65 45 95 50 C65 55 55 65 50 95 C45 65 35 55 5 50 C35 45 45 35 50 5 Z" fill="rgba(255,255,255,0.4)"/>
-                </svg>
-                <div style={{ position: 'relative', maxWidth: '60%' }}>
-                  <div className="prog-zh">课程补习</div>
-                  <div className="prog-title">Language School</div>
-                  <p className="prog-desc">
-                    Structured Chinese & English for children, teens,
-                    and grown-ups too.
-                  </p>
+              </Reveal>
+
+              <Reveal delay={200}>
+                <div className="school-card language-card" onClick={() => go('language-school')}>
+                  <div className="school-logo-wrapper">
+                    <img className="school-logo-large" src={IMG.logo} alt="Yuquan Language School" />
+                  </div>
+                  <h3 className="school-name">Language School</h3>
+                  <p className="school-subtitle-small">Ages 4 to grown-ups</p>
+                  <p className="school-desc">Structured Chinese & English. Bold voices. Real fluency.</p>
+                  <div className="school-cta">Explore <span className="arrow">→</span></div>
                 </div>
-                <div className="prog-cta" style={{ position: 'relative' }}>
-                  Step inside <span className="arrow">→</span>
-                </div>
-                <div className="prog-card-photo">
-                  <img src={IMG.tuition[0]} alt="Yuquan Language School" />
-                </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
