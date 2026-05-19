@@ -214,162 +214,132 @@ img { display: block; max-width: 100%; }
   margin: 0;
 }
 
-/* ── Cards grid ── */
+/* ── Cards grid — stacked landscape cards ── */
 .gateway-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 960px;
   width: 100%;
-}
-@media (max-width: 680px) {
-  .gateway-cards {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 420px;
-  }
 }
 
 /* ── Individual card ── */
 .gateway-card {
-  border-radius: 40px;
-  padding: 36px 32px 32px;
-  min-height: 520px;
+  border-radius: 32px;
+  min-height: 300px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  flex-direction: row;
+  align-items: stretch;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: transform 0.45s var(--bounce), box-shadow 0.45s var(--soft);
-  box-shadow: 0 18px 56px -18px rgba(40, 70, 50, 0.16);
+  box-shadow: 0 18px 56px -18px rgba(40, 70, 50, 0.18);
   user-select: none;
   outline: none;
 }
 .gateway-card:focus-visible {
   box-shadow: 0 0 0 3px var(--jade), 0 18px 56px -18px rgba(40,70,50,0.2);
 }
-.preschool-gateway {
-  background: linear-gradient(155deg, #fff5ec 0%, #ffdec4 55%, #ffc9a2 100%);
-  color: #5a2c10;
-}
-.language-gateway {
-  background: linear-gradient(155deg, #eaf5ff 0%, #cce5f8 55%, #aad1f0 100%);
-  color: #14415e;
-}
+.preschool-gateway  { background: #fff6ee; }
+.language-gateway   { background: #f0f7ff; }
 
-.preschool-gateway:hover { transform: translateY(-18px) scale(1.025) rotate(-1.5deg); box-shadow: 0 40px 80px -20px rgba(200,100,40,0.25); }
-.language-gateway:hover  { transform: translateY(-18px) scale(1.025) rotate(1.5deg);  box-shadow: 0 40px 80px -20px rgba(40,100,180,0.22); }
+.preschool-gateway:hover { transform: translateY(-8px) scale(1.016); box-shadow: 0 36px 72px -20px rgba(200,100,40,0.22); }
+.language-gateway:hover  { transform: translateY(-8px) scale(1.016); box-shadow: 0 36px 72px -20px rgba(40,100,180,0.20); }
 
-/* Decorative background ring */
-.gc-ring {
+/* ── Character column (die-cut image bleeds beyond card boundary, clipped by overflow:hidden) ── */
+.gc-char-col {
+  width: 42%;
+  flex-shrink: 0;
+  position: relative;
+}
+.gc-char-img {
   position: absolute;
-  width: 340px; height: 340px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.5);
-  top: -80px; right: -80px;
-  pointer-events: none;
-  transition: transform 0.5s var(--bounce);
-}
-.gateway-card:hover .gc-ring {
-  transform: scale(1.15) rotate(15deg);
-}
-
-/* Logo */
-.gc-logo-wrap {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 20px;
-}
-.gc-logo {
-  height: 68px;
+  bottom: 0;
+  height: 138%;
   width: auto;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.10));
-  transition: transform 0.4s var(--bounce);
-}
-.gateway-card:hover .gc-logo {
-  transform: scale(1.08) rotate(-4deg);
-}
-
-/* Die-cut mascot image */
-.gc-mascot {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  margin: 0 -16px;
-  min-height: 220px;
-}
-.gc-mascot img {
-  max-height: 260px;
-  width: auto;
-  max-width: 110%;
   object-fit: contain;
-  filter: drop-shadow(0 22px 28px rgba(0,0,0,0.13));
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.10));
   transition: transform 0.45s var(--bounce);
 }
-.gateway-card:hover .gc-mascot img {
-  transform: translateY(-10px) scale(1.06);
-}
+/* Preschool: char bleeds to the left */
+.preschool-gateway .gc-char-img { left: -28px; }
+/* Language school: char bleeds to the right */
+.language-gateway  .gc-char-img { right: -28px; }
 
-/* Text info block */
-.gc-info {
+.gateway-card:hover .gc-char-img { transform: translateY(-14px) scale(1.07); }
+
+/* ── Text / info column ── */
+.gc-info-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 36px 48px 36px 40px;
   position: relative;
   z-index: 2;
-  margin-top: 22px;
-  width: 100%;
-}
-.gc-age {
-  font-size: 13.5px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin: 0 0 8px;
 }
 .gc-name {
   font-family: var(--font-display);
-  font-size: clamp(22px, 2.8vw, 30px);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin: 0 0 10px;
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 0 12px;
 }
-.gc-desc {
-  font-size: 15px;
-  opacity: 0.72;
-  line-height: 1.5;
+.gc-tagline {
+  font-size: clamp(13px, 1.3vw, 15px);
+  color: var(--ink-soft);
+  line-height: 1.65;
   margin: 0 0 22px;
-  max-width: 260px;
-  margin-left: auto;
-  margin-right: auto;
 }
-.gc-enter {
+.gc-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(0,0,0,0.09);
-  padding: 11px 22px;
+  background: var(--jade);
+  color: #fff;
+  padding: 11px 24px;
   border-radius: var(--r-pill);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 15.5px;
+  width: fit-content;
+  border: none;
+  cursor: pointer;
   transition: background 0.25s, gap 0.3s var(--bounce);
 }
 .gc-arrow {
   display: inline-block;
   transition: transform 0.3s var(--bounce);
 }
-.gateway-card:hover .gc-enter {
-  background: rgba(0,0,0,0.15);
-  gap: 16px;
+.gateway-card:hover .gc-btn   { background: var(--jade-deep); gap: 16px; }
+.gateway-card:hover .gc-arrow { transform: translateX(4px); }
+
+/* ── Circular logo badge ── */
+.gc-badge {
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  box-shadow: 0 10px 32px -8px rgba(40,70,50,0.20), 0 2px 8px rgba(0,0,0,0.06);
+  z-index: 4;
+  transition: transform 0.4s var(--bounce);
 }
-.gateway-card:hover .gc-arrow {
-  transform: translateX(4px) rotate(-15deg);
+.gc-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
+.preschool-gateway .gc-badge { bottom: 22px; left: 20px; }
+.language-gateway  .gc-badge { top: 22px;    right: 20px; }
+.gateway-card:hover .gc-badge { transform: scale(1.1) rotate(-6deg); }
 
 /* ── Gateway footer ── */
 .gateway-footer {
@@ -429,12 +399,18 @@ img { display: block; max-width: 100%; }
   margin: 0;
 }
 
-@media (max-width: 520px) {
-  .gateway-main { padding: 36px 20px 28px; gap: 28px; }
+@media (max-width: 640px) {
+  .gateway-main { padding: 36px 16px 28px; gap: 24px; }
   .gateway-footer { padding: 18px 20px 22px; }
-  .gateway-card { min-height: 460px; padding: 28px 22px 26px; border-radius: 32px; }
-  .gc-mascot { min-height: 180px; }
-  .gc-mascot img { max-height: 200px; }
+  .gateway-card { min-height: 170px; border-radius: 24px; }
+  .gc-char-col  { width: 40%; }
+  .gc-info-col  { padding: 22px 20px 22px 16px; }
+  .gc-name      { font-size: 20px; }
+  .gc-tagline   { font-size: 12px; margin-bottom: 14px; }
+  .gc-btn       { font-size: 13px; padding: 9px 18px; }
+  .gc-badge     { width: 78px; height: 78px; padding: 9px; }
+  .preschool-gateway .gc-badge { bottom: 12px; left: 10px; }
+  .language-gateway  .gc-badge { top: 12px;    right: 10px; }
 }
 
 /* ----------- Floating shapes background ----------- */

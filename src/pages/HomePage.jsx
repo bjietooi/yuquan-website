@@ -32,7 +32,7 @@ export default function HomePage({ go }) {
         {/* School selector cards */}
         <div className="gateway-cards">
 
-          {/* ── Preschool card ── */}
+          {/* ── Preschool card: char LEFT, content RIGHT, badge BOTTOM-LEFT ── */}
           <div
             className="gateway-card preschool-gateway"
             onClick={() => go('preschool')}
@@ -40,28 +40,20 @@ export default function HomePage({ go }) {
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && go('preschool')}
           >
-            {/* Decorative ring */}
-            <div className="gc-ring" />
-
-            <div className="gc-logo-wrap">
-              <img src={IMG.preschoolLogo} alt="Yuquan Preschool" className="gc-logo" />
+            <div className="gc-char-col">
+              <img src={IMG.btnPreschool} className="gc-char-img" alt="" />
             </div>
-
-            <div className="gc-mascot">
-              <img src={IMG.btnPreschool} alt="Yuquan Preschool" />
+            <div className="gc-info-col">
+              <h2 className="gc-name">Yuquan<br />Preschool</h2>
+              <p className="gc-tagline">18 Months – 6 Years<br />Bilingual Childcare &amp; Kindergarten</p>
+              <div className="gc-btn">Explore <span className="gc-arrow">→</span></div>
             </div>
-
-            <div className="gc-info">
-              <p className="gc-age">18 months — 6 years</p>
-              <h2 className="gc-name">Yuquan Preschool</h2>
-              <p className="gc-desc">Bilingual play-based learning. Curious. Confident. Wonder-full.</p>
-              <div className="gc-enter">
-                Explore <span className="gc-arrow">→</span>
-              </div>
+            <div className="gc-badge">
+              <img src={IMG.preschoolLogo} alt="Yuquan Preschool" />
             </div>
           </div>
 
-          {/* ── Language School card ── */}
+          {/* ── Language School card: content LEFT, char RIGHT, badge TOP-RIGHT ── */}
           <div
             className="gateway-card language-gateway"
             onClick={() => go('language-school')}
@@ -69,24 +61,16 @@ export default function HomePage({ go }) {
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && go('language-school')}
           >
-            {/* Decorative ring */}
-            <div className="gc-ring" />
-
-            <div className="gc-logo-wrap">
-              <img src={IMG.logo} alt="Yuquan Language School" className="gc-logo" />
+            <div className="gc-info-col">
+              <h2 className="gc-name">Yuquan<br />Language School</h2>
+              <p className="gc-tagline">A Trusted Name in Chinese<br />&amp; English Education Since 1996</p>
+              <div className="gc-btn">Explore <span className="gc-arrow">→</span></div>
             </div>
-
-            <div className="gc-mascot">
-              <img src={IMG.btnLanguageSchool} alt="Yuquan Language School" />
+            <div className="gc-char-col">
+              <img src={IMG.btnLanguageSchool} className="gc-char-img" alt="" />
             </div>
-
-            <div className="gc-info">
-              <p className="gc-age">Ages 4 to grown-ups</p>
-              <h2 className="gc-name">Language School</h2>
-              <p className="gc-desc">Structured Chinese & English. Bold voices. Real fluency.</p>
-              <div className="gc-enter">
-                Explore <span className="gc-arrow">→</span>
-              </div>
+            <div className="gc-badge">
+              <img src={IMG.logo} alt="Yuquan Language School" />
             </div>
           </div>
 
