@@ -19,10 +19,10 @@ const PRESCHOOL_LINKS = [
       { id: 'ps-philosophy', label: 'Our Philosophy', navigate: 'about' },
     ],
   },
-  { id: 'ps-curriculum', label: 'Curriculum',        navigate: 'preschool' },
-  { id: 'ps-news',       label: 'News & Resources',  navigate: 'preschool' },
-  { id: 'ps-locations',  label: 'Locations',         navigate: 'preschool' },
-  { id: 'ps-contact',    label: 'Contact Us',        navigate: 'preschool' },
+  { id: 'ps-curriculum', label: 'Curriculum',       navigate: null },
+  { id: 'ps-news',       label: 'News & Resources', navigate: null },
+  { id: 'ps-locations',  label: 'Locations',        navigate: null },
+  { id: 'ps-contact',    label: 'Contact Us',       navigate: null },
 ];
 
 const LANGUAGE_SCHOOL_LINKS = [
@@ -37,16 +37,16 @@ const LANGUAGE_SCHOOL_LINKS = [
   {
     id: 'ls-programmes', label: 'Programmes',
     dropdown: [
-      { id: 'prog-preschool',  label: 'Preschool',  navigate: 'preschool' },
-      { id: 'prog-primary',    label: 'Primary',    navigate: 'language-school' },
-      { id: 'prog-secondary',  label: 'Secondary',  navigate: 'language-school' },
-      { id: 'prog-adult',      label: 'Adult',      navigate: 'language-school' },
+      { id: 'prog-preschool', label: 'Preschool', navigate: 'preschool' },
+      { id: 'prog-primary',   label: 'Primary',   navigate: null },
+      { id: 'prog-secondary', label: 'Secondary', navigate: null },
+      { id: 'prog-adult',     label: 'Adult',     navigate: null },
     ],
   },
-  { id: 'ls-holiday',  label: 'Holiday Programmes', navigate: 'language-school' },
-  { id: 'ls-news',     label: 'News & Resources',   navigate: 'language-school' },
-  { id: 'ls-location', label: 'Location',           navigate: 'language-school' },
-  { id: 'ls-contact',  label: 'Contact Us',         navigate: 'language-school' },
+  { id: 'ls-holiday',  label: 'Holiday Programmes', navigate: null },
+  { id: 'ls-news',     label: 'News & Resources',   navigate: null },
+  { id: 'ls-location', label: 'Location',           navigate: null },
+  { id: 'ls-contact',  label: 'Contact Us',         navigate: null },
 ];
 
 /* ─── Dropdown-aware link component ────────────────────────────── */
@@ -63,14 +63,15 @@ function NavItem({ item, current, onNavigate }) {
     return () => document.removeEventListener('mousedown', close);
   }, []);
 
-  const isActive = item.navigate === current ||
-    item.dropdown?.some(d => d.navigate === current);
+  // null navigate = stub page (not built yet) — never highlight, click is no-op
+  const isActive = (item.navigate != null && item.navigate === current) ||
+    item.dropdown?.some(d => d.navigate != null && d.navigate === current);
 
   if (!item.dropdown) {
     return (
       <button
         className={`nav-link ${isActive ? 'active' : ''}`}
-        onClick={() => onNavigate(item.navigate)}
+        onClick={() => item.navigate && onNavigate(item.navigate)}
       >
         {item.label}
       </button>
@@ -97,7 +98,7 @@ function NavItem({ item, current, onNavigate }) {
             key={d.id}
             role="menuitem"
             className="nav-dd-item"
-            onClick={() => { onNavigate(d.navigate); setOpen(false); }}
+            onClick={() => { d.navigate && onNavigate(d.navigate); setOpen(false); }}
           >
             {d.label}
           </button>
