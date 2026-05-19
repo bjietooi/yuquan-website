@@ -15,11 +15,6 @@ export default function HomePage({ go }) {
       {/* ── Main content ── */}
       <main className="gateway-main">
 
-        {/* Top brand mark */}
-        <div className="gateway-brand">
-          <img src={IMG.logo} alt="Yuquan" className="gateway-logo" />
-        </div>
-
         {/* Heading */}
         <div className="gateway-headline">
           <h1 className="gateway-title">Welcome to Yuquan</h1>
