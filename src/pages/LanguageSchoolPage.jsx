@@ -1,5 +1,6 @@
 import { IMG } from '../data/images';
 import Reveal from '../components/Reveal';
+import SharedSections from '../components/SharedSections';
 
 export default function LanguageSchoolPage({ go, fireConfetti }) {
   return (
@@ -158,26 +159,9 @@ export default function LanguageSchoolPage({ go, fireConfetti }) {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section" style={{ paddingTop: 20 }}>
-        <div className="container">
-          <Reveal>
-            <div className="cta-banner">
-              <svg className="cta-shape s2" width="180" height="180" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" fill="white"/>
-              </svg>
-              <svg className="cta-shape s1" width="240" height="240" viewBox="0 0 100 100">
-                <path d="M50 5 C55 35 65 45 95 50 C65 55 55 65 50 95 C45 65 35 55 5 50 C35 45 45 35 50 5 Z" fill="white"/>
-              </svg>
-              <h2>Try a class on us.</h2>
-              <p>The first trial class is complimentary. Bring a friend and you both get a fun little gift.</p>
-              <button className="btn btn-primary" onClick={fireConfetti}>
-                Book a trial class <span className="btn-arrow">→</span>
-              </button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* ── Shared sections: Pillars → Stats → Daily Life → Testimonials → Founder → Press → CTA ── */}
+      <SharedSections fireConfetti={fireConfetti} />
+
     </div>
   );
 }

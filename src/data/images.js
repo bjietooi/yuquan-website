@@ -2,6 +2,8 @@ export const IMG = {
   logo: "https://ik.imagekit.io/cr8hodb6q/yuquan/logo-Yuquan.png",
   preschoolLogo: "https://ik.imagekit.io/cr8hodb6q/yuquan/preschool_logo.png",
   enrichmentLogo: "https://ik.imagekit.io/cr8hodb6q/yuquan/enrichment%20logo.png",
+  btnPreschool: "https://ik.imagekit.io/cr8hodb6q/yuquan/btn_yuquanpreschool.png",
+  btnLanguageSchool: "https://ik.imagekit.io/cr8hodb6q/yuquan/btn_yuquanlanguageschool.png",
   sprouts: "https://ik.imagekit.io/cr8hodb6q/yuquan/sprouts.png",
   founder: "https://ik.imagekit.io/cr8hodb6q/yuquan/happy%20student%20images.png",
   students: [

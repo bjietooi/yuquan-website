@@ -42,14 +42,16 @@ export default function App() {
 
   const Page = PAGES[page] || HomePage;
 
+  const isGateway = page === 'home';
+
   return (
     <div className="app">
-      <FloatingShapes />
-      <Nav current={page} go={go} onCta={fireConfetti} />
+      {!isGateway && <FloatingShapes />}
+      {!isGateway && <Nav current={page} go={go} onCta={fireConfetti} />}
       <main>
         <Page key={page} go={go} fireConfetti={fireConfetti} />
       </main>
-      <Footer go={go} />
+      {!isGateway && <Footer go={go} />}
 
       {transitioning && (
         <div className={`swoosh-overlay ${transitioning}`}>

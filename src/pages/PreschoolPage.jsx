@@ -1,5 +1,6 @@
 import { IMG } from '../data/images';
 import Reveal from '../components/Reveal';
+import SharedSections from '../components/SharedSections';
 
 export default function PreschoolPage({ go, fireConfetti }) {
   return (
@@ -139,26 +140,9 @@ export default function PreschoolPage({ go, fireConfetti }) {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section" style={{ paddingTop: 20 }}>
-        <div className="container">
-          <Reveal>
-            <div className="cta-banner">
-              <svg className="cta-shape s1" width="280" height="280" viewBox="0 0 100 100">
-                <path d="M50 5 C75 5 95 25 95 50 C95 78 70 95 50 95 C26 95 5 75 5 50 C5 22 27 5 50 5 Z" fill="white"/>
-              </svg>
-              <svg className="cta-shape s3" width="100" height="100" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" fill="none" stroke="white" strokeWidth="10"/>
-              </svg>
-              <h2>Pop by for a look around.</h2>
-              <p>Best way to feel the place is to come step inside. Tours are 30 minutes, and yes — bring the little one.</p>
-              <button className="btn btn-primary" onClick={fireConfetti}>
-                Book a tour <span className="btn-arrow">→</span>
-              </button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* ── Shared sections: Pillars → Stats → Daily Life → Testimonials → Founder → Press → CTA ── */}
+      <SharedSections fireConfetti={fireConfetti} />
+
     </div>
   );
 }
