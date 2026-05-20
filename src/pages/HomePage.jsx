@@ -43,10 +43,11 @@ export default function HomePage({ go }) {
               <p className="gc-tagline">18 Months – 6 Years<br />Bilingual Childcare &amp; Kindergarten</p>
               <div className="gc-bottom">
                 <div className="gc-btn">Explore <span className="gc-arrow">→</span></div>
-                <div className="gc-badge">
-                  <img src={IMG.preschoolLogo} alt="Yuquan Preschool" />
-                </div>
               </div>
+            </div>
+            {/* Badge: direct child of card so it can be absolute over the character */}
+            <div className="gc-badge">
+              <img src={IMG.preschoolLogo} alt="Yuquan Preschool" />
             </div>
           </div>
 
@@ -63,13 +64,14 @@ export default function HomePage({ go }) {
               <p className="gc-tagline">A Trusted Name in Chinese<br />&amp; English Education Since 1996</p>
               <div className="gc-bottom">
                 <div className="gc-btn">Explore <span className="gc-arrow">→</span></div>
-                <div className="gc-badge">
-                  <img src={IMG.logo} alt="Yuquan Language School" />
-                </div>
               </div>
             </div>
             <div className="gc-char-col">
               <img src={IMG.btnLanguageSchool} className="gc-char-img" alt="" />
+            </div>
+            {/* Badge: direct child of card so it can be absolute over the character */}
+            <div className="gc-badge">
+              <img src={IMG.logo} alt="Yuquan Language School" />
             </div>
           </div>
 

@@ -330,19 +330,25 @@ img { display: block; max-width: 100%; }
 .gateway-card:hover .gc-btn   { background: var(--jade-deep); gap: 16px; }
 .gateway-card:hover .gc-arrow { transform: translateX(4px); }
 
-/* ── Circular logo badge — flows inline in gc-bottom ── */
+/* ── Circular logo badge ── */
+/*   Direct child of .gateway-card (position:relative), so left% is relative to the card.
+     Horizontally centred on the character column:
+       Preschool  → char-col 42% wide  → centre at 21% from left
+       Lang.School→ char-col 42% wide  → centre at 79% from left (= 21% from right)
+     On mobile the badge shrinks to a small corner element.                              */
 .gc-badge {
-  width: 80px;
-  height: 80px;
+  position: absolute;
   border-radius: 50%;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  box-shadow: 0 8px 24px -6px rgba(40,70,50,0.20), 0 2px 6px rgba(0,0,0,0.05);
-  flex-shrink: 0;
-  margin-left: auto;    /* push badge to the far end of the row */
+  box-shadow: 0 10px 32px -8px rgba(40,70,50,0.22), 0 2px 8px rgba(0,0,0,0.07);
+  z-index: 4;
+  /* default (mobile-first) sizing — overridden below */
+  width: 68px; height: 68px; padding: 8px;
+  bottom: 14px;
+  transform: translateX(-50%);
   transition: transform 0.4s var(--bounce);
 }
 .gc-badge img {
@@ -350,7 +356,25 @@ img { display: block; max-width: 100%; }
   height: 100%;
   object-fit: contain;
 }
-.gateway-card:hover .gc-badge { transform: scale(1.1) rotate(-6deg); }
+
+/* Mobile: badge sits in corner of content side */
+.preschool-gateway .gc-badge { left: calc(42% / 2); }  /* centre of char-col */
+.language-gateway  .gc-badge { left: calc(100% - 42% / 2); }
+
+/* Tablet (541–860px): char-col shrinks to 38% */
+@media (min-width: 541px) {
+  .gc-badge { width: 110px; height: 110px; padding: 12px; bottom: 18px; }
+  .preschool-gateway .gc-badge { left: calc(38% / 2); }
+  .language-gateway  .gc-badge { left: calc(100% - 38% / 2); }
+  .gateway-card:hover .gc-badge { transform: translateX(-50%) scale(1.1) rotate(-6deg); }
+}
+
+/* Desktop (860px+): char-col back to 42%, badge = ~50% of 300px card height */
+@media (min-width: 860px) {
+  .gc-badge { width: 150px; height: 150px; padding: 18px; bottom: 22px; }
+  .preschool-gateway .gc-badge { left: calc(42% / 2); }
+  .language-gateway  .gc-badge { left: calc(100% - 42% / 2); }
+}
 
 /* ── Gateway footer ── */
 .gateway-footer {
@@ -428,7 +452,7 @@ img { display: block; max-width: 100%; }
   .gc-name        { font-size: 20px; }
   .gc-tagline     { font-size: 12px; margin-bottom: 14px; }
   .gc-btn         { font-size: 13px; padding: 9px 18px; }
-  .gc-badge       { width: 64px; height: 64px; padding: 7px; }
+  .gc-badge       { width: 60px; height: 60px; padding: 7px; bottom: 12px; }
 }
 
 /* ----------- Floating shapes background ----------- */
