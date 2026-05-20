@@ -679,22 +679,27 @@ img { display: block; max-width: 100%; }
   justify-content: center;
 }
 
-/* Group parent button: text centred, chevron pinned to the right with absolute */
+/* Group parent button: text centred, chevron pinned to right edge
+   Equal left/right padding keeps the label optically centred while
+   the right padding zone holds the absolutely-positioned chevron. */
 .nav-mobile-group-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   text-align: center;
-  position: relative;   /* anchor for the absolute chevron */
+  position: relative;
+  padding: 10px 40px;   /* 40px right = buffer zone for the chevron at right:14px */
 }
 .nav-chev-mobile {
   position: absolute;
-  right: 14px;          /* sits at right edge regardless of label width */
-  transform: rotate(45deg) translateY(-2px);
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  flex-shrink: 0;
 }
 .nav-mobile-group-btn.expanded .nav-chev-mobile {
-  transform: rotate(225deg) translateY(2px);
+  transform: translateY(-50%) rotate(225deg);
 }
 
 /* Sub-items: no left indent, centred */
