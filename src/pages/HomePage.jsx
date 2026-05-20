@@ -27,7 +27,7 @@ export default function HomePage({ go }) {
         {/* School selector cards */}
         <div className="gateway-cards">
 
-          {/* ── Preschool card: char LEFT, content RIGHT, badge BOTTOM-LEFT ── */}
+          {/* ── Preschool card: char LEFT · content RIGHT ── */}
           <div
             className="gateway-card preschool-gateway"
             onClick={() => go('preschool')}
@@ -41,14 +41,16 @@ export default function HomePage({ go }) {
             <div className="gc-info-col">
               <h2 className="gc-name">Yuquan<br />Preschool</h2>
               <p className="gc-tagline">18 Months – 6 Years<br />Bilingual Childcare &amp; Kindergarten</p>
-              <div className="gc-btn">Explore <span className="gc-arrow">→</span></div>
-            </div>
-            <div className="gc-badge">
-              <img src={IMG.preschoolLogo} alt="Yuquan Preschool" />
+              <div className="gc-bottom">
+                <div className="gc-btn">Explore <span className="gc-arrow">→</span></div>
+                <div className="gc-badge">
+                  <img src={IMG.preschoolLogo} alt="Yuquan Preschool" />
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* ── Language School card: content LEFT, char RIGHT, badge TOP-RIGHT ── */}
+          {/* ── Language School card: content LEFT · char RIGHT ── */}
           <div
             className="gateway-card language-gateway"
             onClick={() => go('language-school')}
@@ -59,13 +61,15 @@ export default function HomePage({ go }) {
             <div className="gc-info-col">
               <h2 className="gc-name">Yuquan<br />Language School</h2>
               <p className="gc-tagline">A Trusted Name in Chinese<br />&amp; English Education Since 1996</p>
-              <div className="gc-btn">Explore <span className="gc-arrow">→</span></div>
+              <div className="gc-bottom">
+                <div className="gc-btn">Explore <span className="gc-arrow">→</span></div>
+                <div className="gc-badge">
+                  <img src={IMG.logo} alt="Yuquan Language School" />
+                </div>
+              </div>
             </div>
             <div className="gc-char-col">
               <img src={IMG.btnLanguageSchool} className="gc-char-img" alt="" />
-            </div>
-            <div className="gc-badge">
-              <img src={IMG.logo} alt="Yuquan Language School" />
             </div>
           </div>
 

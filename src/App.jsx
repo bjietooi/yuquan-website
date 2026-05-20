@@ -46,7 +46,7 @@ export default function App() {
 
   return (
     <div className="app">
-      {!isGateway && <FloatingShapes />}
+      <FloatingShapes />
       {!isGateway && <Nav current={page} go={go} onCta={fireConfetti} />}
       <main>
         <Page key={page} go={go} fireConfetti={fireConfetti} />
