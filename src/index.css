@@ -667,34 +667,49 @@ img { display: block; max-width: 100%; }
   gap: 4px;
   padding: 12px 0 18px;
   border-top: 1px solid var(--jade-soft);
+  align-items: center;   /* centre all direct children horizontally */
 }
 .nav-mobile-menu.open { display: flex; }
-.nav-mobile-menu .nav-link { border-radius: var(--r-md); }
 
+/* Every link/button in the mobile menu is full-width and centred */
+.nav-mobile-menu .nav-link {
+  border-radius: var(--r-md);
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+/* Group parent button: text centred, chevron pinned to the right with absolute */
 .nav-mobile-group-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  text-align: left;
+  text-align: center;
+  position: relative;   /* anchor for the absolute chevron */
 }
 .nav-chev-mobile {
+  position: absolute;
+  right: 14px;          /* sits at right edge regardless of label width */
   transform: rotate(45deg) translateY(-2px);
 }
 .nav-mobile-group-btn.expanded .nav-chev-mobile {
   transform: rotate(225deg) translateY(2px);
 }
+
+/* Sub-items: no left indent, centred */
 .nav-mobile-sub-group {
-  padding-left: 16px;
-  border-left: 3px solid var(--jade-soft);
-  margin-left: 16px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2px;
+  padding: 0 0 4px;
 }
 .nav-mobile-sub-item {
   font-size: 14.5px !important;
   color: var(--ink-soft) !important;
+  text-align: center !important;
+  justify-content: center !important;
 }
 
 @media (max-width: 900px) {
