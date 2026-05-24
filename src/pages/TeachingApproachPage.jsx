@@ -26,16 +26,69 @@ export default function TeachingApproachPage({ fireConfetti }) {
 
   return (
     <div className="page">
-      <section className="page-hero">
+      <section className="page-hero" style={{ paddingBottom: 80 }}>
         <div className="container">
-          <span className="section-kicker">Our Method · 教学方法</span>
-          <h1 className="hero-title" style={{ fontSize: 'clamp(48px, 7vw, 92px)' }}>
-            How we build<br />real ability.
+          <span className="section-kicker">Our teaching approach</span>
+          <h1 className="hero-title" style={{ fontSize: 'clamp(48px, 7vw, 92px)', marginBottom: 56 }}>
+            Dual Track Chinese<br />Learning System
           </h1>
-          <p className="page-hero-lede" style={{ marginTop: 24 }}>
-            A structured, proven approach that aligns with school syllabus while
-            developing genuine Mandarin and English proficiency beyond textbooks.
-          </p>
+
+          <Reveal>
+            <div style={{ maxWidth: 1000, margin: '0 auto', position: 'relative', height: 480, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg viewBox="0 0 1000 500" style={{ width: '100%', height: '100%' }}>
+                {/* Left circle - Foundation Building */}
+                <circle cx="320" cy="250" r="200" fill="#e8c97a" opacity="0.7" />
+                {/* Right circle - School Syllabus */}
+                <circle cx="680" cy="250" r="200" fill="#f4d99e" opacity="0.7" />
+
+                {/* Left side text */}
+                <text x="200" y="240" fontSize="16" fontWeight="600" fill="#1e2a22" textAnchor="middle">
+                  <tspan x="200" dy="0">Character Recognition</tspan>
+                  <tspan x="200" dy="20">Building Vocabulary</tspan>
+                  <tspan x="200" dy="20">Sentence Structure</tspan>
+                  <tspan x="200" dy="20">Reading Confidence</tspan>
+                </text>
+
+                {/* Center text */}
+                <text x="500" y="235" fontSize="28" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                  <tspan x="500" dy="0">REAL</tspan>
+                  <tspan x="500" dy="32">CHINESE</tspan>
+                  <tspan x="500" dy="32">ABILITY</tspan>
+                </text>
+
+                {/* Left circle label */}
+                <text x="280" y="410" fontSize="18" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                  FOUNDATION
+                </text>
+                <text x="280" y="432" fontSize="18" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                  BUILDING
+                </text>
+
+                {/* Right circle label */}
+                <text x="720" y="410" fontSize="18" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                  SCHOOL
+                </text>
+                <text x="720" y="432" fontSize="18" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                  SYLLABUS
+                </text>
+
+                {/* Right side text */}
+                <text x="800" y="240" fontSize="16" fontWeight="600" fill="#1e2a22" textAnchor="middle">
+                  <tspan x="800" dy="0">Textbook Content</tspan>
+                  <tspan x="800" dy="20">Exam Techniques</tspan>
+                  <tspan x="800" dy="20">Composition</tspan>
+                  <tspan x="800" dy="20">Comprehension</tspan>
+                  <tspan x="800" dy="20">Listening</tspan>
+                  <tspan x="800" dy="20">Oral</tspan>
+                </text>
+
+                {/* Bottom text */}
+                <text x="500" y="480" fontSize="16" fontWeight="600" fill="#1e2a22" textAnchor="middle">
+                  Confident and Capable Chinese Learner
+                </text>
+              </svg>
+            </div>
+          </Reveal>
         </div>
       </section>
 
