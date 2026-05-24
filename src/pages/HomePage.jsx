@@ -84,8 +84,6 @@ export default function HomePage({ go }) {
           <button onClick={() => go('preschool')}>Preschool</button>
           <span className="gf-dot" />
           <button onClick={() => go('language-school')}>Language School</button>
-          <span className="gf-dot" />
-          <button onClick={() => go('about')}>About Us</button>
         </nav>
         <div className="gf-contact">
           <a href="mailto:hello@yuquan.sg">hello@yuquan.sg</a>
