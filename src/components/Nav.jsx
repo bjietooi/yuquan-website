@@ -120,7 +120,7 @@ export default function Nav({ current, go, onCta }) {
   };
 
   const isPreschool     = current === 'preschool';
-  const isLanguageSchool = current === 'language-school';
+  const isLanguageSchool = current === 'language-school' || current === 'about' || current === 'teaching-approach';
   const isHome          = !isPreschool && !isLanguageSchool;
 
   const links   = isPreschool ? PRESCHOOL_LINKS :
