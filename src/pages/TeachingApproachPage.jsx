@@ -1,7 +1,29 @@
-import { IMG } from '../data/images';
 import Reveal from '../components/Reveal';
 
 export default function TeachingApproachPage({ fireConfetti }) {
+  const charRecognitionBenefits = [
+    'Independent reading ability',
+    'Exam confidence',
+    'Writing fluency',
+    'Long-term retention',
+    'Conversational depth',
+    'Cultural understanding',
+    'Academic success',
+    'Lifelong interest',
+  ];
+
+  const characterImportance = [
+    { title: 'Unlocks Reading', desc: 'Recognize characters, read independently. No more waiting for an adult to decode the page.' },
+    { title: 'Builds Confidence', desc: 'Success in reading translates to confidence. Confidence drives learners to read more, learn more.' },
+    { title: 'Supports Writing', desc: 'Character knowledge is the foundation for writing. Understand structure, compose with intention.' },
+    { title: 'Enables Exams', desc: 'PSLE, HSK, secondary exams — all built on character recognition and understanding.' },
+  ];
+
+  const personalisedQA = [
+    { q: 'How do you know what my child needs?', a: 'We assess before we teach. Every student starts with placement testing so we know their exact level, strengths, and gaps. No guessing.' },
+    { q: 'What if my child is ahead or behind?', a: 'Curriculum flexibility is built in. Smaller class sizes mean we move at each students pace, not the middle of the pack. Stretch the advanced, support the struggling.' },
+  ];
+
   return (
     <div className="page">
       <section className="page-hero">
@@ -17,7 +39,7 @@ export default function TeachingApproachPage({ fireConfetti }) {
         </div>
       </section>
 
-      {/* Teaching Approach - Dual Track */}
+      {/* Dual Track */}
       <section className="section">
         <div className="container">
           <Reveal>
@@ -65,16 +87,7 @@ export default function TeachingApproachPage({ fireConfetti }) {
           </Reveal>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, maxWidth: 1000, margin: '0 auto' }}>
-            {[
-              'Independent reading ability',
-              'Exam confidence',
-              'Writing fluency',
-              'Long-term retention',
-              'Conversational depth',
-              'Cultural understanding',
-              'Academic success',
-              'Lifelong interest',
-            ].map((benefit, i) => (
+            {charRecognitionBenefits.map((benefit, i) => (
               <Reveal key={i} delay={i * 60}>
                 <div style={{
                   padding: 24,
@@ -104,12 +117,7 @@ export default function TeachingApproachPage({ fireConfetti }) {
           </Reveal>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 28, maxWidth: 1000, margin: '0 auto' }}>
-            {[
-              { title: 'Unlocks Reading', desc: 'Recognize characters, read independently. No more waiting for an adult to decode the page.' },
-              { title: 'Builds Confidence', desc: 'Success in reading translates to confidence. Confidence drives learners to read more, learn more.' },
-              { title: 'Supports Writing', desc: 'Character knowledge is the foundation for writing. Understand structure, compose with intention.' },
-              { title: 'Enables Exams', desc: 'PSLE, HSK, secondary exams — all built on character recognition and understanding.' },
-            ].map((item, i) => (
+            {characterImportance.map((item, i) => (
               <Reveal key={i} delay={i * 80}>
                 <div style={{
                   padding: 32,
@@ -146,10 +154,7 @@ export default function TeachingApproachPage({ fireConfetti }) {
           </Reveal>
 
           <div style={{ maxWidth: 800, margin: '0 auto' }}>
-            {[
-              { q: 'How do you know what my child needs?', a: 'We assess before we teach. Every student starts with placement testing so we know their exact level, strengths, and gaps. No guessing.' },
-              { q: 'What if my child is ahead (or behind)?', a: 'Curriculum flexibility is built in. Smaller class sizes mean we move at each student's pace, not the middle of the pack. Stretch the advanced, support the struggling.' },
-            ].map((item, i) => (
+            {personalisedQA.map((item, i) => (
               <Reveal key={i} delay={i * 100}>
                 <div style={{ marginBottom: 32 }}>
                   <div style={{
