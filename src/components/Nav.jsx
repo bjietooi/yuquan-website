@@ -7,7 +7,6 @@ const HOME_LINKS = [
   { id: 'home',            label: 'Home',            navigate: 'home' },
   { id: 'preschool',       label: 'Preschool',       navigate: 'preschool' },
   { id: 'language-school', label: 'Language School', navigate: 'language-school' },
-  { id: 'about',           label: 'About',           navigate: 'about' },
 ];
 
 const PRESCHOOL_LINKS = [
