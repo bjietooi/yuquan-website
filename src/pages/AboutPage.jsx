@@ -7,13 +7,14 @@ export default function AboutPage({ fireConfetti }) {
     <div className="page">
       <section className="page-hero">
         <div className="container">
-          <span className="section-kicker">About · 我们简介</span>
+          <span className="section-kicker">About · 语言学校</span>
           <h1 className="hero-title" style={{ fontSize: 'clamp(48px, 7vw, 92px)' }}>
-            Built with Heart,<br />Teaching with Purpose.
+            Real Chinese Ability,<br />Built with Purpose.
           </h1>
           <p className="page-hero-lede" style={{ marginTop: 24 }}>
-            For three decades, Yuquan has been nurturing confident learners and
-            building real language ability in thousands of Singapore families.
+            Yuquan Language School specializes in building genuine Mandarin and English
+            language ability for learners from preschool through adulthood — combining
+            structured excellence with joyful, meaningful learning.
           </p>
         </div>
       </section>
@@ -23,10 +24,10 @@ export default function AboutPage({ fireConfetti }) {
         <div className="container">
           <div className="stats">
             {[
-              { num: '1996',   label: 'Founded' },
-              { num: '7',      label: 'Trained Mentors' },
-              { num: '30+',    label: 'Years Experience' },
-              { num: '100+',   label: 'Families' },
+              { num: '30+',    label: 'Years Teaching' },
+              { num: '1000+',  label: 'Active Learners' },
+              { num: '1:8',    label: 'Max Class Size' },
+              { num: '100%',   label: 'Bilingual' },
             ].map((s, i) => (
               <Reveal key={i} delay={i * 80}>
                 <div className="stat">
@@ -96,17 +97,17 @@ export default function AboutPage({ fireConfetti }) {
         </div>
       </section>
 
-      {/* Vision, Mission, Core */}
+      {/* Vision, Mission, Approach */}
       <section className="section">
         <div className="container">
           <div className="pillars">
             {[
               { emoji: '🎯', emojiBg: 'var(--jade-soft)', zh: '愿景', en: 'Our Vision',
-                desc: 'Every child confident in their language ability, curious about the world, and ready to connect across cultures.' },
-              { emoji: '📚', emojiBg: 'var(--peach)', zh: '使命', en: 'Our Mission',
-                desc: 'Build real language ability through joyful, purposeful learning that goes far beyond textbooks.' },
-              { emoji: '💎', emojiBg: 'var(--sky)', zh: '核心价值', en: 'Our Core Vision',
-                desc: 'Quality teaching, lasting relationships, and the belief that every learner can thrive.' },
+                desc: 'Learners who speak, read, and write with genuine confidence in both Mandarin and English — and actually enjoy doing it.' },
+              { emoji: '📚', emojiBg: 'var(--peach)', zh: '方法', en: 'Our Approach',
+                desc: 'Small classes. Expert teachers. Curriculum that builds real ability, not just exam scores. Learning that sticks.' },
+              { emoji: '💎', emojiBg: 'var(--sky)', zh: '承诺', en: 'Our Promise',
+                desc: 'Every student sees measurable progress. Every parent gets honest updates. Every lesson builds something that lasts.' },
             ].map((p, i) => (
               <Reveal key={i} delay={i * 100}>
                 <div className="pillar">
