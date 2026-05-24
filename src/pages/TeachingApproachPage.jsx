@@ -34,56 +34,56 @@ export default function TeachingApproachPage({ fireConfetti }) {
           </h1>
 
           <Reveal>
-            <div style={{ maxWidth: 1000, margin: '0 auto', position: 'relative', height: 480, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg viewBox="0 0 1000 500" style={{ width: '100%', height: '100%' }}>
+            <div style={{ maxWidth: 1100, margin: '0 auto 0', position: 'relative' }}>
+              <svg viewBox="0 0 1100 520" style={{ width: '100%', height: 'auto' }}>
                 {/* Left circle - Foundation Building */}
-                <circle cx="320" cy="250" r="200" fill="#e8c97a" opacity="0.7" />
+                <circle cx="350" cy="260" r="180" fill="#dab86d" opacity="0.75" />
                 {/* Right circle - School Syllabus */}
-                <circle cx="680" cy="250" r="200" fill="#f4d99e" opacity="0.7" />
+                <circle cx="750" cy="260" r="180" fill="#f0d89b" opacity="0.75" />
 
-                {/* Left side text */}
-                <text x="200" y="240" fontSize="16" fontWeight="600" fill="#1e2a22" textAnchor="middle">
-                  <tspan x="200" dy="0">Character Recognition</tspan>
-                  <tspan x="200" dy="20">Building Vocabulary</tspan>
-                  <tspan x="200" dy="20">Sentence Structure</tspan>
-                  <tspan x="200" dy="20">Reading Confidence</tspan>
+                {/* Left side text - Foundation items */}
+                <text x="250" y="200" fontSize="14" fontWeight="600" fill="#1e2a22" textAnchor="middle">
+                  <tspan x="250" dy="0">Character Recognition</tspan>
+                  <tspan x="250" dy="18">Building Vocabulary</tspan>
+                  <tspan x="250" dy="18">Sentence Structure</tspan>
+                  <tspan x="250" dy="18">Reading Confidence</tspan>
                 </text>
 
-                {/* Center text */}
-                <text x="500" y="235" fontSize="28" fontWeight="700" fill="#1e2a22" textAnchor="middle">
-                  <tspan x="500" dy="0">REAL</tspan>
-                  <tspan x="500" dy="32">CHINESE</tspan>
-                  <tspan x="500" dy="32">ABILITY</tspan>
+                {/* Center text - Real Chinese Ability */}
+                <text x="550" y="250" fontSize="26" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                  <tspan x="550" dy="0">REAL</tspan>
+                  <tspan x="550" dy="28">CHINESE</tspan>
+                  <tspan x="550" dy="28">ABILITY</tspan>
                 </text>
 
                 {/* Left circle label */}
-                <text x="280" y="410" fontSize="18" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                <text x="320" y="420" fontSize="16" fontWeight="700" fill="#1e2a22" textAnchor="middle" fontStyle="italic">
                   FOUNDATION
                 </text>
-                <text x="280" y="432" fontSize="18" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                <text x="320" y="440" fontSize="16" fontWeight="700" fill="#1e2a22" textAnchor="middle" fontStyle="italic">
                   BUILDING
                 </text>
 
                 {/* Right circle label */}
-                <text x="720" y="410" fontSize="18" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                <text x="780" y="420" fontSize="16" fontWeight="700" fill="#1e2a22" textAnchor="middle" fontStyle="italic">
                   SCHOOL
                 </text>
-                <text x="720" y="432" fontSize="18" fontWeight="700" fill="#1e2a22" textAnchor="middle">
+                <text x="780" y="440" fontSize="16" fontWeight="700" fill="#1e2a22" textAnchor="middle" fontStyle="italic">
                   SYLLABUS
                 </text>
 
-                {/* Right side text */}
-                <text x="800" y="240" fontSize="16" fontWeight="600" fill="#1e2a22" textAnchor="middle">
-                  <tspan x="800" dy="0">Textbook Content</tspan>
-                  <tspan x="800" dy="20">Exam Techniques</tspan>
-                  <tspan x="800" dy="20">Composition</tspan>
-                  <tspan x="800" dy="20">Comprehension</tspan>
-                  <tspan x="800" dy="20">Listening</tspan>
-                  <tspan x="800" dy="20">Oral</tspan>
+                {/* Right side text - School items */}
+                <text x="850" y="200" fontSize="14" fontWeight="600" fill="#1e2a22" textAnchor="middle">
+                  <tspan x="850" dy="0">Textbook Content</tspan>
+                  <tspan x="850" dy="18">Exam Techniques</tspan>
+                  <tspan x="850" dy="18">Composition</tspan>
+                  <tspan x="850" dy="18">Comprehension</tspan>
+                  <tspan x="850" dy="18">Listening</tspan>
+                  <tspan x="850" dy="18">Oral</tspan>
                 </text>
 
                 {/* Bottom text */}
-                <text x="500" y="480" fontSize="16" fontWeight="600" fill="#1e2a22" textAnchor="middle">
+                <text x="550" y="500" fontSize="15" fontWeight="600" fill="#1e2a22" textAnchor="middle">
                   Confident and Capable Chinese Learner
                 </text>
               </svg>
