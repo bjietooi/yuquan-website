@@ -71,22 +71,22 @@ function VennDiagram() {
         <text
           x="550"
           y="250"
-          fontSize="26"
+          fontSize="36"
           fontWeight="700"
           fill="#1e2a22"
           textAnchor="middle"
           pointerEvents="none"
         >
           <tspan x="550" dy="0">REAL</tspan>
-          <tspan x="550" dy="28">CHINESE</tspan>
-          <tspan x="550" dy="28">ABILITY</tspan>
+          <tspan x="550" dy="36">CHINESE</tspan>
+          <tspan x="550" dy="36">ABILITY</tspan>
         </text>
 
         {/* Left circle label */}
         <text
           x="320"
           y="420"
-          fontSize="16"
+          fontSize="20"
           fontWeight="700"
           fill="#1e2a22"
           textAnchor="middle"
@@ -94,14 +94,14 @@ function VennDiagram() {
           pointerEvents="none"
         >
           <tspan x="320" dy="0">FOUNDATION</tspan>
-          <tspan x="320" dy="20">BUILDING</tspan>
+          <tspan x="320" dy="24">BUILDING</tspan>
         </text>
 
         {/* Right circle label */}
         <text
           x="780"
           y="420"
-          fontSize="16"
+          fontSize="20"
           fontWeight="700"
           fill="#1e2a22"
           textAnchor="middle"
@@ -109,22 +109,22 @@ function VennDiagram() {
           pointerEvents="none"
         >
           <tspan x="780" dy="0">SCHOOL</tspan>
-          <tspan x="780" dy="20">SYLLABUS</tspan>
+          <tspan x="780" dy="24">SYLLABUS</tspan>
         </text>
 
         {/* Left side text - Foundation items - only show on hover */}
         {hoveredCircle === 'left' && (
           <text
             x="250"
-            y="200"
-            fontSize="13"
+            y="180"
+            fontSize="18"
             fontWeight="600"
             fill="#1e2a22"
             textAnchor="middle"
             pointerEvents="none"
           >
             {foundationPoints.map((point, i) => (
-              <tspan key={i} x="250" dy={i === 0 ? 0 : 16}>
+              <tspan key={i} x="250" dy={i === 0 ? 0 : 22}>
                 • {point}
               </tspan>
             ))}
@@ -135,15 +135,15 @@ function VennDiagram() {
         {hoveredCircle === 'right' && (
           <text
             x="850"
-            y="180"
-            fontSize="13"
+            y="150"
+            fontSize="18"
             fontWeight="600"
             fill="#1e2a22"
             textAnchor="middle"
             pointerEvents="none"
           >
             {schoolPoints.map((point, i) => (
-              <tspan key={i} x="850" dy={i === 0 ? 0 : 16}>
+              <tspan key={i} x="850" dy={i === 0 ? 0 : 22}>
                 • {point}
               </tspan>
             ))}
@@ -225,6 +225,16 @@ export default function TeachingApproachPage({ fireConfetti }) {
                 background: 'linear-gradient(135deg, #e8c763 0%, #dab86d 100%)',
                 borderRadius: 'var(--r-xl)',
                 boxShadow: 'var(--shadow-soft)',
+                transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px) rotateX(5deg) rotateY(-8deg)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
+                e.currentTarget.style.boxShadow = 'var(--shadow-soft)';
               }}>
                 <h3 style={{
                   fontSize: 20,
@@ -256,6 +266,16 @@ export default function TeachingApproachPage({ fireConfetti }) {
                 background: 'linear-gradient(135deg, #f4e4a0 0%, #f0d89b 100%)',
                 borderRadius: 'var(--r-xl)',
                 boxShadow: 'var(--shadow-soft)',
+                transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px) rotateX(5deg) rotateY(8deg)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
+                e.currentTarget.style.boxShadow = 'var(--shadow-soft)';
               }}>
                 <h3 style={{
                   fontSize: 20,
