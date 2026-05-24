@@ -9,12 +9,12 @@ export default function LanguageSchoolPage({ go, fireConfetti }) {
         <div className="container">
           <span className="section-kicker">Language School · 课程补习</span>
           <h1 className="hero-title" style={{ fontSize: 'clamp(48px, 7vw, 92px)' }}>
-            Bigger words.<br />Bolder voices.
+            We build real<br />Chinese ability.
           </h1>
-          <div className="hero-zh" style={{ marginTop: 18 }}>中英补习课程</div>
+          <div className="hero-zh" style={{ marginTop: 18 }}>中文补习课程</div>
           <p className="page-hero-lede">
-            Small-group Chinese and English language classes for ages 4 through to
-            grown-ups. Structured where it should be, joyful everywhere else.
+            From preschool to adults — structured, joyful, and results-driven
+            Mandarin education for every learner.
           </p>
           <div className="hero-ctas" style={{ justifyContent: 'center', marginTop: 30 }}>
             <button className="btn btn-primary" onClick={fireConfetti}>
@@ -26,125 +26,64 @@ export default function LanguageSchoolPage({ go, fireConfetti }) {
           </div>
           <Reveal>
             <div className="hero-collage">
-              <div className="collage-item"><img src={IMG.tuition[0]} alt="Language School class" /></div>
-              <div className="collage-item"><img src={IMG.tuition[1]} alt="Composition class" /></div>
-              <div className="collage-item"><img src={IMG.students[1]} alt="Yuquan students" /></div>
+              <div className="collage-item"><img src={IMG.tuition[0]} alt="Adults in class" /></div>
+              <div className="collage-item"><img src={IMG.tuition[1]} alt="Small group learning" /></div>
+              <div className="collage-item"><img src={IMG.students[1]} alt="Child learning" /></div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Two language tracks */}
+      {/* Programmes */}
       <section className="section">
         <div className="container">
           <Reveal>
-            <span className="section-kicker">Two languages</span>
-            <h2 className="section-title">Pick a path, or take both.</h2>
+            <span className="section-kicker">Our Programmes</span>
+            <h2 className="section-title">Pick your learning path.</h2>
             <p className="section-lede">
-              Children often join both tracks. Adults mostly come for the
-              language they're trying to find again.
+              Yuquan understands the challenges at each academic level. Our curriculum
+              builds a solid foundation for every stage.
             </p>
           </Reveal>
-          <div className="enrich-grid">
-            <Reveal>
-              <div className="enrich-card chinese">
-                <div className="enrich-zh">中文</div>
-                <div className="enrich-en">Chinese</div>
-                <p className="enrich-desc">
-                  Reading, writing, characters, conversation. From first strokes
-                  through to confident essay writing.
-                </p>
-                <div className="enrich-chips">
-                  <span className="chip">汉语拼音 Hanyu Pinyin</span>
-                  <span className="chip">阅读理解 Reading</span>
-                  <span className="chip">作文 Composition</span>
-                  <span className="chip">口语 Conversation</span>
-                  <span className="chip">书法 Calligraphy</span>
+          <div className="curriculum">
+            {[
+              { ic: '🌱', bg: 'var(--jade-soft)',  title: 'Preschool',          zh: 'Nursery to Kindergarten',  desc: 'We build strong foundations through joyful learning — guiding children towards early character recognition and independent reading, preparing them confidently for primary school.' },
+              { ic: '📚', bg: '#e8f8f5',           title: 'Primary',            zh: 'Primary 1 to Primary 6',   desc: 'We deepen literacy and reading foundations in alignment with the MOE syllabus, systematically developing exam skills to equip students to approach the PSLE with confidence.' },
+              { ic: '🎯', bg: '#fff8e8',           title: 'Secondary',          zh: 'Secondary 1 to Secondary 4', desc: 'Clear strategies and effective methods to support students through the critical O-Level phase. Targeted training helps students achieve stronger results.' },
+              { ic: '👤', bg: '#eef0fb',           title: 'Adult',              zh: 'All proficiency levels',   desc: 'Not just for children — our adult programme is designed for anyone wanting to build real conversational ability, improve reading, or prepare for proficiency tests like the HSK.' },
+              { ic: '🗓️', bg: '#fde8ec',           title: 'Holiday Programmes', zh: 'All school levels · School holidays', desc: 'Thoughtfully curated holiday programmes combining structured language learning with meaningful experiential activities — building stronger foundations, key skills, confidence, and appreciation for Chinese language and culture.' },
+            ].map((c, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <div className="curri-card">
+                  <div className="curri-icon" style={{ background: c.bg, fontSize: 26 }}>{c.ic}</div>
+                  <div className="curri-title">{c.title}</div>
+                  <div className="curri-zh">{c.zh}</div>
+                  <p className="curri-desc">{c.desc}</p>
                 </div>
-                <div className="enrich-card-photo">
-                  <img src={IMG.tuition[1]} alt="Chinese class" />
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <div className="enrich-card english">
-                <div className="enrich-zh" style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>Abc</div>
-                <div className="enrich-en">English</div>
-                <p className="enrich-desc">
-                  Phonics, vocabulary, creative writing, public speaking.
-                  Confidence with grammar and a little flair.
-                </p>
-                <div className="enrich-chips">
-                  <span className="chip">Phonics</span>
-                  <span className="chip">Creative writing</span>
-                  <span className="chip">Comprehension</span>
-                  <span className="chip">Speech & drama</span>
-                  <span className="chip">Grammar</span>
-                </div>
-                <div className="enrich-card-photo">
-                  <img src={IMG.tuition[0]} alt="English class" />
-                </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Schedule */}
+      {/* Why Yuquan */}
       <section className="section" style={{ paddingTop: 20 }}>
         <div className="container">
           <Reveal>
-            <span className="section-kicker">Classes & schedules</span>
-            <h2 className="section-title">When we meet.</h2>
+            <span className="section-kicker">Why Yuquan</span>
+            <h2 className="section-title">Not your ordinary tuition.</h2>
             <p className="section-lede">
-              Small classes — typically 4 to 8 students. After-school slots for
-              kids and teens; evenings and weekends for adults.
+              Six reasons thousands of Singapore families have trusted Yuquan for a generation.
             </p>
-          </Reveal>
-          <Reveal>
-            <div className="schedule">
-              <div className="sched-row head">
-                <div>Class</div><div>Level</div><div>When</div><div>Group size</div>
-              </div>
-              {[
-                { name: 'Little Readers',      zh: '小小读者',   level: 'Ages 4–6',  when: 'Tue/Thu · 3pm',   size: '1:4' },
-                { name: 'Chinese Foundation',  zh: '中文基础班', level: 'P1–P3',    when: 'Mon/Wed · 4pm',   size: '1:6' },
-                { name: 'Composition Lab',     zh: '作文工坊',   level: 'P4–P6',    when: 'Sat · 9:30am',    size: '1:6' },
-                { name: 'Speech & Drama',      zh: '演讲与戏剧', level: 'Ages 7–12', when: 'Fri · 4:30pm',    size: '1:8' },
-                { name: 'Teen Mandarin',       zh: '青少年华文', level: 'Sec 1–4',  when: 'Sat · 2pm',       size: '1:6' },
-                { name: 'Adult Mandarin',      zh: '成人中文',   level: 'All levels', when: 'Wed · 7:30pm',  size: '1:8' },
-              ].map((s, i) => (
-                <div key={i} className="sched-row">
-                  <div>
-                    <div className="sched-name">{s.name}</div>
-                    <div className="sched-zh">{s.zh}</div>
-                  </div>
-                  <div><span className="sched-pill">{s.level}</span></div>
-                  <div style={{ fontWeight: 600, fontSize: 15 }}>{s.when}</div>
-                  <div style={{ color: 'var(--ink-soft)' }}>{s.size}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Why */}
-      <section className="section" style={{ paddingTop: 20 }}>
-        <div className="container">
-          <Reveal>
-            <span className="section-kicker">Why join us</span>
-            <h2 className="section-title">Tutoring, but not the dreary kind.</h2>
           </Reveal>
           <div className="curriculum">
             {[
-              { ic: '🧑‍🏫', bg: 'var(--jade-soft)', title: 'Real teachers',    zh: '专业老师',   desc: 'Every tutor is qualified, MOE-trained, and actually delighted to teach. No part-timers shuffling through.' },
-              { ic: '👥',   bg: 'var(--butter)',    title: 'Tiny classes',     zh: '小班制',     desc: 'Maximum 8 students. Often fewer. Every child gets seen, heard, and stretched at the right pace.' },
-              { ic: '📝',   bg: 'var(--peach)',     title: 'MOE-aligned',      zh: '教育部纲要', desc: 'Materials map directly to the Singapore syllabus — so school feels easier, not parallel.' },
-              { ic: '💬',   bg: 'var(--sky)',       title: 'Parent updates',   zh: '家长沟通',   desc: 'Short, real notes after every term. No PDFs you\'ll never read — just what changed.' },
-              { ic: '🎭',   bg: 'var(--blush)',     title: 'Beyond textbooks', zh: '课外活动',   desc: 'Speech, drama, calligraphy, debates. Language lives outside the workbook.' },
-              { ic: '🪴',   bg: 'var(--lavender)',  title: 'Adult classes too', zh: '成人课程',  desc: 'Pick up the Mandarin you grew up with — judgement-free, conversation-first.' },
+              { ic: '🌟', bg: 'var(--jade-soft)', title: 'Established & Trusted for 30 Years',          zh: '三十年信赖',   desc: 'Serving generations of families with a proven approach to Chinese language education since our founding.' },
+              { ic: '👩‍🏫', bg: 'var(--butter)',   title: 'Experienced & Professional Educators',        zh: '专业教师团队', desc: 'A team of dedicated educators with strong academic foundations, ensuring every student receives personalised guidance.' },
+              { ic: '📖', bg: 'var(--peach)',     title: 'Proprietary Curriculum & Teaching Framework', zh: '自研课程框架', desc: 'Carefully designed to emphasise effective learning approaches, helping children learn efficiently while building lasting confidence.' },
+              { ic: '🏆', bg: 'var(--sky)',       title: 'Excellent Results',                           zh: '成绩优秀',     desc: 'Students achieve outstanding results in national examinations such as the PSLE, and perform strongly in the HSK.' },
+              { ic: '😄', bg: 'var(--blush)',     title: 'Fun & Engaging Learning Experience',         zh: '快乐学习',     desc: 'Interactive and inquiry-based learning lets children experience Chinese naturally and joyfully, cultivating a lasting interest.' },
+              { ic: '🎋', bg: 'var(--lavender)',  title: 'Strong Foundations Beyond Exams',            zh: '超越考试',     desc: 'We help students build Chinese fundamentals that support long-term learning, confidence, and real-life language use.' },
             ].map((c, i) => (
               <Reveal key={i} delay={i * 80}>
                 <div className="curri-card">
