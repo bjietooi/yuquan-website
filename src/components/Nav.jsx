@@ -30,7 +30,7 @@ const LANGUAGE_SCHOOL_LINKS = [
     id: 'ls-about', label: 'About Us',
     dropdown: [
       { id: 'ls-story',    label: 'Our Story',         navigate: 'about' },
-      { id: 'ls-teaching', label: 'Teaching Approach', navigate: 'about' },
+      { id: 'ls-teaching', label: 'Teaching Approach', navigate: 'teaching-approach' },
     ],
   },
   {

@@ -6,12 +6,14 @@ import { useConfetti } from './components/Confetti';
 import HomePage from './pages/HomePage';
 import PreschoolPage from './pages/PreschoolPage';
 import LanguageSchoolPage from './pages/LanguageSchoolPage';
+import TeachingApproachPage from './pages/TeachingApproachPage';
 import AboutPage from './pages/AboutPage';
 
 const PAGES = {
   home: HomePage,
   preschool: PreschoolPage,
   'language-school': LanguageSchoolPage,
+  'teaching-approach': TeachingApproachPage,
   about: AboutPage,
 };
 
