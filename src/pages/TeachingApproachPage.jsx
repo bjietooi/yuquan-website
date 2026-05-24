@@ -210,31 +210,75 @@ export default function TeachingApproachPage({ fireConfetti }) {
       <section className="section">
         <div className="container">
           <Reveal>
-            <span className="section-kicker">Our Framework</span>
-            <h2 className="section-title">Dual-Track Learning System</h2>
-            <p className="section-lede">
-              Every student benefits from two complementary approaches working together.
+            <h2 className="section-title" style={{ fontSize: 'clamp(32px, 4vw, 48px)', marginBottom: 32 }}>
+              Beyond School Syllabus: Building Real Chinese Ability from the Foundation
+            </h2>
+            <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--ink-soft)', maxWidth: 800, margin: '0 auto 48px' }}>
+              At Yuquan, we believe that effective Chinese learning should not only help children cope with schoolwork and examinations, but also build the foundation for long-term language ability.
             </p>
           </Reveal>
 
           <Reveal>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, maxWidth: 900, margin: '0 auto 48px' }}>
-              <div className="curri-card">
-                <div className="curri-icon" style={{ background: 'var(--jade-soft)', fontSize: 26 }}>📚</div>
-                <div className="curri-title">Foundation Building</div>
-                <div className="curri-zh">基础夯实</div>
-                <p className="curri-desc">
-                  Character recognition, phonics, grammar structures, reading comprehension.
-                  Aligned with school syllabus so classroom learning reinforces what we teach.
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, maxWidth: 1000, margin: '0 auto' }}>
+              <div style={{
+                padding: 40,
+                background: 'linear-gradient(135deg, #e8c763 0%, #dab86d 100%)',
+                borderRadius: 'var(--r-xl)',
+                boxShadow: 'var(--shadow-soft)',
+              }}>
+                <h3 style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: '#1e2a22',
+                  marginBottom: 20,
+                }}>
+                  1. Foundation Building
+                </h3>
+                <p style={{
+                  fontSize: 16,
+                  color: '#1e2a22',
+                  lineHeight: 1.6,
+                  marginBottom: 16,
+                }}>
+                  We place strong emphasis on character recognition, because it is the foundation of Chinese language learning.
+                </p>
+                <p style={{
+                  fontSize: 16,
+                  color: '#1e2a22',
+                  lineHeight: 1.6,
+                }}>
+                  Character recognition is not separate from school results. It directly affects reading, comprehension, writing, and long-term Chinese ability.
                 </p>
               </div>
-              <div className="curri-card">
-                <div className="curri-icon" style={{ background: '#e8f8f5', fontSize: 26 }}>🎯</div>
-                <div className="curri-title">Ability Systems</div>
-                <div className="curri-zh">能力体系</div>
-                <p className="curri-desc">
-                  Speaking, listening, writing, independent reading. Real-world language use
-                  that goes beyond answers on a page. Confidence that sticks.
+
+              <div style={{
+                padding: 40,
+                background: 'linear-gradient(135deg, #f4e4a0 0%, #f0d89b 100%)',
+                borderRadius: 'var(--r-xl)',
+                boxShadow: 'var(--shadow-soft)',
+              }}>
+                <h3 style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: '#1e2a22',
+                  marginBottom: 20,
+                }}>
+                  2. School Syllabus Support
+                </h3>
+                <p style={{
+                  fontSize: 16,
+                  color: '#1e2a22',
+                  lineHeight: 1.6,
+                  marginBottom: 16,
+                }}>
+                  We help students strengthen what they learn in school and excel in exams.
+                </p>
+                <p style={{
+                  fontSize: 16,
+                  color: '#1e2a22',
+                  lineHeight: 1.6,
+                }}>
+                  This helps children keep up with school requirements and build confidence in their academic performance.
                 </p>
               </div>
             </div>
