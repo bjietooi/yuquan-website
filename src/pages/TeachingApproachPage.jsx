@@ -1,4 +1,171 @@
+import { useState } from 'react';
 import Reveal from '../components/Reveal';
+
+function VennDiagram() {
+  const [hoveredCircle, setHoveredCircle] = useState(null);
+
+  const foundationPoints = [
+    'Character Recognition',
+    'Building Vocabulary',
+    'Sentence Structure',
+    'Reading Confidence',
+  ];
+
+  const schoolPoints = [
+    'Textbook Content',
+    'Exam Techniques',
+    'Composition',
+    'Comprehension',
+    'Listening',
+    'Oral',
+  ];
+
+  return (
+    <div style={{ maxWidth: 1100, margin: '0 auto 0', position: 'relative' }}>
+      <svg
+        viewBox="0 0 1100 520"
+        style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
+        preserveAspectRatio="xMidYMid meet"
+      >
+        {/* Left circle - Foundation Building */}
+        <circle
+          cx="350"
+          cy="260"
+          r="180"
+          fill="#dab86d"
+          opacity="0.75"
+        />
+
+        {/* Right circle - School Syllabus */}
+        <circle
+          cx="750"
+          cy="260"
+          r="180"
+          fill="#f0d89b"
+          opacity="0.75"
+        />
+
+        {/* Invisible hover overlay - Left circle */}
+        <circle
+          cx="350"
+          cy="260"
+          r="180"
+          fill="transparent"
+          onMouseEnter={() => setHoveredCircle('left')}
+          onMouseLeave={() => setHoveredCircle(null)}
+          style={{ cursor: 'pointer' }}
+        />
+
+        {/* Invisible hover overlay - Right circle */}
+        <circle
+          cx="750"
+          cy="260"
+          r="180"
+          fill="transparent"
+          onMouseEnter={() => setHoveredCircle('right')}
+          onMouseLeave={() => setHoveredCircle(null)}
+          style={{ cursor: 'pointer' }}
+        />
+
+        {/* Center text - Real Chinese Ability */}
+        <text
+          x="550"
+          y="250"
+          fontSize="26"
+          fontWeight="700"
+          fill="#1e2a22"
+          textAnchor="middle"
+          pointerEvents="none"
+        >
+          <tspan x="550" dy="0">REAL</tspan>
+          <tspan x="550" dy="28">CHINESE</tspan>
+          <tspan x="550" dy="28">ABILITY</tspan>
+        </text>
+
+        {/* Left circle label */}
+        <text
+          x="320"
+          y="420"
+          fontSize="16"
+          fontWeight="700"
+          fill="#1e2a22"
+          textAnchor="middle"
+          fontStyle="italic"
+          pointerEvents="none"
+        >
+          <tspan x="320" dy="0">FOUNDATION</tspan>
+          <tspan x="320" dy="20">BUILDING</tspan>
+        </text>
+
+        {/* Right circle label */}
+        <text
+          x="780"
+          y="420"
+          fontSize="16"
+          fontWeight="700"
+          fill="#1e2a22"
+          textAnchor="middle"
+          fontStyle="italic"
+          pointerEvents="none"
+        >
+          <tspan x="780" dy="0">SCHOOL</tspan>
+          <tspan x="780" dy="20">SYLLABUS</tspan>
+        </text>
+
+        {/* Left side text - Foundation items - only show on hover */}
+        {hoveredCircle === 'left' && (
+          <text
+            x="250"
+            y="200"
+            fontSize="13"
+            fontWeight="600"
+            fill="#1e2a22"
+            textAnchor="middle"
+            pointerEvents="none"
+          >
+            {foundationPoints.map((point, i) => (
+              <tspan key={i} x="250" dy={i === 0 ? 0 : 16}>
+                • {point}
+              </tspan>
+            ))}
+          </text>
+        )}
+
+        {/* Right side text - School items - only show on hover */}
+        {hoveredCircle === 'right' && (
+          <text
+            x="850"
+            y="180"
+            fontSize="13"
+            fontWeight="600"
+            fill="#1e2a22"
+            textAnchor="middle"
+            pointerEvents="none"
+          >
+            {schoolPoints.map((point, i) => (
+              <tspan key={i} x="850" dy={i === 0 ? 0 : 16}>
+                • {point}
+              </tspan>
+            ))}
+          </text>
+        )}
+
+        {/* Bottom text */}
+        <text
+          x="550"
+          y="500"
+          fontSize="15"
+          fontWeight="600"
+          fill="#1e2a22"
+          textAnchor="middle"
+          pointerEvents="none"
+        >
+          Confident and Capable Chinese Learner
+        </text>
+      </svg>
+    </div>
+  );
+}
 
 export default function TeachingApproachPage({ fireConfetti }) {
   const charRecognitionBenefits = [
@@ -34,60 +201,7 @@ export default function TeachingApproachPage({ fireConfetti }) {
           </h1>
 
           <Reveal>
-            <div style={{ maxWidth: 1100, margin: '0 auto 0', position: 'relative' }}>
-              <svg viewBox="0 0 1100 520" style={{ width: '100%', height: 'auto' }}>
-                {/* Left circle - Foundation Building */}
-                <circle cx="350" cy="260" r="180" fill="#dab86d" opacity="0.75" />
-                {/* Right circle - School Syllabus */}
-                <circle cx="750" cy="260" r="180" fill="#f0d89b" opacity="0.75" />
-
-                {/* Left side text - Foundation items */}
-                <text x="250" y="200" fontSize="14" fontWeight="600" fill="#1e2a22" textAnchor="middle">
-                  <tspan x="250" dy="0">Character Recognition</tspan>
-                  <tspan x="250" dy="18">Building Vocabulary</tspan>
-                  <tspan x="250" dy="18">Sentence Structure</tspan>
-                  <tspan x="250" dy="18">Reading Confidence</tspan>
-                </text>
-
-                {/* Center text - Real Chinese Ability */}
-                <text x="550" y="250" fontSize="26" fontWeight="700" fill="#1e2a22" textAnchor="middle">
-                  <tspan x="550" dy="0">REAL</tspan>
-                  <tspan x="550" dy="28">CHINESE</tspan>
-                  <tspan x="550" dy="28">ABILITY</tspan>
-                </text>
-
-                {/* Left circle label */}
-                <text x="320" y="420" fontSize="16" fontWeight="700" fill="#1e2a22" textAnchor="middle" fontStyle="italic">
-                  FOUNDATION
-                </text>
-                <text x="320" y="440" fontSize="16" fontWeight="700" fill="#1e2a22" textAnchor="middle" fontStyle="italic">
-                  BUILDING
-                </text>
-
-                {/* Right circle label */}
-                <text x="780" y="420" fontSize="16" fontWeight="700" fill="#1e2a22" textAnchor="middle" fontStyle="italic">
-                  SCHOOL
-                </text>
-                <text x="780" y="440" fontSize="16" fontWeight="700" fill="#1e2a22" textAnchor="middle" fontStyle="italic">
-                  SYLLABUS
-                </text>
-
-                {/* Right side text - School items */}
-                <text x="850" y="200" fontSize="14" fontWeight="600" fill="#1e2a22" textAnchor="middle">
-                  <tspan x="850" dy="0">Textbook Content</tspan>
-                  <tspan x="850" dy="18">Exam Techniques</tspan>
-                  <tspan x="850" dy="18">Composition</tspan>
-                  <tspan x="850" dy="18">Comprehension</tspan>
-                  <tspan x="850" dy="18">Listening</tspan>
-                  <tspan x="850" dy="18">Oral</tspan>
-                </text>
-
-                {/* Bottom text */}
-                <text x="550" y="500" fontSize="15" fontWeight="600" fill="#1e2a22" textAnchor="middle">
-                  Confident and Capable Chinese Learner
-                </text>
-              </svg>
-            </div>
+            <VennDiagram />
           </Reveal>
         </div>
       </section>
