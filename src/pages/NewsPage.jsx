@@ -22,9 +22,9 @@ const POSTS = [
     tag: 'student',
     featured: true,
     date: 'May 12, 2025',
-    title: 'From Preschool to HSK 4: Liu Yanying's Extraordinary Journey',
+    title: "From Preschool to HSK 4: Liu Yanying's Extraordinary Journey",
     excerpt:
-      'At just 6 years old, Yanying became one of the youngest students in Singapore to pass HSK Level 4 with 244/300. Her mother shares how daily storytelling and Yuquan's immersive method made all the difference.',
+      "At just 6 years old, Yanying became one of the youngest students in Singapore to pass HSK Level 4 with 244/300. Her mother shares how daily storytelling and Yuquan's immersive method made all the difference.",
     image: IMG.students[0],
     readTime: '5 min read',
   },
@@ -57,7 +57,7 @@ const POSTS = [
     date: 'Mar 25, 2025',
     title: 'New Saturday Intensive Slots Now Open at Marine Parade',
     excerpt:
-      'By popular demand, we've opened additional Saturday morning slots for Primary and Secondary students at our Marine Parade centre. Spaces are limited — enquire early to secure your child's spot.',
+      "By popular demand, we've opened additional Saturday morning slots for Primary and Secondary students at our Marine Parade centre. Spaces are limited — enquire early to secure your child's spot.",
     image: IMG.tuition[1],
     readTime: '2 min read',
   },
@@ -77,9 +77,9 @@ const POSTS = [
     tag: 'press',
     featured: false,
     date: 'Nov 4, 2017',
-    title: 'Shin Min Daily: "The School That Raised Singapore's Youngest HSK Achievers"',
+    title: "Shin Min Daily: The School That Raised Singapore's Youngest HSK Achievers",
     excerpt:
-      '新明日报 spotlights Yuquan's unique curriculum and interviews the families of three record-breaking young students who achieved HSK certification before age eight.',
+      "新明日报 spotlights Yuquan's unique curriculum and interviews the families of three record-breaking young students who achieved HSK certification before age eight.",
     image: IMG.press[0].src,
     readTime: '3 min read',
   },
@@ -90,7 +90,7 @@ const POSTS = [
     date: 'Feb 20, 2025',
     title: 'Why Tones Matter: The Science Behind Mandarin Pitch Perception',
     excerpt:
-      'Research shows that tonal discrimination is easiest to acquire before age 7. Here's what the neuroscience says — and how Yuquan's early-years programme is designed around this critical window.',
+      "Research shows that tonal discrimination is easiest to acquire before age 7. Here's what the neuroscience says — and how Yuquan's early-years programme is designed around this critical window.",
     image: IMG.students[2],
     readTime: '5 min read',
   },
@@ -99,9 +99,9 @@ const POSTS = [
     tag: 'student',
     featured: false,
     date: 'Feb 5, 2025',
-    title: '"I Used to Hate Chinese. Now It's My Favourite Subject." — Marcus, Age 14',
+    title: "I Used to Hate Chinese. Now It's My Favourite Subject. — Marcus, Age 14",
     excerpt:
-      'Secondary student Marcus Wong shares his candid story: from dreading Chinese tuition to scoring A2 for O-Levels and voluntarily joining our Debate in Mandarin elective.',
+      "Secondary student Marcus Wong shares his candid story: from dreading Chinese tuition to scoring A2 for O-Levels and voluntarily joining our Debate in Mandarin elective.",
     image: IMG.tuition[0],
     readTime: '4 min read',
   },
@@ -134,7 +134,7 @@ const POSTS = [
     date: 'Nov 28, 2024',
     title: 'Yuquan Earns EduTrust Certification Renewal for 2025–2028',
     excerpt:
-      'We're proud to announce our third consecutive EduTrust certification — Singapore's quality mark for private education institutions — recognising our standards in curriculum, student welfare, and governance.',
+      "We're proud to announce our third consecutive EduTrust certification — Singapore's quality mark for private education institutions — recognising our standards in curriculum, student welfare, and governance.",
     image: IMG.tuition[1],
     readTime: '2 min read',
   },
@@ -143,7 +143,7 @@ const POSTS = [
     tag: 'press',
     featured: false,
     date: 'Jul 3, 2003',
-    title: 'Lianhe Wanbao: "A Different Kind of Chinese School"',
+    title: 'Lianhe Wanbao: A Different Kind of Chinese School',
     excerpt:
       '联合晚报 visits our founding Beauty World centre and speaks with Principal Chen about the philosophy that set Yuquan apart from the very beginning — and why parents were willing to travel across Singapore for classes.',
     image: IMG.press[1].src,
