@@ -2,11 +2,16 @@ import { useState } from 'react';
 import Reveal from '../components/Reveal';
 
 function VennDiagram() {
-  // Circle geometry:
-  // L: cx=345, cy=260, r=220  →  spans x 125–565
-  // R: cx=655, cy=260, r=220  →  spans x 435–875
-  // Distance between centres = 310 < 440 (sum of radii) → proper overlap
-  // Overlap region x: 435–565, centre x=500
+  // Geometry
+  // L: cx=430 cy=260 r=190  →  spans x 240–620
+  // R: cx=720 cy=260 r=190  →  spans x 530–910
+  // Distance 290 < 380 (sum of radii) → overlaps 90px each side
+  // Overlap centre x = (530+620)/2 = 575
+
+  const CX_L = 430, CX_R = 720, CY = 260, R = 190;
+  const EDGE_L = CX_L - R;   // 240 – left boundary
+  const EDGE_R = CX_R + R;   // 910 – right boundary
+  const OV_CX  = Math.round((CX_L + R + CX_R - R) / 2); // 575 – overlap centre
 
   const foundationPoints = [
     'Character Recognition',
@@ -16,7 +21,6 @@ function VennDiagram() {
   ];
 
   const schoolPoints = [
-    'Textbook Content',
     'Exam Techniques',
     'Composition',
     'Comprehension',
@@ -24,101 +28,144 @@ function VennDiagram() {
     'Oral',
   ];
 
+  // Vertical centre for connector lines
+  const LINE_Y = CY;
+  // Left text right-edge / right text left-edge
+  const TEXT_R_EDGE = EDGE_L - 18;  // 222
+  const TEXT_L_EDGE = EDGE_R + 18;  // 928
+
   return (
-    <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
+    <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+      {/* Subtitle as HTML */}
+      <p style={{
+        textAlign: 'center',
+        fontSize: 'clamp(13px, 1.4vw, 17px)',
+        fontWeight: 800,
+        letterSpacing: '0.12em',
+        color: '#1e2a22',
+        marginBottom: 32,
+        textTransform: 'uppercase',
+      }}>
+        Yuquan Dual-Track Chinese Learning System
+      </p>
+
       <style>{`
         @keyframes vennFadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
+          from { opacity: 0; transform: translateX(-6px); }
+          to   { opacity: 1; transform: translateX(0); }
         }
-        .venn-point {
-          opacity: 0;
-          animation: vennFadeIn 0.4s ease-out forwards;
+        @keyframes vennFadeInR {
+          from { opacity: 0; transform: translateX(6px); }
+          to   { opacity: 1; transform: translateX(0); }
         }
+        .vp-l { opacity:0; animation: vennFadeIn  0.45s ease-out forwards; }
+        .vp-r { opacity:0; animation: vennFadeInR 0.45s ease-out forwards; }
       `}</style>
 
       <svg
-        viewBox="0 0 1000 540"
-        style={{ width: '100%', height: 'auto' }}
+        viewBox="0 0 1150 560"
+        style={{ width: '100%', height: 'auto', overflow: 'visible' }}
         preserveAspectRatio="xMidYMid meet"
       >
-        {/* ── Circles ─────────────────────────────────── */}
-        <circle cx="345" cy="260" r="220" fill="#dab86d" opacity="0.8" />
-        <circle cx="655" cy="260" r="220" fill="#f0d89b" opacity="0.8" />
+        {/* ── Circles ─────────────────────────────── */}
+        <circle cx={CX_L} cy={CY} r={R} fill="#F5A623" opacity="0.88" />
+        <circle cx={CX_R} cy={CY} r={R} fill="#F9DC6E" opacity="0.85" />
 
-        {/* ── Center: REAL CHINESE ABILITY ────────────── */}
+        {/* ── Left label inside circle ─────────────── */}
         <text
-          x="500" y="225"
-          fontSize="28" fontWeight="800"
+          x={CX_L - 65} y={CY - 10}
+          fontSize="18" fontWeight="800"
+          fill="#fff" textAnchor="middle"
+          fontStyle="italic" pointerEvents="none"
+        >
+          <tspan x={CX_L - 65} dy="0">FOUNDATION</tspan>
+          <tspan x={CX_L - 65} dy="24">BUILDING</tspan>
+        </text>
+
+        {/* ── Right label inside circle ────────────── */}
+        <text
+          x={CX_R + 65} y={CY - 10}
+          fontSize="18" fontWeight="800"
+          fill="#5a3e00" textAnchor="middle"
+          fontStyle="italic" pointerEvents="none"
+        >
+          <tspan x={CX_R + 65} dy="0">SCHOOL</tspan>
+          <tspan x={CX_R + 65} dy="24">SYLLABUS</tspan>
+        </text>
+
+        {/* ── Centre: REAL CHINESE ABILITY ─────────── */}
+        <text
+          x={OV_CX} y={CY - 30}
+          fontSize="22" fontWeight="900"
           fill="#1e2a22" textAnchor="middle"
-          pointerEvents="none"
-          letterSpacing="1"
+          pointerEvents="none" letterSpacing="0.5"
         >
-          <tspan x="500" dy="0">REAL</tspan>
-          <tspan x="500" dy="33">CHINESE</tspan>
-          <tspan x="500" dy="33">ABILITY</tspan>
+          <tspan x={OV_CX} dy="0">REAL</tspan>
+          <tspan x={OV_CX} dy="26">CHINESE</tspan>
+          <tspan x={OV_CX} dy="26">ABILITY</tspan>
         </text>
 
-        {/* ── Left label: FOUNDATION BUILDING ─────────── */}
+        {/* ── Dotted connector lines ───────────────── */}
+        <line
+          x1={TEXT_R_EDGE} y1={LINE_Y}
+          x2={EDGE_L}      y2={LINE_Y}
+          stroke="#aaa" strokeWidth="1.5"
+          strokeDasharray="5,4"
+        />
+        <line
+          x1={EDGE_R}      y1={LINE_Y}
+          x2={TEXT_L_EDGE} y2={LINE_Y}
+          stroke="#aaa" strokeWidth="1.5"
+          strokeDasharray="5,4"
+        />
+
+        {/* ── Left points (outside, right-aligned) ─── */}
+        {foundationPoints.map((pt, i) => {
+          const total = foundationPoints.length;
+          const startY = CY - ((total - 1) * 26) / 2;
+          return (
+            <text
+              key={`l${i}`}
+              x={TEXT_R_EDGE} y={startY + i * 26}
+              fontSize="15" fontWeight="500"
+              fill="#1e2a22" textAnchor="end"
+              pointerEvents="none"
+              className="vp-l"
+              style={{ animationDelay: `${i * 0.1}s` }}
+            >
+              {pt}
+            </text>
+          );
+        })}
+
+        {/* ── Right points (outside, left-aligned) ─── */}
+        {schoolPoints.map((pt, i) => {
+          const total = schoolPoints.length;
+          const startY = CY - ((total - 1) * 26) / 2;
+          return (
+            <text
+              key={`r${i}`}
+              x={TEXT_L_EDGE} y={startY + i * 26}
+              fontSize="15" fontWeight="500"
+              fill="#1e2a22" textAnchor="start"
+              pointerEvents="none"
+              className="vp-r"
+              style={{ animationDelay: `${i * 0.1 + 0.25}s` }}
+            >
+              {pt}
+            </text>
+          );
+        })}
+
+        {/* ── Bottom caption ───────────────────────── */}
         <text
-          x="240" y="430"
-          fontSize="16" fontWeight="700"
-          fill="#3a2a0a" textAnchor="middle"
-          fontStyle="italic" pointerEvents="none"
-        >
-          <tspan x="240" dy="0">FOUNDATION</tspan>
-          <tspan x="240" dy="20">BUILDING</tspan>
-        </text>
-
-        {/* ── Left bullet points (staggered in) ────────── */}
-        {foundationPoints.map((pt, i) => (
-          <text
-            key={`l${i}`}
-            x="230" y={130 + i * 32}
-            fontSize="15" fontWeight="600"
-            fill="#2a1e00" textAnchor="middle"
-            pointerEvents="none"
-            className="venn-point"
-            style={{ animationDelay: `${i * 0.12}s` }}
-          >
-            • {pt}
-          </text>
-        ))}
-
-        {/* ── Right label: SCHOOL SYLLABUS ─────────────── */}
-        <text
-          x="760" y="430"
-          fontSize="16" fontWeight="700"
-          fill="#3a2a0a" textAnchor="middle"
-          fontStyle="italic" pointerEvents="none"
-        >
-          <tspan x="760" dy="0">SCHOOL</tspan>
-          <tspan x="760" dy="20">SYLLABUS</tspan>
-        </text>
-
-        {/* ── Right bullet points (staggered in) ───────── */}
-        {schoolPoints.map((pt, i) => (
-          <text
-            key={`r${i}`}
-            x="770" y={100 + i * 32}
-            fontSize="15" fontWeight="600"
-            fill="#2a1e00" textAnchor="middle"
-            pointerEvents="none"
-            className="venn-point"
-            style={{ animationDelay: `${i * 0.12 + 0.3}s` }}
-          >
-            • {pt}
-          </text>
-        ))}
-
-        {/* ── Bottom caption ───────────────────────────── */}
-        <text
-          x="500" y="518"
+          x={OV_CX} y={CY + R + 44}
           fontSize="15" fontWeight="600"
-          fill="#1e2a22" textAnchor="middle"
+          fill="#555" textAnchor="middle"
           pointerEvents="none"
         >
-          Confident and Capable Chinese Learner
+          <tspan x={OV_CX} dy="0">Confident and Capable</tspan>
+          <tspan x={OV_CX} dy="20">Chinese Learner</tspan>
         </text>
       </svg>
     </div>
