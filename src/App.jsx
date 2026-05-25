@@ -12,6 +12,7 @@ import ProgrammesPage from './pages/ProgrammesPage';
 import LocationsPage from './pages/LocationsPage';
 import ContactPage from './pages/ContactPage';
 import HolidayProgrammesPage from './pages/HolidayProgrammesPage';
+import NewsPage from './pages/NewsPage';
 
 const PAGES = {
   home: HomePage,
@@ -23,6 +24,7 @@ const PAGES = {
   locations: LocationsPage,
   contact: ContactPage,
   'holiday-programmes': HolidayProgrammesPage,
+  news: NewsPage,
 };
 
 export default function App() {
