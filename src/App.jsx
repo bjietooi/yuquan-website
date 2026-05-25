@@ -8,6 +8,7 @@ import PreschoolPage from './pages/PreschoolPage';
 import LanguageSchoolPage from './pages/LanguageSchoolPage';
 import TeachingApproachPage from './pages/TeachingApproachPage';
 import AboutPage from './pages/AboutPage';
+import ProgrammesPage from './pages/ProgrammesPage';
 
 const PAGES = {
   home: HomePage,
@@ -15,20 +16,33 @@ const PAGES = {
   'language-school': LanguageSchoolPage,
   'teaching-approach': TeachingApproachPage,
   about: AboutPage,
+  programmes: ProgrammesPage,
 };
 
 export default function App() {
   const [page, setPage] = useState('home');
+  const [scrollToSection, setScrollToSection] = useState(null);
   const [transitioning, setTransitioning] = useState(null);
   const pendingPage = useRef(null);
   const { fire, node: confettiNode } = useConfetti();
 
   const go = (target) => {
-    if (target === page || transitioning) return;
-    pendingPage.current = target;
+    if (!target) return;
+    // Support "pagename#section" for scroll-to anchors
+    const [pageName, section] = target.split('#');
+    if (pageName === page && !transitioning) {
+      // Same page — just scroll to section
+      if (section) {
+        import('./pages/ProgrammesPage').then(m => m.scrollToProgramme(section));
+      }
+      return;
+    }
+    if (transitioning) return;
+    setScrollToSection(section || null);
+    pendingPage.current = pageName;
     setTransitioning('in');
     setTimeout(() => {
-      setPage(target);
+      setPage(pageName);
       window.scrollTo({ top: 0, behavior: 'instant' });
       setTransitioning('out');
       setTimeout(() => {
@@ -51,7 +65,7 @@ export default function App() {
       <FloatingShapes />
       {!isGateway && <Nav current={page} go={go} onCta={fireConfetti} />}
       <main>
-        <Page key={page} go={go} fireConfetti={fireConfetti} />
+        <Page key={page} go={go} fireConfetti={fireConfetti} scrollToSection={scrollToSection} />
       </main>
       {!isGateway && <Footer go={go} />}
 
