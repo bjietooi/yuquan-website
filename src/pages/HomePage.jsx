@@ -85,13 +85,8 @@ export default function HomePage({ go }) {
           <span className="gf-dot" />
           <button onClick={() => go('language-school')}>Language School</button>
         </nav>
-        <div className="gf-contact">
-          <a href="mailto:hello@yuquan.sg">hello@yuquan.sg</a>
-          <span>·</span>
-          <a href="tel:+6562345678">+65 6234 5678</a>
-        </div>
         <p className="gf-copy">
-          © 2026 Yuquan · Healthy · Happy · Wise · 健康 · 快乐 · 睿智
+          © 2026 Yuquan
         </p>
       </footer>
 
