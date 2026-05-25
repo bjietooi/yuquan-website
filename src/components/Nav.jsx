@@ -36,10 +36,10 @@ const LANGUAGE_SCHOOL_LINKS = [
   {
     id: 'ls-programmes', label: 'Programmes',
     dropdown: [
-      { id: 'prog-preschool', label: 'Preschool', navigate: 'preschool' },
-      { id: 'prog-primary',   label: 'Primary',   navigate: null },
-      { id: 'prog-secondary', label: 'Secondary', navigate: null },
-      { id: 'prog-adult',     label: 'Adult',     navigate: null },
+      { id: 'prog-preschool', label: 'Preschool', navigate: 'programmes#preschool' },
+      { id: 'prog-primary',   label: 'Primary',   navigate: 'programmes#primary' },
+      { id: 'prog-secondary', label: 'Secondary', navigate: 'programmes#secondary' },
+      { id: 'prog-adult',     label: 'Adult',     navigate: 'programmes#adult' },
     ],
   },
   { id: 'ls-holiday',  label: 'Holiday Programmes', navigate: null },
@@ -63,8 +63,10 @@ function NavItem({ item, current, onNavigate }) {
   }, []);
 
   // null navigate = stub page (not built yet) — never highlight, click is no-op
-  const isActive = (item.navigate != null && item.navigate === current) ||
-    item.dropdown?.some(d => d.navigate != null && d.navigate === current);
+  // Support "page#section" navigate values by comparing only the base page name
+  const baseOf = (nav) => nav?.split('#')[0];
+  const isActive = (item.navigate != null && baseOf(item.navigate) === current) ||
+    item.dropdown?.some(d => d.navigate != null && baseOf(d.navigate) === current);
 
   if (!item.dropdown) {
     return (
@@ -120,7 +122,7 @@ export default function Nav({ current, go, onCta }) {
   };
 
   const isPreschool     = current === 'preschool';
-  const isLanguageSchool = current === 'language-school' || current === 'about' || current === 'teaching-approach';
+  const isLanguageSchool = current === 'language-school' || current === 'about' || current === 'teaching-approach' || current === 'programmes';
   const isHome          = !isPreschool && !isLanguageSchool;
 
   const links   = isPreschool ? PRESCHOOL_LINKS :
