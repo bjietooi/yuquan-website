@@ -9,7 +9,16 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit -m 'Initial Yuquan website build from Claude Design handoff *)"
+      "Bash(git commit -m 'Initial Yuquan website build from Claude Design handoff *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git checkout *)",
+      "Bash(git commit -m 'Merge remote: keep production Vite build *)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(lsof -ti:5173)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
