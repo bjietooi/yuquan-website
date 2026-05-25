@@ -42,7 +42,7 @@ const LANGUAGE_SCHOOL_LINKS = [
       { id: 'prog-adult',     label: 'Adult',     navigate: 'programmes#adult' },
     ],
   },
-  { id: 'ls-holiday',  label: 'Holiday Programmes', navigate: null },
+  { id: 'ls-holiday',  label: 'Holiday Programmes', navigate: 'holiday-programmes' },
   { id: 'ls-news',     label: 'News & Resources',   navigate: null },
   { id: 'ls-location', label: 'Location',           navigate: 'locations' },
   { id: 'ls-contact',  label: 'Contact Us',         navigate: 'contact' },
@@ -122,7 +122,7 @@ export default function Nav({ current, go, onCta }) {
   };
 
   const isPreschool     = current === 'preschool';
-  const isLanguageSchool = ['language-school','about','teaching-approach','programmes','locations','contact'].includes(current);
+  const isLanguageSchool = ['language-school','about','teaching-approach','programmes','locations','contact','holiday-programmes'].includes(current);
   const isHome          = !isPreschool && !isLanguageSchool;
 
   const links   = isPreschool ? PRESCHOOL_LINKS :
