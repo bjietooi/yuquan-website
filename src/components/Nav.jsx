@@ -44,8 +44,8 @@ const LANGUAGE_SCHOOL_LINKS = [
   },
   { id: 'ls-holiday',  label: 'Holiday Programmes', navigate: null },
   { id: 'ls-news',     label: 'News & Resources',   navigate: null },
-  { id: 'ls-location', label: 'Location',           navigate: null },
-  { id: 'ls-contact',  label: 'Contact Us',         navigate: null },
+  { id: 'ls-location', label: 'Location',           navigate: 'locations' },
+  { id: 'ls-contact',  label: 'Contact Us',         navigate: 'contact' },
 ];
 
 /* ─── Dropdown-aware link component ────────────────────────────── */
@@ -122,7 +122,7 @@ export default function Nav({ current, go, onCta }) {
   };
 
   const isPreschool     = current === 'preschool';
-  const isLanguageSchool = current === 'language-school' || current === 'about' || current === 'teaching-approach' || current === 'programmes';
+  const isLanguageSchool = ['language-school','about','teaching-approach','programmes','locations','contact'].includes(current);
   const isHome          = !isPreschool && !isLanguageSchool;
 
   const links   = isPreschool ? PRESCHOOL_LINKS :

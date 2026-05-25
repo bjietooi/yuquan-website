@@ -9,6 +9,8 @@ import LanguageSchoolPage from './pages/LanguageSchoolPage';
 import TeachingApproachPage from './pages/TeachingApproachPage';
 import AboutPage from './pages/AboutPage';
 import ProgrammesPage from './pages/ProgrammesPage';
+import LocationsPage from './pages/LocationsPage';
+import ContactPage from './pages/ContactPage';
 
 const PAGES = {
   home: HomePage,
@@ -17,6 +19,8 @@ const PAGES = {
   'teaching-approach': TeachingApproachPage,
   about: AboutPage,
   programmes: ProgrammesPage,
+  locations: LocationsPage,
+  contact: ContactPage,
 };
 
 export default function App() {
