@@ -2,7 +2,11 @@ import { useState } from 'react';
 import Reveal from '../components/Reveal';
 
 function VennDiagram() {
-  const [hoveredCircle, setHoveredCircle] = useState(null);
+  // Circle geometry:
+  // L: cx=345, cy=260, r=220  →  spans x 125–565
+  // R: cx=655, cy=260, r=220  →  spans x 435–875
+  // Distance between centres = 310 < 440 (sum of radii) → proper overlap
+  // Overlap region x: 435–565, centre x=500
 
   const foundationPoints = [
     'Character Recognition',
@@ -21,143 +25,97 @@ function VennDiagram() {
   ];
 
   return (
-    <div style={{ maxWidth: 1100, margin: '0 auto 0', position: 'relative' }}>
+    <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
+      <style>{`
+        @keyframes vennFadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        .venn-point {
+          opacity: 0;
+          animation: vennFadeIn 0.4s ease-out forwards;
+        }
+      `}</style>
+
       <svg
-        viewBox="0 0 1100 520"
-        style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
+        viewBox="0 0 1000 540"
+        style={{ width: '100%', height: 'auto' }}
         preserveAspectRatio="xMidYMid meet"
       >
-        {/* Left circle - Foundation Building */}
-        <circle
-          cx="350"
-          cy="260"
-          r="180"
-          fill="#dab86d"
-          opacity="0.75"
-        />
+        {/* ── Circles ─────────────────────────────────── */}
+        <circle cx="345" cy="260" r="220" fill="#dab86d" opacity="0.8" />
+        <circle cx="655" cy="260" r="220" fill="#f0d89b" opacity="0.8" />
 
-        {/* Right circle - School Syllabus */}
-        <circle
-          cx="750"
-          cy="260"
-          r="180"
-          fill="#f0d89b"
-          opacity="0.75"
-        />
-
-        {/* Invisible hover overlay - Left circle */}
-        <circle
-          cx="350"
-          cy="260"
-          r="180"
-          fill="transparent"
-          onMouseEnter={() => setHoveredCircle('left')}
-          onMouseLeave={() => setHoveredCircle(null)}
-          style={{ cursor: 'pointer' }}
-        />
-
-        {/* Invisible hover overlay - Right circle */}
-        <circle
-          cx="750"
-          cy="260"
-          r="180"
-          fill="transparent"
-          onMouseEnter={() => setHoveredCircle('right')}
-          onMouseLeave={() => setHoveredCircle(null)}
-          style={{ cursor: 'pointer' }}
-        />
-
-        {/* Center text - Real Chinese Ability */}
+        {/* ── Center: REAL CHINESE ABILITY ────────────── */}
         <text
-          x="550"
-          y="250"
-          fontSize="36"
-          fontWeight="700"
-          fill="#1e2a22"
-          textAnchor="middle"
+          x="500" y="225"
+          fontSize="28" fontWeight="800"
+          fill="#1e2a22" textAnchor="middle"
           pointerEvents="none"
+          letterSpacing="1"
         >
-          <tspan x="550" dy="0">REAL</tspan>
-          <tspan x="550" dy="36">CHINESE</tspan>
-          <tspan x="550" dy="36">ABILITY</tspan>
+          <tspan x="500" dy="0">REAL</tspan>
+          <tspan x="500" dy="33">CHINESE</tspan>
+          <tspan x="500" dy="33">ABILITY</tspan>
         </text>
 
-        {/* Left circle label */}
+        {/* ── Left label: FOUNDATION BUILDING ─────────── */}
         <text
-          x="320"
-          y="420"
-          fontSize="20"
-          fontWeight="700"
-          fill="#1e2a22"
-          textAnchor="middle"
-          fontStyle="italic"
-          pointerEvents="none"
+          x="240" y="430"
+          fontSize="16" fontWeight="700"
+          fill="#3a2a0a" textAnchor="middle"
+          fontStyle="italic" pointerEvents="none"
         >
-          <tspan x="320" dy="0">FOUNDATION</tspan>
-          <tspan x="320" dy="24">BUILDING</tspan>
+          <tspan x="240" dy="0">FOUNDATION</tspan>
+          <tspan x="240" dy="20">BUILDING</tspan>
         </text>
 
-        {/* Right circle label */}
-        <text
-          x="780"
-          y="420"
-          fontSize="20"
-          fontWeight="700"
-          fill="#1e2a22"
-          textAnchor="middle"
-          fontStyle="italic"
-          pointerEvents="none"
-        >
-          <tspan x="780" dy="0">SCHOOL</tspan>
-          <tspan x="780" dy="24">SYLLABUS</tspan>
-        </text>
-
-        {/* Left side text - Foundation items - only show on hover */}
-        {hoveredCircle === 'left' && (
+        {/* ── Left bullet points (staggered in) ────────── */}
+        {foundationPoints.map((pt, i) => (
           <text
-            x="250"
-            y="180"
-            fontSize="18"
-            fontWeight="600"
-            fill="#1e2a22"
-            textAnchor="middle"
+            key={`l${i}`}
+            x="230" y={130 + i * 32}
+            fontSize="15" fontWeight="600"
+            fill="#2a1e00" textAnchor="middle"
             pointerEvents="none"
+            className="venn-point"
+            style={{ animationDelay: `${i * 0.12}s` }}
           >
-            {foundationPoints.map((point, i) => (
-              <tspan key={i} x="250" dy={i === 0 ? 0 : 22}>
-                • {point}
-              </tspan>
-            ))}
+            • {pt}
           </text>
-        )}
+        ))}
 
-        {/* Right side text - School items - only show on hover */}
-        {hoveredCircle === 'right' && (
-          <text
-            x="850"
-            y="150"
-            fontSize="18"
-            fontWeight="600"
-            fill="#1e2a22"
-            textAnchor="middle"
-            pointerEvents="none"
-          >
-            {schoolPoints.map((point, i) => (
-              <tspan key={i} x="850" dy={i === 0 ? 0 : 22}>
-                • {point}
-              </tspan>
-            ))}
-          </text>
-        )}
-
-        {/* Bottom text */}
+        {/* ── Right label: SCHOOL SYLLABUS ─────────────── */}
         <text
-          x="550"
-          y="500"
-          fontSize="15"
-          fontWeight="600"
-          fill="#1e2a22"
-          textAnchor="middle"
+          x="760" y="430"
+          fontSize="16" fontWeight="700"
+          fill="#3a2a0a" textAnchor="middle"
+          fontStyle="italic" pointerEvents="none"
+        >
+          <tspan x="760" dy="0">SCHOOL</tspan>
+          <tspan x="760" dy="20">SYLLABUS</tspan>
+        </text>
+
+        {/* ── Right bullet points (staggered in) ───────── */}
+        {schoolPoints.map((pt, i) => (
+          <text
+            key={`r${i}`}
+            x="770" y={100 + i * 32}
+            fontSize="15" fontWeight="600"
+            fill="#2a1e00" textAnchor="middle"
+            pointerEvents="none"
+            className="venn-point"
+            style={{ animationDelay: `${i * 0.12 + 0.3}s` }}
+          >
+            • {pt}
+          </text>
+        ))}
+
+        {/* ── Bottom caption ───────────────────────────── */}
+        <text
+          x="500" y="518"
+          fontSize="15" fontWeight="600"
+          fill="#1e2a22" textAnchor="middle"
           pointerEvents="none"
         >
           Confident and Capable Chinese Learner
