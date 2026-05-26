@@ -3,17 +3,6 @@ import { IMG } from '../data/images';
 
 /* ─── Navigation configs ────────────────────────────────────────── */
 
-const SCHOOL_SWITCHER = {
-  id: 'school-switcher',
-  label: 'Schools',
-  navigate: 'home',
-  outlined: true,            // render as stroke pill, no fill
-  dropdown: [
-    { id: 'sw-preschool',  label: 'Yuquan Preschool', navigate: 'preschool',       logo: IMG.preschoolLogo },
-    { id: 'sw-langschool', label: 'Language School',  navigate: 'language-school', logo: IMG.logo },
-  ],
-};
-
 const HOME_LINKS = [
   { id: 'home',            label: 'Home',            navigate: 'home' },
   { id: 'preschool',       label: 'Preschool',       navigate: 'preschool' },
@@ -33,11 +22,9 @@ const PRESCHOOL_LINKS = [
   { id: 'ps-news',       label: 'News & Resources', navigate: 'preschool-news' },
   { id: 'ps-locations',  label: 'Locations',        navigate: 'preschool-location' },
   { id: 'ps-contact',    label: 'Contact Us',       navigate: 'preschool-contact' },
-  SCHOOL_SWITCHER,
 ];
 
 const LANGUAGE_SCHOOL_LINKS = [
-  SCHOOL_SWITCHER,
   { id: 'ls-home', label: 'Home', navigate: 'language-school' },
   {
     id: 'ls-about', label: 'About Us',
@@ -59,7 +46,6 @@ const LANGUAGE_SCHOOL_LINKS = [
   { id: 'ls-news',     label: 'News & Resources',   navigate: 'news' },
   { id: 'ls-location', label: 'Location',           navigate: 'locations' },
   { id: 'ls-contact',  label: 'Contact Us',         navigate: 'contact' },
-  SCHOOL_SWITCHER,
 ];
 
 /* ─── Dropdown-aware link component ────────────────────────────── */
@@ -91,28 +77,16 @@ function NavItem({ item, current, onNavigate }) {
     );
   }
 
-  // Items with BOTH navigate + dropdown: click navigates; hover reveals dropdown
-  const hasDirectNav = Boolean(item.navigate);
-
-  const outlinedStyle = item.outlined ? {
-    border: '1.5px solid currentColor',
-    borderRadius: 999,
-    padding: '5px 14px',
-    opacity: 0.7,
-  } : {};
-
   return (
     <div
       className={`nav-dd-wrap ${open ? 'open' : ''}`}
       ref={ref}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
-      style={item.outlined ? { marginLeft: 8 } : {}}
     >
       <button
         className={`nav-link nav-link-dd ${isActive ? 'active' : ''}`}
-        style={outlinedStyle}
-        onClick={() => hasDirectNav ? onNavigate(item.navigate) : setOpen(o => !o)}
+        onClick={() => setOpen(o => !o)}
       >
         {item.label}
         <span className="nav-chev" />
@@ -124,19 +98,113 @@ function NavItem({ item, current, onNavigate }) {
             role="menuitem"
             className="nav-dd-item"
             onClick={() => { d.navigate && onNavigate(d.navigate); setOpen(false); }}
-            style={{ display: 'flex', alignItems: 'center', gap: 10 }}
           >
-            {d.logo && (
-              <img
-                src={d.logo}
-                alt={d.label}
-                style={{ height: 22, width: 'auto', objectFit: 'contain', flexShrink: 0 }}
-              />
-            )}
             {d.label}
           </button>
         ))}
       </div>
+    </div>
+  );
+}
+
+/* ─── Schools switcher — pinned right of nav ────────────────────── */
+
+function SchoolSwitcher({ onNavigate }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const close = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
+  }, []);
+
+  const SCHOOLS = [
+    { id: 'sw-preschool',  label: 'Yuquan Preschool', navigate: 'preschool',       logo: IMG.preschoolLogo, logoBg: 'transparent' },
+    { id: 'sw-langschool', label: 'Language School',  navigate: 'language-school', logo: IMG.logo,          logoBg: 'var(--jade)' },
+  ];
+
+  return (
+    <div
+      ref={ref}
+      style={{ position: 'relative', marginLeft: 10 }}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      {/* Pill button */}
+      <button
+        onClick={() => onNavigate('home')}
+        style={{
+          display: 'flex', alignItems: 'center', gap: 5,
+          padding: '5px 13px',
+          borderRadius: 999,
+          border: '1.5px solid rgba(0,0,0,0.25)',
+          background: 'transparent',
+          color: 'var(--ink)',
+          fontSize: 13.5, fontWeight: 600,
+          cursor: 'pointer',
+          transition: 'border-color 0.18s, opacity 0.18s',
+          opacity: 0.65,
+          fontFamily: 'inherit',
+        }}
+        onMouseEnter={e => e.currentTarget.style.opacity = '1'}
+        onMouseLeave={e => e.currentTarget.style.opacity = '0.65'}
+      >
+        Schools
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ marginLeft: 1 }}>
+          <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+
+      {/* Dropdown */}
+      {open && (
+        <div style={{
+          position: 'absolute', top: 'calc(100% + 8px)', right: 0,
+          background: '#fff',
+          borderRadius: 'var(--r-xl)',
+          boxShadow: '0 8px 32px rgba(0,0,0,.14)',
+          border: '1px solid rgba(0,0,0,.08)',
+          padding: '8px',
+          minWidth: 220,
+          zIndex: 200,
+        }}>
+          {SCHOOLS.map(s => (
+            <button
+              key={s.id}
+              onClick={() => { onNavigate(s.navigate); setOpen(false); }}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 10,
+                width: '100%', padding: '10px 12px',
+                borderRadius: 'var(--r-md)',
+                border: 'none', background: 'none',
+                cursor: 'pointer', textAlign: 'left',
+                fontSize: 14, fontWeight: 600, color: 'var(--ink)',
+                transition: 'background 0.15s',
+                fontFamily: 'inherit',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'var(--jade-mist)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'none'}
+            >
+              {/* Logo badge */}
+              <div style={{
+                width: 32, height: 32, borderRadius: 8, flexShrink: 0,
+                background: s.logoBg,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                overflow: 'hidden',
+              }}>
+                <img
+                  src={s.logo}
+                  alt={s.label}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', padding: s.logoBg !== 'transparent' ? 4 : 0 }}
+                />
+              </div>
+              {s.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -173,7 +241,7 @@ export default function Nav({ current, go, onCta }) {
       <div className="container">
         <div className="nav-inner">
 
-          {/* Logo */}
+          {/* Logo — left */}
           <div className="nav-brand-slot">
             {logoSrc && (
               <a className="brand" href="#" onClick={(e) => { e.preventDefault(); handleNav(isPreschool ? 'preschool' : 'language-school'); }}>
@@ -182,7 +250,7 @@ export default function Nav({ current, go, onCta }) {
             )}
           </div>
 
-          {/* Desktop links */}
+          {/* Desktop links — centre */}
           <div className={`nav-links ${!isHome ? 'nav-links-compact' : ''}`}>
             {links.map(l => (
               <NavItem key={l.id} item={l} current={current} onNavigate={handleNav} />
@@ -198,8 +266,9 @@ export default function Nav({ current, go, onCta }) {
             )}
           </div>
 
-          {/* Hamburger */}
-          <div className="nav-end-slot">
+          {/* Right slot — Schools pill + hamburger */}
+          <div className="nav-end-slot" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {!isHome && <SchoolSwitcher onNavigate={handleNav} />}
             <button
               className={`nav-hamburger ${menuOpen ? 'open' : ''}`}
               onClick={() => setMenuOpen(v => !v)}
@@ -216,10 +285,7 @@ export default function Nav({ current, go, onCta }) {
             <div key={l.id} className="nav-mobile-group">
               <button
                 className={`nav-link nav-mobile-group-btn ${mobileExpanded[l.id] ? 'expanded' : ''}`}
-                onClick={() => {
-                  if (l.navigate) { handleNav(l.navigate); }
-                  else { toggleGroup(l.id); }
-                }}
+                onClick={() => toggleGroup(l.id)}
               >
                 {l.label}
                 <span className="nav-chev nav-chev-mobile" />
@@ -231,15 +297,7 @@ export default function Nav({ current, go, onCta }) {
                       key={d.id}
                       className="nav-link nav-mobile-sub-item"
                       onClick={() => handleNav(d.navigate)}
-                      style={{ display: 'flex', alignItems: 'center', gap: 8 }}
                     >
-                      {d.logo && (
-                        <img
-                          src={d.logo}
-                          alt={d.label}
-                          style={{ height: 18, width: 'auto', objectFit: 'contain', flexShrink: 0 }}
-                        />
-                      )}
                       {d.label}
                     </button>
                   ))}
@@ -255,6 +313,37 @@ export default function Nav({ current, go, onCta }) {
               {l.label}
             </button>
           ))}
+
+          {/* Mobile school switcher */}
+          {!isHome && (
+            <div style={{ borderTop: '1px solid rgba(0,0,0,.08)', marginTop: 8, paddingTop: 12 }}>
+              <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--ink-soft)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 8px 4px' }}>
+                Switch School
+              </p>
+              {[
+                { id: 'sw-ps',  label: 'Yuquan Preschool', navigate: 'preschool',       logo: IMG.preschoolLogo, logoBg: 'transparent' },
+                { id: 'sw-ls',  label: 'Language School',  navigate: 'language-school', logo: IMG.logo,          logoBg: 'var(--jade)' },
+              ].map(s => (
+                <button
+                  key={s.id}
+                  className="nav-link"
+                  onClick={() => handleNav(s.navigate)}
+                  style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', padding: '8px 4px' }}
+                >
+                  <div style={{
+                    width: 28, height: 28, borderRadius: 6, flexShrink: 0,
+                    background: s.logoBg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    overflow: 'hidden',
+                  }}>
+                    <img src={s.logo} alt={s.label} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: s.logoBg !== 'transparent' ? 3 : 0 }} />
+                  </div>
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          )}
+
           {isHome && (
             <button
               className="btn btn-primary"
