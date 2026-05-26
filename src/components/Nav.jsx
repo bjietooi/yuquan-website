@@ -122,8 +122,8 @@ function SchoolSwitcher({ onNavigate }) {
   }, []);
 
   const SCHOOLS = [
-    { id: 'sw-preschool',  label: 'Yuquan Preschool', navigate: 'preschool',       logo: IMG.preschoolLogo, logoBg: 'transparent' },
-    { id: 'sw-langschool', label: 'Language School',  navigate: 'language-school', logo: IMG.logo,          logoBg: 'var(--jade)' },
+    { id: 'sw-preschool',  label: 'Yuquan Preschool', navigate: 'preschool',       logo: IMG.preschoolLogo },
+    { id: 'sw-langschool', label: 'Language School',  navigate: 'language-school', logo: IMG.logo },
   ];
 
   return (
@@ -187,19 +187,12 @@ function SchoolSwitcher({ onNavigate }) {
               onMouseEnter={e => e.currentTarget.style.background = 'var(--jade-mist)'}
               onMouseLeave={e => e.currentTarget.style.background = 'none'}
             >
-              {/* Logo badge */}
-              <div style={{
-                width: 32, height: 32, borderRadius: 8, flexShrink: 0,
-                background: s.logoBg,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                overflow: 'hidden',
-              }}>
-                <img
-                  src={s.logo}
-                  alt={s.label}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain', padding: s.logoBg !== 'transparent' ? 4 : 0 }}
-                />
-              </div>
+              {/* Logo */}
+              <img
+                src={s.logo}
+                alt={s.label}
+                style={{ height: 28, width: 'auto', objectFit: 'contain', flexShrink: 0 }}
+              />
               {s.label}
             </button>
           ))}
@@ -321,8 +314,8 @@ export default function Nav({ current, go, onCta }) {
                 Switch School
               </p>
               {[
-                { id: 'sw-ps',  label: 'Yuquan Preschool', navigate: 'preschool',       logo: IMG.preschoolLogo, logoBg: 'transparent' },
-                { id: 'sw-ls',  label: 'Language School',  navigate: 'language-school', logo: IMG.logo,          logoBg: 'var(--jade)' },
+                { id: 'sw-ps',  label: 'Yuquan Preschool', navigate: 'preschool',       logo: IMG.preschoolLogo },
+                { id: 'sw-ls',  label: 'Language School',  navigate: 'language-school', logo: IMG.logo },
               ].map(s => (
                 <button
                   key={s.id}
