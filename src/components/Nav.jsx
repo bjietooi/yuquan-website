@@ -3,6 +3,16 @@ import { IMG } from '../data/images';
 
 /* ─── Navigation configs ────────────────────────────────────────── */
 
+const SCHOOL_SWITCHER = {
+  id: 'school-switcher',
+  label: 'Schools',
+  navigate: 'home',          // clicking the label goes to the landing page
+  dropdown: [
+    { id: 'sw-preschool', label: 'Yuquan Preschool',   navigate: 'preschool',       logo: IMG.preschoolLogo },
+    { id: 'sw-langschool', label: 'Language School',   navigate: 'language-school', logo: IMG.logo },
+  ],
+};
+
 const HOME_LINKS = [
   { id: 'home',            label: 'Home',            navigate: 'home' },
   { id: 'preschool',       label: 'Preschool',       navigate: 'preschool' },
@@ -10,6 +20,7 @@ const HOME_LINKS = [
 ];
 
 const PRESCHOOL_LINKS = [
+  SCHOOL_SWITCHER,
   { id: 'ps-home', label: 'Home', navigate: 'preschool' },
   {
     id: 'ps-about', label: 'About Us',
@@ -25,6 +36,7 @@ const PRESCHOOL_LINKS = [
 ];
 
 const LANGUAGE_SCHOOL_LINKS = [
+  SCHOOL_SWITCHER,
   { id: 'ls-home', label: 'Home', navigate: 'language-school' },
   {
     id: 'ls-about', label: 'About Us',
@@ -62,8 +74,6 @@ function NavItem({ item, current, onNavigate }) {
     return () => document.removeEventListener('mousedown', close);
   }, []);
 
-  // null navigate = stub page (not built yet) — never highlight, click is no-op
-  // Support "page#section" navigate values by comparing only the base page name
   const baseOf = (nav) => nav?.split('#')[0];
   const isActive = (item.navigate != null && baseOf(item.navigate) === current) ||
     item.dropdown?.some(d => d.navigate != null && baseOf(d.navigate) === current);
@@ -79,6 +89,9 @@ function NavItem({ item, current, onNavigate }) {
     );
   }
 
+  // Items with BOTH navigate + dropdown: click navigates; hover reveals dropdown
+  const hasDirectNav = Boolean(item.navigate);
+
   return (
     <div
       className={`nav-dd-wrap ${open ? 'open' : ''}`}
@@ -88,7 +101,7 @@ function NavItem({ item, current, onNavigate }) {
     >
       <button
         className={`nav-link nav-link-dd ${isActive ? 'active' : ''}`}
-        onClick={() => setOpen(o => !o)}
+        onClick={() => hasDirectNav ? onNavigate(item.navigate) : setOpen(o => !o)}
       >
         {item.label}
         <span className="nav-chev" />
@@ -100,7 +113,15 @@ function NavItem({ item, current, onNavigate }) {
             role="menuitem"
             className="nav-dd-item"
             onClick={() => { d.navigate && onNavigate(d.navigate); setOpen(false); }}
+            style={{ display: 'flex', alignItems: 'center', gap: 10 }}
           >
+            {d.logo && (
+              <img
+                src={d.logo}
+                alt={d.label}
+                style={{ height: 22, width: 'auto', objectFit: 'contain', flexShrink: 0 }}
+              />
+            )}
             {d.label}
           </button>
         ))}
@@ -141,7 +162,7 @@ export default function Nav({ current, go, onCta }) {
       <div className="container">
         <div className="nav-inner">
 
-          {/* Logo slot — always occupies space so links stay centred on home */}
+          {/* Logo */}
           <div className="nav-brand-slot">
             {logoSrc && (
               <a className="brand" href="#" onClick={(e) => { e.preventDefault(); handleNav(isPreschool ? 'preschool' : 'language-school'); }}>
@@ -166,7 +187,7 @@ export default function Nav({ current, go, onCta }) {
             )}
           </div>
 
-          {/* Right slot — hamburger */}
+          {/* Hamburger */}
           <div className="nav-end-slot">
             <button
               className={`nav-hamburger ${menuOpen ? 'open' : ''}`}
@@ -184,7 +205,10 @@ export default function Nav({ current, go, onCta }) {
             <div key={l.id} className="nav-mobile-group">
               <button
                 className={`nav-link nav-mobile-group-btn ${mobileExpanded[l.id] ? 'expanded' : ''}`}
-                onClick={() => toggleGroup(l.id)}
+                onClick={() => {
+                  if (l.navigate) { handleNav(l.navigate); }
+                  else { toggleGroup(l.id); }
+                }}
               >
                 {l.label}
                 <span className="nav-chev nav-chev-mobile" />
@@ -196,7 +220,15 @@ export default function Nav({ current, go, onCta }) {
                       key={d.id}
                       className="nav-link nav-mobile-sub-item"
                       onClick={() => handleNav(d.navigate)}
+                      style={{ display: 'flex', alignItems: 'center', gap: 8 }}
                     >
+                      {d.logo && (
+                        <img
+                          src={d.logo}
+                          alt={d.label}
+                          style={{ height: 18, width: 'auto', objectFit: 'contain', flexShrink: 0 }}
+                        />
+                      )}
                       {d.label}
                     </button>
                   ))}
