@@ -245,19 +245,7 @@ export default function Nav({ current, go, onCta }) {
           <div className="nav-brand-slot">
             {logoSrc && (
               <a className="brand" href="#" onClick={(e) => { e.preventDefault(); handleNav(isPreschool ? 'preschool' : 'language-school'); }}>
-                {isLanguageSchool ? (
-                  /* Language school logo is white — give it a jade background pill */
-                  <div style={{
-                    background: 'var(--jade)',
-                    borderRadius: 10,
-                    padding: '4px 10px',
-                    display: 'flex', alignItems: 'center',
-                  }}>
-                    <img className="brand-logo" src={logoSrc} alt="Yuquan Language School" />
-                  </div>
-                ) : (
-                  <img className="brand-logo" src={logoSrc} alt="Yuquan Preschool" />
-                )}
+                <img className="brand-logo" src={logoSrc} alt="Yuquan" />
               </a>
             )}
           </div>
