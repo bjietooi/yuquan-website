@@ -10,7 +10,7 @@ const HOME_LINKS = [
 ];
 
 const PRESCHOOL_LINKS = [
-  { id: 'ps-home', label: 'Home', navigate: 'home' },
+  { id: 'ps-home', label: 'Home', navigate: 'preschool' },
   {
     id: 'ps-about', label: 'About Us',
     dropdown: [
@@ -25,7 +25,7 @@ const PRESCHOOL_LINKS = [
 ];
 
 const LANGUAGE_SCHOOL_LINKS = [
-  { id: 'ls-home', label: 'Home', navigate: 'home' },
+  { id: 'ls-home', label: 'Home', navigate: 'language-school' },
   {
     id: 'ls-about', label: 'About Us',
     dropdown: [
@@ -144,7 +144,7 @@ export default function Nav({ current, go, onCta }) {
           {/* Logo slot — always occupies space so links stay centred on home */}
           <div className="nav-brand-slot">
             {logoSrc && (
-              <a className="brand" href="#" onClick={(e) => { e.preventDefault(); handleNav('home'); }}>
+              <a className="brand" href="#" onClick={(e) => { e.preventDefault(); handleNav(isPreschool ? 'preschool' : 'language-school'); }}>
                 <img className="brand-logo" src={logoSrc} alt="Yuquan" />
               </a>
             )}
