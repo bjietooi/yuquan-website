@@ -13,10 +13,14 @@ import LocationsPage from './pages/LocationsPage';
 import ContactPage from './pages/ContactPage';
 import HolidayProgrammesPage from './pages/HolidayProgrammesPage';
 import NewsPage from './pages/NewsPage';
+import PreschoolStoryPage from './pages/PreschoolStoryPage';
+import PreschoolPhilosophyPage from './pages/PreschoolPhilosophyPage';
 
 const PAGES = {
   home: HomePage,
   preschool: PreschoolPage,
+  'preschool-story': PreschoolStoryPage,
+  'preschool-philosophy': PreschoolPhilosophyPage,
   'language-school': LanguageSchoolPage,
   'teaching-approach': TeachingApproachPage,
   about: AboutPage,
