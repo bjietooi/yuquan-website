@@ -21,9 +21,6 @@ export default function PreschoolPage({ go, fireConfetti }) {
             <button className="btn btn-primary" onClick={fireConfetti}>
               Book a tour <span className="btn-arrow">→</span>
             </button>
-            <button className="btn btn-ghost" onClick={() => go('language-school')}>
-              See Language School
-            </button>
           </div>
           <Reveal>
             <div className="hero-collage">

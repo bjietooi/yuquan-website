@@ -20,9 +20,6 @@ export default function LanguageSchoolPage({ go, fireConfetti }) {
             <button className="btn btn-primary" onClick={fireConfetti}>
               Enquire about a class <span className="btn-arrow">→</span>
             </button>
-            <button className="btn btn-ghost" onClick={() => go('preschool')}>
-              See preschool
-            </button>
           </div>
           <Reveal>
             <div className="hero-collage">
