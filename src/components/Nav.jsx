@@ -14,8 +14,8 @@ const PRESCHOOL_LINKS = [
   {
     id: 'ps-about', label: 'About Us',
     dropdown: [
-      { id: 'ps-story',      label: 'Our Story',      navigate: 'about' },
-      { id: 'ps-philosophy', label: 'Our Philosophy', navigate: 'about' },
+      { id: 'ps-story',      label: 'Our Story',      navigate: 'preschool-story' },
+      { id: 'ps-philosophy', label: 'Our Philosophy', navigate: 'preschool-philosophy' },
     ],
   },
   { id: 'ps-curriculum', label: 'Curriculum',       navigate: null },
@@ -121,7 +121,7 @@ export default function Nav({ current, go, onCta }) {
     setMobileExpanded({});
   };
 
-  const isPreschool     = current === 'preschool';
+  const isPreschool     = ['preschool', 'preschool-story', 'preschool-philosophy'].includes(current);
   const isLanguageSchool = ['language-school','about','teaching-approach','programmes','locations','contact','holiday-programmes','news'].includes(current);
   const isHome          = !isPreschool && !isLanguageSchool;
 
