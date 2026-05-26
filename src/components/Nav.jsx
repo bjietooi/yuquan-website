@@ -6,10 +6,11 @@ import { IMG } from '../data/images';
 const SCHOOL_SWITCHER = {
   id: 'school-switcher',
   label: 'Schools',
-  navigate: 'home',          // clicking the label goes to the landing page
+  navigate: 'home',
+  outlined: true,            // render as stroke pill, no fill
   dropdown: [
-    { id: 'sw-preschool', label: 'Yuquan Preschool',   navigate: 'preschool',       logo: IMG.preschoolLogo },
-    { id: 'sw-langschool', label: 'Language School',   navigate: 'language-school', logo: IMG.logo },
+    { id: 'sw-preschool',  label: 'Yuquan Preschool', navigate: 'preschool',       logo: IMG.preschoolLogo },
+    { id: 'sw-langschool', label: 'Language School',  navigate: 'language-school', logo: IMG.logo },
   ],
 };
 
@@ -20,7 +21,6 @@ const HOME_LINKS = [
 ];
 
 const PRESCHOOL_LINKS = [
-  SCHOOL_SWITCHER,
   { id: 'ps-home', label: 'Home', navigate: 'preschool' },
   {
     id: 'ps-about', label: 'About Us',
@@ -33,6 +33,7 @@ const PRESCHOOL_LINKS = [
   { id: 'ps-news',       label: 'News & Resources', navigate: 'preschool-news' },
   { id: 'ps-locations',  label: 'Locations',        navigate: 'preschool-location' },
   { id: 'ps-contact',    label: 'Contact Us',       navigate: 'preschool-contact' },
+  SCHOOL_SWITCHER,
 ];
 
 const LANGUAGE_SCHOOL_LINKS = [
@@ -58,6 +59,7 @@ const LANGUAGE_SCHOOL_LINKS = [
   { id: 'ls-news',     label: 'News & Resources',   navigate: 'news' },
   { id: 'ls-location', label: 'Location',           navigate: 'locations' },
   { id: 'ls-contact',  label: 'Contact Us',         navigate: 'contact' },
+  SCHOOL_SWITCHER,
 ];
 
 /* ─── Dropdown-aware link component ────────────────────────────── */
@@ -92,15 +94,24 @@ function NavItem({ item, current, onNavigate }) {
   // Items with BOTH navigate + dropdown: click navigates; hover reveals dropdown
   const hasDirectNav = Boolean(item.navigate);
 
+  const outlinedStyle = item.outlined ? {
+    border: '1.5px solid currentColor',
+    borderRadius: 999,
+    padding: '5px 14px',
+    opacity: 0.7,
+  } : {};
+
   return (
     <div
       className={`nav-dd-wrap ${open ? 'open' : ''}`}
       ref={ref}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
+      style={item.outlined ? { marginLeft: 8 } : {}}
     >
       <button
         className={`nav-link nav-link-dd ${isActive ? 'active' : ''}`}
+        style={outlinedStyle}
         onClick={() => hasDirectNav ? onNavigate(item.navigate) : setOpen(o => !o)}
       >
         {item.label}
