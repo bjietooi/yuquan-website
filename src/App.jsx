@@ -18,6 +18,7 @@ import PreschoolPhilosophyPage from './pages/PreschoolPhilosophyPage';
 import PreschoolLocationPage from './pages/PreschoolLocationPage';
 import PreschoolContactPage from './pages/PreschoolContactPage';
 import PreschoolCurriculumPage from './pages/PreschoolCurriculumPage';
+import PreschoolNewsPage from './pages/PreschoolNewsPage';
 
 const PAGES = {
   home: HomePage,
@@ -27,6 +28,7 @@ const PAGES = {
   'preschool-location': PreschoolLocationPage,
   'preschool-contact': PreschoolContactPage,
   'preschool-curriculum': PreschoolCurriculumPage,
+  'preschool-news': PreschoolNewsPage,
   'language-school': LanguageSchoolPage,
   'teaching-approach': TeachingApproachPage,
   about: AboutPage,
