@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Reveal from '../components/Reveal';
+import { PS } from '../data/images';
 
 /* ─── Data ───────────────────────────────────────────────────────── */
 
@@ -23,11 +24,11 @@ const SUBJECTS = [
 ];
 
 const SPECIAL = [
-  { label: 'Table Tennis', emoji: '🏓' },
-  { label: 'Calligraphy',  emoji: '🖌️' },
-  { label: 'Chinese Art',  emoji: '🎨' },
-  { label: 'Melodica',     emoji: '🎵' },
-  { label: 'Tea Appreciation', emoji: '🍵' },
+  { label: 'Table Tennis',     emoji: '🏓', img: PS.special.tableTennis },
+  { label: 'Calligraphy',      emoji: '🖌️', img: PS.special.calligraphy },
+  { label: 'Chinese Art',      emoji: '🎨', img: PS.special.chineseArt },
+  { label: 'Melodica',         emoji: '🎵', img: PS.special.melodica },
+  { label: 'Tea Appreciation', emoji: '🍵', img: PS.special.teaAppreciation },
 ];
 
 const PROGRAMME = [
@@ -48,6 +49,7 @@ const PROGRAMME = [
 const WHY = [
   {
     emoji: '🌏',
+    img: PS.why[0],
     title: 'True Bilingual Mastery',
     bg: 'var(--jade-soft)',
     accent: '#2e7d32',
@@ -55,6 +57,7 @@ const WHY = [
   },
   {
     emoji: '🌱',
+    img: PS.why[1],
     title: 'A Holistic Learning Experience',
     bg: 'var(--butter)',
     accent: '#f57f17',
@@ -62,6 +65,7 @@ const WHY = [
   },
   {
     emoji: '💛',
+    img: PS.why[2],
     title: 'Character Development',
     bg: 'var(--blush)',
     accent: '#c62828',
@@ -69,6 +73,7 @@ const WHY = [
   },
   {
     emoji: '🔭',
+    img: PS.why[3],
     title: 'Expanding Horizons',
     bg: 'var(--sky)',
     accent: '#1565c0',
@@ -76,6 +81,7 @@ const WHY = [
   },
   {
     emoji: '🚀',
+    img: PS.why[4],
     title: 'Future-Ready Learners',
     bg: 'var(--jade-soft)',
     accent: '#2e7d32',
@@ -400,20 +406,25 @@ export default function PreschoolCurriculumPage({ go }) {
               lifelong learning — no one is left out.
             </p>
             <div style={{
-              display: 'flex', flexWrap: 'wrap', gap: 14,
-              justifyContent: 'center', maxWidth: 680, margin: '0 auto',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+              gap: 16, maxWidth: 780, margin: '0 auto',
             }}>
               {SPECIAL.map((s, i) => (
                 <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: 8,
-                  padding: '12px 22px',
-                  borderRadius: 999,
-                  background: '#fff8e1',
-                  border: '1.5px solid rgba(245,127,23,.25)',
-                  fontSize: 14, fontWeight: 700, color: 'var(--ink)',
+                  background: '#fff',
+                  borderRadius: 'var(--r-lg)',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(245,127,23,.2)',
+                  boxShadow: '0 4px 16px rgba(0,0,0,.06)',
                 }}>
-                  <span style={{ fontSize: 18 }}>{s.emoji}</span>
-                  {s.label}
+                  <div style={{ aspectRatio: '4 / 3', overflow: 'hidden', background: '#fff8e1' }}>
+                    <img src={s.img} alt={s.label} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, padding: '12px 10px', fontSize: 14, fontWeight: 700, color: 'var(--ink)' }}>
+                    <span style={{ fontSize: 16 }}>{s.emoji}</span>
+                    {s.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -438,30 +449,29 @@ export default function PreschoolCurriculumPage({ go }) {
                 <div style={{
                   background: '#fff',
                   borderRadius: 'var(--r-xl)',
-                  padding: '28px 28px 32px',
+                  overflow: 'hidden',
                   boxShadow: '0 4px 20px rgba(0,0,0,.06)',
                   border: '1px solid rgba(0,0,0,.06)',
                   height: '100%',
                   boxSizing: 'border-box',
+                  display: 'flex',
+                  flexDirection: 'column',
                 }}>
-                  <div style={{
-                    width: 52, height: 52, borderRadius: 'var(--r-md)',
-                    background: w.bg,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 26, marginBottom: 16,
-                  }}>
-                    {w.emoji}
+                  <div style={{ aspectRatio: '16 / 10', overflow: 'hidden', background: w.bg }}>
+                    <img src={w.img} alt={w.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   </div>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 18, fontWeight: 800,
-                    color: w.accent, margin: '0 0 10px',
-                  }}>
-                    {w.title}
-                  </h3>
-                  <p style={{ fontSize: 14, color: 'var(--ink-soft)', lineHeight: 1.8, margin: 0 }}>
-                    {w.body}
-                  </p>
+                  <div style={{ padding: '24px 28px 30px' }}>
+                    <h3 style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: 18, fontWeight: 800,
+                      color: w.accent, margin: '0 0 10px',
+                    }}>
+                      {w.title}
+                    </h3>
+                    <p style={{ fontSize: 14, color: 'var(--ink-soft)', lineHeight: 1.8, margin: 0 }}>
+                      {w.body}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}

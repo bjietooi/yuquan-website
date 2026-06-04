@@ -1,4 +1,4 @@
-import { IMG } from '../data/images';
+import { IMG, PS } from '../data/images';
 
 export default function HomePage({ go }) {
   return (
@@ -67,7 +67,7 @@ export default function HomePage({ go }) {
               </div>
             </div>
             <div className="gc-char-col">
-              <img src={IMG.btnLanguageSchool} className="gc-char-img" alt="" />
+              <img src={PS.gatewayLS} className="gc-char-img" alt="" />
             </div>
             {/* Badge: direct child of card so it can be absolute over the character */}
             <div className="gc-badge">

@@ -4,7 +4,7 @@
  * Pillars → Stats → A Day at Yuquan → Parent Voices → Founder → In The Press → CTA
  */
 import { useState, useRef, useLayoutEffect, useEffect } from 'react';
-import { IMG } from '../data/images';
+import { IMG, PS } from '../data/images';
 import Reveal from './Reveal';
 import Founder from './Founder';
 
@@ -244,12 +244,12 @@ export default function SharedSections({ fireConfetti, testimonials = DEFAULT_TE
           <Reveal>
             <div className="daily-strip">
               {[
-                { tag: 'Morning circle · 早安圈', src: IMG.kindergarten },
-                { tag: 'Friends · 好朋友',         src: IMG.students[1] },
-                { tag: 'Story time · 故事时间',    src: IMG.students[2] },
-                { tag: 'Garden day · 花园日',      src: IMG.students[0] },
-                { tag: 'Chinese class · 中文课',   src: IMG.tuition[0] },
-                { tag: 'Composition · 作文',       src: IMG.tuition[1] },
+                { tag: 'Morning circle · 早安圈', src: PS.daily.morning },
+                { tag: 'Friends · 好朋友',         src: PS.daily.friends },
+                { tag: 'Story time · 故事时间',    src: PS.daily.story },
+                { tag: 'Garden day · 花园日',      src: PS.daily.garden },
+                { tag: 'Chinese class · 中文课',   src: PS.daily.chinese },
+                { tag: 'Composition · 作文',       src: PS.daily.composition },
               ].map((d, i) => (
                 <div key={i} className="daily-item">
                   <img src={d.src} alt={d.tag} />
