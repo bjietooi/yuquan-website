@@ -111,8 +111,8 @@ export default function ProgrammesPage({ fireConfetti, scrollToSection }) {
           <p className="page-hero-lede" style={{ maxWidth: 760 }}>
             Yuquan understands the challenges a child faces at each academic level. As a child
             progresses from Preschool to Secondary, our curriculum is designed to build a solid
-            foundation for each level — focusing not just on exams but on cultivating a genuine
-            love for the Chinese language and culture.
+            foundation for each stage — focusing not only on exams, but also on developing
+            lasting Chinese language ability, confidence, and fluency for the long run.
           </p>
 
           {/* Quick-jump pills */}
@@ -167,10 +167,10 @@ export default function ProgrammesPage({ fireConfetti, scrollToSection }) {
             }}>
               <span className="section-kicker">Our Commitment</span>
               <h2 className="section-title" style={{ marginBottom: 12 }}>
-                25+ Years of Excellence
+                30 Years of Excellence
               </h2>
               <p style={{ fontSize: 16, color: 'var(--ink-soft)', lineHeight: 1.7, maxWidth: 700, marginBottom: 36 }}>
-                With more than 25 years of excellence, Yuquan continues to be a trusted partner
+                With 30 years of teaching excellence, Yuquan continues to be a trusted partner
                 for parents seeking professional and effective Chinese language education for their children.
               </p>
               <div style={{

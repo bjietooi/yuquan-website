@@ -7,14 +7,36 @@ import Reveal from '../components/Reveal';
 const PROGRAMMES = [
   {
     id: 'hanxuele',
-    name: 'Hanxuele (Happy Chinese)',
-    subtitle: 'Character Recognition & Reading Camp',
+    name: 'Happy Chinese Literacy Camp',
+    subtitle: 'Character Recognition & Reading Camp (Beginner to Intermediate)',
     emoji: '📖',
     color: '#e8f5e9',
     accent: '#2e7d32',
     image: IMG.kindergarten,
-    desc: 'A structured programme designed to strengthen students\' character recognition and reading abilities, helping them build strong Chinese literacy foundations. Through engaging activities and progressive learning, students develop the confidence to read independently.',
-    tags: ['Preschool', 'Primary 1–3', 'All Levels'],
+    desc: 'A structured programme designed to strengthen students\' recognition of high-frequency Chinese characters and build strong early reading foundations. Through engaging activities, rhythmic learning, and progressive reading practice, students expand their vocabulary, improve reading fluency, and develop the confidence to read independently.',
+    tags: ['Preschool', 'Primary 1–3', 'Beginner–Intermediate'],
+  },
+  {
+    id: 'idiom',
+    name: 'Chinese Idiom Literacy Camp',
+    subtitle: 'Character Recognition & Reading Camp (Intermediate to Advanced)',
+    emoji: '📜',
+    color: '#fdeef4',
+    accent: '#c2185b',
+    image: IMG.tuition[1],
+    desc: 'A structured programme designed to deepen students\' character recognition and reading abilities through Chinese idioms and meaningful language use. Through engaging stories, idiom-based learning, and progressive reading practice, students expand their vocabulary, strengthen comprehension, and develop greater confidence in advanced Chinese reading.',
+    tags: ['Primary', 'Intermediate–Advanced', 'Idioms'],
+  },
+  {
+    id: 'compcomp',
+    name: 'Comprehension & Composition Camp',
+    subtitle: 'A boost designed to reinforce and extend regular Chinese learning',
+    emoji: '✍️',
+    color: '#e0f2f1',
+    accent: '#00897b',
+    image: IMG.students[0],
+    desc: 'A focused boost that strengthens students\' comprehension and composition skills beyond regular classes. Students learn proven answering techniques for comprehension and structured writing frameworks to express ideas with greater clarity and confidence.',
+    tags: ['Primary', 'Comprehension', 'Composition'],
   },
   {
     id: 'psle',
@@ -35,7 +57,7 @@ const PROGRAMMES = [
     color: '#f3e5f5',
     accent: '#6a1b9a',
     image: IMG.students[1],
-    desc: 'A dynamic programme that develops students\' confidence in expression, presentation skills, and effective communication in Chinese. Students learn to articulate ideas clearly, handle questions on the spot, and express themselves with poise.',
+    desc: 'A fun and expressive camp that builds students\' confidence in spoken Chinese through tongue twisters, crosstalk, news reporting, and rhythmic performance. Students practise clear pronunciation, stage presence, and expressive speaking in an engaging and supportive environment.',
     tags: ['Primary', 'Secondary', 'Communication'],
   },
   {
@@ -192,9 +214,9 @@ export default function HolidayProgrammesPage({ fireConfetti }) {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <Reveal>
             <span className="section-kicker" style={{ marginBottom: 16 }}>Holiday Programmes</span>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(40px, 6vw, 84px)', marginBottom: 24, lineHeight: 1.1 }}>
-              Learn more.<br />
-              <span style={{ color: 'var(--jade)' }}>Discover more.</span>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(38px, 5.5vw, 76px)', marginBottom: 24, lineHeight: 1.1 }}>
+              Fun, focused Chinese<br />
+              <span style={{ color: 'var(--jade)' }}>learning for the holidays.</span>
             </h1>
             <p style={{
               fontSize: 'clamp(16px, 1.8vw, 19px)',
