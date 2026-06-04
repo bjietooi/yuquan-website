@@ -30,6 +30,21 @@ const SPECIAL = [
   { label: 'Tea Appreciation', emoji: '🍵' },
 ];
 
+const PROGRAMME = [
+  { emoji: '📖', bg: 'var(--jade-soft)', accent: '#2e7d32', title: 'Language & Literacy',
+    body: 'Building confidence in English and Chinese through reading, phonics, storytelling, and expression.' },
+  { emoji: '🔢', bg: 'var(--butter)',    accent: '#f57f17', title: 'Numeracy & Logical Thinking',
+    body: 'Developing number sense, reasoning, and problem-solving through hands-on learning.' },
+  { emoji: '🔬', bg: 'var(--sky)',       accent: '#1565c0', title: 'Discovery & Inquiry',
+    body: 'Encouraging curiosity through science, social studies, and real-world exploration.' },
+  { emoji: '🎨', bg: 'var(--blush)',     accent: '#c62828', title: 'Creative Arts & Expression',
+    body: 'Nurturing imagination and confidence through art, craft, music, and movement.' },
+  { emoji: '🌳', bg: 'var(--jade-soft)', accent: '#2e7d32', title: 'Outdoor Exploration & Physical Development',
+    body: 'Supporting movement, coordination, confidence, and well-being through active outdoor play.' },
+  { emoji: '💛', bg: 'var(--peach)',     accent: '#f57f17', title: 'Social & Emotional Development',
+    body: 'Nurturing confidence, kindness, independence, and positive relationships through everyday interactions.' },
+];
+
 const WHY = [
   {
     emoji: '🌏',
@@ -80,6 +95,14 @@ const FAQS = [
   {
     q: 'What kind of meals do children have at Yuquan?',
     a: "Children at Yuquan enjoy freshly cooked meals prepared daily in our in-house kitchen.\n\nWe believe mealtimes are an important part of a child's day — not just for nutrition, but also for comfort and routine. By preparing meals on-site, we ensure every child receives warm, balanced, and nourishing food every day.",
+  },
+  {
+    q: 'Do children have outdoor time?',
+    a: 'Yes, of course! Outdoor exploration is part of our regular curriculum. Children have opportunities to move, play, observe nature, and build confidence beyond the classroom in a safe and guided environment.',
+  },
+  {
+    q: 'What kind of beds do children use for nap time?',
+    a: 'For nap time, each child rests on their own individual child-safe bed. We use individual beds instead of foldable mattresses to provide a more hygienic and comfortable rest environment, helping children feel settled, secure, and well cared for.',
   },
 ];
 
@@ -288,6 +311,59 @@ export default function PreschoolCurriculumPage({ go }) {
         <div className="container">
           <SectionHeading label="Our Programme" />
 
+          {/* Programme intro */}
+          <Reveal>
+            <p style={{ textAlign: 'center', fontSize: 16, color: 'var(--ink-soft)', lineHeight: 1.8, maxWidth: 760, margin: '0 auto 44px' }}>
+              At Yuquan Preschool, our programmes are designed to support every aspect of a
+              child&#39;s growth. Through a balanced blend of language and literacy, numeracy,
+              discovery, creative expression, outdoor play, and social-emotional development,
+              children are given meaningful opportunities to learn, explore, connect, and grow
+              with confidence.
+            </p>
+          </Reveal>
+
+          {/* Programme areas */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: 24,
+            maxWidth: 1000,
+            margin: '0 auto 56px',
+          }}>
+            {PROGRAMME.map((p, i) => (
+              <Reveal key={i} delay={i * 70}>
+                <div style={{
+                  background: '#fff',
+                  borderRadius: 'var(--r-xl)',
+                  padding: '28px 28px 30px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,.06)',
+                  border: '1px solid rgba(0,0,0,.06)',
+                  height: '100%',
+                  boxSizing: 'border-box',
+                }}>
+                  <div style={{
+                    width: 52, height: 52, borderRadius: 'var(--r-md)',
+                    background: p.bg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 26, marginBottom: 16,
+                  }}>
+                    {p.emoji}
+                  </div>
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 18, fontWeight: 800,
+                    color: p.accent, margin: '0 0 10px',
+                  }}>
+                    {p.title}
+                  </h3>
+                  <p style={{ fontSize: 14, color: 'var(--ink-soft)', lineHeight: 1.8, margin: 0 }}>
+                    {p.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
           {/* Core subjects */}
           <Reveal>
             <p style={{ textAlign: 'center', fontSize: 13, fontWeight: 700, color: 'var(--jade)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>
@@ -316,6 +392,12 @@ export default function PreschoolCurriculumPage({ go }) {
           <Reveal>
             <p style={{ textAlign: 'center', fontSize: 13, fontWeight: 700, color: '#f57f17', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>
               Special Programmes <span style={{ fontWeight: 400, color: 'var(--ink-soft)', textTransform: 'none', letterSpacing: 0 }}>— included, no extra charge</span>
+            </p>
+            <p style={{ textAlign: 'center', fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.8, maxWidth: 720, margin: '0 auto 28px' }}>
+              Learning extends beyond the classroom. Our special programmes are thoughtfully
+              integrated into the curriculum at no additional cost, so every child can take part,
+              discover new interests, and gain a deeper appreciation of culture, creativity, and
+              lifelong learning — no one is left out.
             </p>
             <div style={{
               display: 'flex', flexWrap: 'wrap', gap: 14,

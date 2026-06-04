@@ -1,20 +1,90 @@
+import { useState } from 'react';
 import { IMG } from '../data/images';
 import Reveal from '../components/Reveal';
 import SharedSections from '../components/SharedSections';
+
+const LS_FAQS = [
+  {
+    q: 'What makes Yuquan different from other Chinese language centres?',
+    a: 'Yuquan stands out through our dual-track Chinese learning system, which balances strong language foundations with academic achievement. We help students build essential skills in character recognition, vocabulary, reading, comprehension, and writing, while also supporting school learning and exam preparation.\n\nAt the heart of this system is our proven in-house curriculum, developed by our founder with extensive experience in Chinese education and curriculum development. Together with regular teacher training, this ensures that our lessons are structured, engaging, and effective.\n\nThis approach allows students to make meaningful progress with the right methods. They are not only prepared for short-term results, but also guided to develop long-term confidence, fluency, and a genuine interest in Chinese.',
+  },
+  {
+    q: 'How many students are there in each class?',
+    a: 'To ensure every student receives sufficient attention, our classes are kept small, with approximately 6–8 students per class. This allows teachers to closely support each student’s learning progress while maintaining an engaging and interactive classroom environment.',
+  },
+  {
+    q: 'How should I choose the right Chinese language centre for my child?',
+    a: 'When choosing a Chinese language centre, parents may wish to consider a few key factors: the teaching methods used, whether the centre has a structured and well-designed curriculum, the experience and training of the teachers, and the class size to ensure sufficient individual attention.\n\nAt Yuquan, we place strong emphasis on all these areas — combining effective teaching methods, a carefully developed curriculum, regularly trained teachers, and small class sizes to support every student’s progress and confidence in Chinese.',
+  },
+  {
+    q: 'Will students be given homework?',
+    a: 'Homework is generally not required, unless parents specifically request it. We believe that learning should be completed effectively during lesson time, allowing students to fully focus, practise, and understand the material in class under the teacher’s guidance.',
+  },
+  {
+    q: 'Can my child join the class mid-term?',
+    a: 'Yes, students are welcome to join mid-term if there are available spaces. Our teachers will help new students settle in and ensure they can catch up comfortably with the class.',
+  },
+  {
+    q: 'Why might my child need Chinese tuition outside of school?',
+    a: 'Chinese can be challenging for many students, especially when they have limited opportunities to use the language in daily life. Additional support outside of school helps strengthen language foundations, confidence, and exam skills, allowing students to better keep up with the MOE syllabus and perform more comfortably in class.',
+  },
+  {
+    q: 'Why is having a strong Chinese language foundation important?',
+    a: 'A strong Chinese language foundation helps students develop confidence in reading, writing, and communication, making it easier to progress in school and perform well in examinations. Beyond academics, it also allows students to connect more deeply with Chinese language and culture, and use the language more naturally in daily life.',
+  },
+];
+
+function LsFaqItem({ item }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{
+      background: '#fff', borderRadius: 'var(--r-xl)',
+      border: '1px solid rgba(0,0,0,.08)', overflow: 'hidden',
+      boxShadow: '0 2px 12px rgba(0,0,0,.05)',
+    }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{
+          width: '100%', display: 'flex', alignItems: 'center',
+          justifyContent: 'space-between', gap: 16, padding: '22px 28px',
+          background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left',
+        }}
+      >
+        <span style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: 'var(--ink)', lineHeight: 1.4 }}>
+          {item.q}
+        </span>
+        <span style={{
+          fontSize: 22, color: 'var(--jade)', flexShrink: 0,
+          transform: open ? 'rotate(45deg)' : 'rotate(0)',
+          transition: 'transform 0.25s', display: 'inline-block',
+        }}>+</span>
+      </button>
+      {open && (
+        <div style={{ padding: '0 28px 24px' }}>
+          {item.a.split('\n\n').map((para, i) => (
+            <p key={i} style={{ fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.8, margin: i > 0 ? '12px 0 0' : 0 }}>
+              {para}
+            </p>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function LanguageSchoolPage({ go, fireConfetti }) {
   return (
     <div className="page">
       <section className="page-hero">
         <div className="container">
-          <span className="section-kicker">Language School · 课程补习</span>
+          <span className="section-kicker">Trusted since 1996</span>
           <h1 className="hero-title" style={{ fontSize: 'clamp(48px, 7vw, 92px)' }}>
             We build real<br />Chinese ability.
           </h1>
-          <div className="hero-zh" style={{ marginTop: 18 }}>中文补习课程</div>
+          <div className="hero-zh" style={{ marginTop: 18 }}>到艺全，学语言，标准流利非一般！</div>
           <p className="page-hero-lede">
             From preschool to adults — structured, joyful, and results-driven
-            Mandarin education for every learner.
+            Chinese language education for every learner.
           </p>
           <div className="hero-ctas" style={{ justifyContent: 'center', marginTop: 30 }}>
             <button className="btn btn-primary" onClick={fireConfetti}>
@@ -126,6 +196,26 @@ export default function LanguageSchoolPage({ go, fireConfetti }) {
                     </div>
                   </div>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section" style={{ paddingTop: 20 }}>
+        <div className="container">
+          <Reveal>
+            <span className="section-kicker">FAQ</span>
+            <h2 className="section-title">Frequently Asked Questions</h2>
+            <p className="section-lede">
+              Everything you need to know about learning Chinese at Yuquan.
+            </p>
+          </Reveal>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 820, margin: '28px auto 0' }}>
+            {LS_FAQS.map((f, i) => (
+              <Reveal key={i} delay={i * 50}>
+                <LsFaqItem item={f} />
               </Reveal>
             ))}
           </div>

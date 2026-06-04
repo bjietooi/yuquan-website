@@ -27,9 +27,12 @@ export default function Founder() {
             <Reveal>
               <span className="section-kicker">Meet our founder · 创办人</span>
               <h2 className="section-title founder-name">
-                宋老师 <span className="founder-en">· Madam Song</span>
+                宋育红 <span className="founder-en">· Madam Song</span>
               </h2>
-              <p className="founder-role">Founder &amp; Guiding Light</p>
+              <p className="founder-role" style={{ whiteSpace: 'normal', background: 'none', padding: 0, color: 'var(--jade)', fontSize: 15, lineHeight: 1.7, fontWeight: 700 }}>
+                Founder of Yuquan Language School &amp; Yuquan Preschool<br />
+                <span style={{ color: 'var(--ink-soft)', fontWeight: 600 }}>Curriculum Creator of 汉学乐 &amp; 成语识字Cool</span>
+              </p>
 
               <p className="founder-quote">
                 <span className="founder-qmark">"</span>

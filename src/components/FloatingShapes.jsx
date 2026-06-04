@@ -5,7 +5,7 @@ const SHAPES = [
   { type: "blob",     color: "var(--lavender)",      x: "92%", y: "55%", size: 130, dur: 10,   delay: 2,   anim: "float-y", rot: 20  },
   { type: "squiggle", color: "var(--jade)",          x: "48%", y: "78%", size: 90,  dur: 8,    delay: 1.5, anim: "float-x", rot: -10 },
   { type: "dot3",     color: "var(--blush-deep)",    x: "70%", y: "85%", size: 50,  dur: 6,    delay: 0.8, anim: "float-y", rot: 0   },
-  { type: "ring",     color: "var(--peach-deep)",    x: "20%", y: "30%", size: 36,  dur: 9,    delay: 2.5, anim: "float-y", rot: 0   },
+  { type: "ring",     color: "var(--blush-deep)",    x: "20%", y: "30%", size: 36,  dur: 9,    delay: 2.5, anim: "float-y", rot: 0   },
   { type: "star",     color: "var(--lavender-deep)", x: "62%", y: "25%", size: 48,  dur: 8.5,  delay: 0.3, anim: "float-x", rot: -15 },
 ];
 

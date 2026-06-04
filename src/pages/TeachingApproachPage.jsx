@@ -8,7 +8,7 @@ function VennDiagram() {
   // Distance 290 < 380 (sum of radii) → overlaps 90px each side
   // Overlap centre x = (530+620)/2 = 575
 
-  const CX_L = 430, CX_R = 720, CY = 260, R = 190;
+  const CX_L = 475, CX_R = 675, CY = 260, R = 190;
   const EDGE_L = CX_L - R;   // 240 – left boundary
   const EDGE_R = CX_R + R;   // 910 – right boundary
   const OV_CX  = Math.round((CX_L + R + CX_R - R) / 2); // 575 – overlap centre
@@ -173,22 +173,53 @@ function VennDiagram() {
 }
 
 export default function TeachingApproachPage({ fireConfetti }) {
-  const charRecognitionBenefits = [
-    'Independent reading ability',
-    'Exam confidence',
-    'Writing fluency',
-    'Long-term retention',
-    'Conversational depth',
-    'Cultural understanding',
-    'Academic success',
-    'Lifelong interest',
+  const withoutFoundation = [
+    'Cannot read passages',
+    'Over-reliance on Hanyu Pinyin',
+    'Weak exam performance',
+    'Weak comprehension',
+    'Loss of interest in Chinese',
   ];
 
   const characterImportance = [
-    { title: 'Unlocks Reading', desc: 'Recognize characters, read independently. No more waiting for an adult to decode the page.' },
-    { title: 'Builds Confidence', desc: 'Success in reading translates to confidence. Confidence drives learners to read more, learn more.' },
-    { title: 'Supports Writing', desc: 'Character knowledge is the foundation for writing. Understand structure, compose with intention.' },
-    { title: 'Enables Exams', desc: 'PSLE, HSK, secondary exams — all built on character recognition and understanding.' },
+    { title: 'Foundation of Reading', desc: 'Chinese is a character-based language. Children need to recognise characters before they can read words, sentences, and passages smoothly. Without enough character recognition, reading becomes slow and difficult.' },
+    { title: 'Comprehension', desc: 'Children must first recognise the characters before they can understand the meaning of a passage. If too many characters are unfamiliar, they spend most of their energy guessing words — and weak comprehension is often linked to weak character recognition.' },
+    { title: 'Writing Ability', desc: 'Character recognition helps children build a stronger vocabulary base, so they can express themselves better in writing. Without this foundation, their writing may become simple, repetitive, and limited.' },
+    { title: 'Builds Confidence & Interest', desc: 'When children can recognise more characters, Chinese feels less difficult and more approachable. They can read signs, stories, worksheets, and simple passages independently — giving them a sense of achievement and encouraging them to enjoy learning Chinese.' },
+  ];
+
+  const methods = [
+    {
+      zh: '汉学乐',
+      en: 'Happy Chinese',
+      tag: 'Younger beginners',
+      accent: '#F5A623',
+      bg: '#fff6e6',
+      intro: 'A high-efficiency character recognition system designed to help children recognise and remember high-frequency Chinese characters, and gradually build the confidence to read independently. Instead of learning characters randomly, students learn through carefully arranged rhyming texts — making the process rhythmic, memorable, and enjoyable.',
+      points: [
+        'High-frequency Chinese characters',
+        'Common words and phrases',
+        'Rhyming texts and rhythmic reading',
+        'Character recognition through repeated exposure',
+        'Reading confidence through meaningful language patterns',
+      ],
+    },
+    {
+      zh: '成语识字Cool',
+      en: 'Chinese Idioms Literacy',
+      tag: 'Older students',
+      accent: '#e0598a',
+      bg: '#fdeef4',
+      intro: 'For older students, a character recognition curriculum based on Chinese idioms. Idioms are rich in vocabulary, meaning, culture, and expression — so through idiom-based learning, students not only recognise more characters, but also expand their vocabulary and deepen their understanding of Chinese language and culture.',
+      points: [
+        'Characters through idioms',
+        'Vocabulary expansion',
+        'Meaning and usage of idioms',
+        'Sentence application',
+        'Reading and writing expression',
+        'Chinese cultural knowledge',
+      ],
+    },
   ];
 
   const personalisedQA = [
@@ -227,7 +258,7 @@ export default function TeachingApproachPage({ fireConfetti }) {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, maxWidth: 1000, margin: '0 auto' }}>
               <div style={{
                 padding: 40,
-                background: 'linear-gradient(135deg, #e8c763 0%, #dab86d 100%)',
+                background: 'linear-gradient(135deg, #F7B23D 0%, #F5A623 100%)',
                 borderRadius: 'var(--r-xl)',
                 boxShadow: 'var(--shadow-soft)',
                 transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -255,20 +286,20 @@ export default function TeachingApproachPage({ fireConfetti }) {
                   lineHeight: 1.6,
                   marginBottom: 16,
                 }}>
-                  We place strong emphasis on character recognition, because it is the foundation of Chinese language learning.
+                  Foundation is essential because Chinese learning is cumulative. Strong character recognition, vocabulary, sentence awareness, and reading confidence help children progress smoothly into comprehension, composition, and expression.
                 </p>
                 <p style={{
                   fontSize: 16,
                   color: '#1e2a22',
                   lineHeight: 1.6,
                 }}>
-                  Character recognition is not separate from school results. It directly affects reading, comprehension, writing, and long-term Chinese ability.
+                  Without this foundation, learning can become fragmented. A strong foundation gives children the tools to learn Chinese with confidence, consistency, and long-term progress.
                 </p>
               </div>
 
               <div style={{
                 padding: 40,
-                background: 'linear-gradient(135deg, #f4e4a0 0%, #f0d89b 100%)',
+                background: 'linear-gradient(135deg, #FBE48A 0%, #F9DC6E 100%)',
                 borderRadius: 'var(--r-xl)',
                 boxShadow: 'var(--shadow-soft)',
                 transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -315,15 +346,16 @@ export default function TeachingApproachPage({ fireConfetti }) {
       <section className="section" style={{ paddingTop: 20 }}>
         <div className="container">
           <Reveal>
-            <span className="section-kicker">The Foundation</span>
-            <h2 className="section-title">Character Recognition is the Roof</h2>
+            <span className="section-kicker">Why the foundation matters</span>
+            <h2 className="section-title">Character Recognition is the Root</h2>
             <p className="section-lede">
-              Everything rests on this. A strong character foundation changes everything.
+              Many parents may not realise that when a child does not recognise enough
+              Chinese characters, every part of learning becomes harder.
             </p>
           </Reveal>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, maxWidth: 1000, margin: '0 auto' }}>
-            {charRecognitionBenefits.map((benefit, i) => (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: 16, maxWidth: 1000, margin: '8px auto 0' }}>
+            {withoutFoundation.map((item, i) => (
               <Reveal key={i} delay={i * 60}>
                 <div style={{
                   padding: 24,
@@ -334,8 +366,8 @@ export default function TeachingApproachPage({ fireConfetti }) {
                   alignItems: 'flex-start',
                   gap: 12,
                 }}>
-                  <span style={{ color: 'var(--jade)', fontSize: 18, marginTop: 2 }}>✓</span>
-                  <p style={{ fontSize: 15, color: 'var(--ink)', fontWeight: 600 }}>{benefit}</p>
+                  <span style={{ color: '#e25555', fontSize: 18, marginTop: 1, fontWeight: 700 }}>✕</span>
+                  <p style={{ fontSize: 15, color: 'var(--ink)', fontWeight: 600, margin: 0 }}>{item}</p>
                 </div>
               </Reveal>
             ))}
@@ -348,7 +380,7 @@ export default function TeachingApproachPage({ fireConfetti }) {
         <div className="container">
           <Reveal>
             <h2 className="section-title" style={{ textAlign: 'center', marginBottom: 40 }}>
-              Why is character recognition important?
+              Why character recognition matters
             </h2>
           </Reveal>
 
@@ -374,6 +406,53 @@ export default function TeachingApproachPage({ fireConfetti }) {
                   <p style={{ fontSize: 15.5, color: 'var(--ink-soft)', lineHeight: 1.6 }}>
                     {item.desc}
                   </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Methods */}
+      <section className="section" style={{ paddingTop: 20 }}>
+        <div className="container">
+          <Reveal>
+            <span className="section-kicker">Our Methods</span>
+            <h2 className="section-title">How we teach character recognition.</h2>
+            <p className="section-lede">
+              At Yuquan, character recognition is taught through a structured and purposeful
+              curriculum. From younger beginners to older students, our materials are tailored
+              to each learning stage — helping children recognise, remember, and apply Chinese
+              characters in a way that is meaningful, memorable, and engaging.
+            </p>
+          </Reveal>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 28, maxWidth: 1000, margin: '36px auto 0' }}>
+            {methods.map((m, i) => (
+              <Reveal key={i} delay={i * 100}>
+                <div style={{
+                  background: m.bg,
+                  borderRadius: 'var(--r-xl)',
+                  padding: '32px 32px 36px',
+                  border: `1px solid ${m.accent}33`,
+                  boxShadow: 'var(--shadow-soft)',
+                  height: '100%',
+                  boxSizing: 'border-box',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 8 }}>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: m.accent, margin: 0 }}>{m.zh}</h3>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: m.accent, background: '#fff', borderRadius: 999, padding: '5px 12px', border: `1px solid ${m.accent}40`, whiteSpace: 'nowrap' }}>{m.tag}</span>
+                  </div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', marginBottom: 14, letterSpacing: '0.02em' }}>{m.en}</div>
+                  <p style={{ fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.75, margin: '0 0 18px' }}>{m.intro}</p>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 9 }}>
+                    {m.points.map((pt, j) => (
+                      <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14.5, color: 'var(--ink)' }}>
+                        <span style={{ color: m.accent, fontWeight: 700, marginTop: 1 }}>✓</span>
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </Reveal>
             ))}
