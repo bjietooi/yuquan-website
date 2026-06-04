@@ -1,4 +1,4 @@
-import { IMG } from '../data/images';
+import { IMG, PS } from '../data/images';
 import Reveal from '../components/Reveal';
 import SharedSections from '../components/SharedSections';
 
@@ -35,9 +35,9 @@ export default function PreschoolPage({ go, fireConfetti }) {
           </div>
           <Reveal>
             <div className="hero-collage">
-              <div className="collage-item"><img src={IMG.students[0]} alt="Yuquan child" /></div>
-              <div className="collage-item"><img src={IMG.kindergarten} alt="Yuquan classroom" /></div>
-              <div className="collage-item"><img src={IMG.students[2]} alt="Yuquan child" /></div>
+              <div className="collage-item"><img src={PS.hero[0]} alt="Yuquan child" /></div>
+              <div className="collage-item"><img src={PS.hero[1]} alt="Yuquan classroom" /></div>
+              <div className="collage-item"><img src={PS.hero[2]} alt="Yuquan child" /></div>
             </div>
           </Reveal>
         </div>

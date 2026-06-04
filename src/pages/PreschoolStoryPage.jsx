@@ -1,4 +1,4 @@
-import { IMG } from '../data/images';
+import { PS } from '../data/images';
 import Reveal from '../components/Reveal';
 
 export default function PreschoolStoryPage({ go }) {
@@ -55,7 +55,7 @@ export default function PreschoolStoryPage({ go }) {
               borderRadius: 'var(--r-xl)',
               overflow: 'hidden',
             }}>
-              {[IMG.students[0], IMG.kindergarten, IMG.students[2]].map((src, i) => (
+              {[PS.storyHero[0], PS.storyHero[1], PS.storyHero[2]].map((src, i) => (
                 <div key={i} style={{ borderRadius: 'var(--r-xl)', overflow: 'hidden', aspectRatio: '4/3' }}>
                   <img src={src} alt="Yuquan Preschool" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>

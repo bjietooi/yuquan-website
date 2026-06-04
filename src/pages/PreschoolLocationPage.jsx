@@ -1,4 +1,5 @@
 import Reveal from '../components/Reveal';
+import { PS } from '../data/images';
 
 const LOCATION = {
   name: 'Guillemard',
@@ -43,6 +44,15 @@ export default function PreschoolLocationPage({ go }) {
             Conveniently located at Mountbatten, our warm and welcoming preschool
             is designed to feel like a second home for your child.
           </p>
+          <Reveal>
+            <div style={{
+              maxWidth: 760, margin: '36px auto 0',
+              borderRadius: 'var(--r-xl)', overflow: 'hidden',
+              aspectRatio: '16 / 9', boxShadow: 'var(--shadow-soft)',
+            }}>
+              <img src={PS.location} alt="Yuquan Preschool centre" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+          </Reveal>
         </div>
       </section>
 
