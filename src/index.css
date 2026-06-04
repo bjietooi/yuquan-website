@@ -268,8 +268,14 @@ img { display: block; max-width: 100%; }
 }
 /* Preschool: char bleeds to the left */
 .preschool-gateway .gc-char-img { left: -20px; }
-/* Language school: char bleeds to the right */
-.language-gateway  .gc-char-img { right: -20px; }
+/* Language school: char bleeds to the right — enlarged so she fills down to
+   the bottom of the card (head stays anchored at top so the face is visible). */
+.language-gateway  .gc-char-img {
+  right: -14px;
+  top: 0;
+  height: 235%;
+  object-position: top center;
+}
 
 .gateway-card:hover .gc-char-img { transform: translateY(-10px) scale(1.05); }
 
