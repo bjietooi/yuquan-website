@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { IMG, LS } from '../data/images';
 import Reveal from '../components/Reveal';
-import SharedSections from '../components/SharedSections';
 
 const LS_FAQS = [
   {
