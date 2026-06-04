@@ -24,11 +24,36 @@ const SUBJECTS = [
 ];
 
 const SPECIAL = [
-  { label: 'Table Tennis',     emoji: '🏓', img: PS.special.tableTennis },
-  { label: 'Calligraphy',      emoji: '🖌️', img: PS.special.calligraphy },
-  { label: 'Chinese Art',      emoji: '🎨', img: PS.special.chineseArt },
-  { label: 'Melodica',         emoji: '🎵', img: PS.special.melodica },
-  { label: 'Tea Appreciation', emoji: '🍵', img: PS.special.teaAppreciation },
+  {
+    label: 'Table Tennis', emoji: '🏓', img: PS.special.tableTennis,
+    subtitle: 'Coordination, focus & fun', accent: '#c62828', color: '#ffebee',
+    tags: ['All levels', 'Motor skills', 'Focus'],
+    desc: 'Through playful rallies and simple drills, children build hand-eye coordination, balance, and concentration — all while having a great time. Table tennis nurtures patience, quick thinking, and good sportsmanship in a friendly, low-pressure setting.',
+  },
+  {
+    label: 'Calligraphy', emoji: '🖌️', img: PS.special.calligraphy,
+    subtitle: 'Brush strokes & patience', accent: '#5d4037', color: '#efebe9',
+    tags: ['Chinese culture', 'Fine motor', 'Focus'],
+    desc: 'With brush and ink, children practise the gentle art of Chinese calligraphy. Forming each stroke builds fine motor control, patience, and an early appreciation for the beauty and structure of Chinese characters.',
+  },
+  {
+    label: 'Chinese Art', emoji: '🎨', img: PS.special.chineseArt,
+    subtitle: 'Creativity, culture & colour', accent: '#2e7d32', color: '#e8f5e9',
+    tags: ['Creative', 'Chinese culture', 'Expression'],
+    desc: 'From ink-wash painting to seasonal crafts, children explore traditional Chinese art forms and tell their own stories through colour and texture — a joyful way to nurture imagination while connecting with culture.',
+  },
+  {
+    label: 'Melodica', emoji: '🎵', img: PS.special.melodica,
+    subtitle: 'First steps in music', accent: '#1565c0', color: '#e3f2fd',
+    tags: ['Music', 'Rhythm', 'Listening'],
+    desc: 'The melodica is a wonderful first instrument — children learn melody, rhythm, and breath control as they play simple tunes together. Group music-making builds listening skills, memory, and the confidence to perform.',
+  },
+  {
+    label: 'Tea Appreciation', emoji: '🍵', img: PS.special.teaAppreciation,
+    subtitle: 'Calm, culture & courtesy', accent: '#00897b', color: '#e0f2f1',
+    tags: ['Chinese culture', 'Mindfulness', 'Courtesy'],
+    desc: 'In our tea appreciation sessions, children slow down to pour, serve, and savour — learning the gestures of courtesy and gratitude at the heart of Chinese tea culture. A gentle, mindful ritual that nurtures calm and respect.',
+  },
 ];
 
 const PROGRAMME = [
@@ -405,30 +430,74 @@ export default function PreschoolCurriculumPage({ go }) {
               discover new interests, and gain a deeper appreciation of culture, creativity, and
               lifelong learning — no one is left out.
             </p>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-              gap: 16, maxWidth: 780, margin: '0 auto',
-            }}>
-              {SPECIAL.map((s, i) => (
-                <div key={i} style={{
-                  background: '#fff',
-                  borderRadius: 'var(--r-lg)',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(245,127,23,.2)',
-                  boxShadow: '0 4px 16px rgba(0,0,0,.06)',
+          </Reveal>
+
+          {/* Special programme detail rows (alternating image / text) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(40px, 6vw, 72px)', maxWidth: 1000, margin: '8px auto 0' }}>
+            {SPECIAL.map((s, idx) => (
+              <Reveal key={s.label}>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                  gap: 'clamp(24px, 4vw, 52px)',
+                  alignItems: 'center',
                 }}>
-                  <div style={{ aspectRatio: '4 / 3', overflow: 'hidden', background: '#fff8e1' }}>
-                    <img src={s.img} alt={s.label} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  {/* Image */}
+                  <div style={{ order: idx % 2 === 1 ? 2 : 1 }}>
+                    <div style={{
+                      borderRadius: 'var(--r-xl)', overflow: 'hidden',
+                      boxShadow: '0 16px 48px rgba(0,0,0,.12)',
+                      aspectRatio: '4 / 3', background: s.color, position: 'relative',
+                    }}>
+                      <img src={s.img} alt={s.label} loading="lazy"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      <div style={{
+                        position: 'absolute', top: 16, left: 16,
+                        background: '#fff', borderRadius: 999, padding: '6px 14px',
+                        fontSize: 13, fontWeight: 700, color: s.accent,
+                        boxShadow: '0 2px 12px rgba(0,0,0,.12)',
+                        display: 'flex', alignItems: 'center', gap: 6,
+                      }}>
+                        {s.emoji} Special Programme
+                      </div>
+                    </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, padding: '12px 10px', fontSize: 14, fontWeight: 700, color: 'var(--ink)' }}>
-                    <span style={{ fontSize: 16 }}>{s.emoji}</span>
-                    {s.label}
+
+                  {/* Text */}
+                  <div style={{ order: idx % 2 === 1 ? 1 : 2 }}>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
+                      {s.tags.map(t => (
+                        <span key={t} style={{
+                          padding: '4px 12px', borderRadius: 999, fontSize: 12, fontWeight: 700,
+                          background: s.color, color: s.accent, border: `1px solid ${s.accent}33`,
+                        }}>{t}</span>
+                      ))}
+                    </div>
+                    <h3 style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800,
+                      color: 'var(--ink)', lineHeight: 1.2, margin: '0 0 8px',
+                    }}>
+                      {s.label}
+                    </h3>
+                    <p style={{ fontSize: 15, fontWeight: 600, color: s.accent, margin: '0 0 18px', letterSpacing: '0.01em' }}>
+                      {s.subtitle}
+                    </p>
+                    <p style={{ fontSize: 16, color: 'var(--ink-soft)', lineHeight: 1.75, margin: '0 0 26px' }}>
+                      {s.desc}
+                    </p>
+                    <button
+                      className="btn btn-primary"
+                      style={{ background: s.accent, borderColor: s.accent }}
+                      onClick={() => go('preschool-contact')}
+                    >
+                      Enquire Now <span className="btn-arrow">→</span>
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
