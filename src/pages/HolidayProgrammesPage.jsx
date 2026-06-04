@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IMG } from '../data/images';
+import { IMG, LS } from '../data/images';
 import Reveal from '../components/Reveal';
 
 /* ─── Data ──────────────────────────────────────────────────────── */
@@ -23,7 +23,7 @@ const PROGRAMMES = [
     emoji: '📜',
     color: '#fdeef4',
     accent: '#c2185b',
-    image: IMG.tuition[1],
+    image: LS.camps.idiom,
     desc: 'A structured programme designed to deepen students\' character recognition and reading abilities through Chinese idioms and meaningful language use. Through engaging stories, idiom-based learning, and progressive reading practice, students expand their vocabulary, strengthen comprehension, and develop greater confidence in advanced Chinese reading.',
     tags: ['Primary', 'Intermediate–Advanced', 'Idioms'],
   },
@@ -34,7 +34,7 @@ const PROGRAMMES = [
     emoji: '✍️',
     color: '#e0f2f1',
     accent: '#00897b',
-    image: IMG.students[0],
+    image: LS.camps.compcomp,
     desc: 'A focused boost that strengthens students\' comprehension and composition skills beyond regular classes. Students learn proven answering techniques for comprehension and structured writing frameworks to express ideas with greater clarity and confidence.',
     tags: ['Primary', 'Comprehension', 'Composition'],
   },
