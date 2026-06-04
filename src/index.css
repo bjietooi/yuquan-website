@@ -261,6 +261,7 @@ img { display: block; max-width: 100%; }
   top: 0;           /* anchor to top — faces always visible, bleed at bottom */
   height: 115%;     /* 115% bleeds off the bottom edge only */
   width: auto;
+  max-width: none;  /* override the global img max-width:100% cap so size is driven by height, not the column width */
   object-fit: contain;
   object-position: top center;
   filter: drop-shadow(0 20px 30px rgba(0,0,0,0.10));
@@ -273,7 +274,7 @@ img { display: block; max-width: 100%; }
    the card down to the bottom (skirt bleeds off, like the left card). */
 .language-gateway  .gc-char-img {
   right: -20px;
-  height: 142%;
+  height: 132%;
 }
 
 .gateway-card:hover .gc-char-img { transform: translateY(-10px) scale(1.05); }
