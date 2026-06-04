@@ -33,15 +33,7 @@ const LANGUAGE_SCHOOL_LINKS = [
       { id: 'ls-teaching', label: 'Teaching Approach', navigate: 'teaching-approach' },
     ],
   },
-  {
-    id: 'ls-programmes', label: 'Programmes',
-    dropdown: [
-      { id: 'prog-preschool', label: 'Preschool', navigate: 'programmes#preschool' },
-      { id: 'prog-primary',   label: 'Primary',   navigate: 'programmes#primary' },
-      { id: 'prog-secondary', label: 'Secondary', navigate: 'programmes#secondary' },
-      { id: 'prog-adult',     label: 'Adult',     navigate: 'programmes#adult' },
-    ],
-  },
+  { id: 'ls-programmes', label: 'Programmes', navigate: 'programmes' },
   { id: 'ls-holiday',  label: 'Holiday Programmes', navigate: 'holiday-programmes' },
   { id: 'ls-news',     label: 'News & Resources',   navigate: 'news' },
   { id: 'ls-location', label: 'Location',           navigate: 'locations' },
