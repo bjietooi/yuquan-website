@@ -1,4 +1,4 @@
-import { IMG } from '../data/images';
+import { IMG, LS } from '../data/images';
 import Reveal from '../components/Reveal';
 import Founder from '../components/Founder';
 
@@ -63,14 +63,12 @@ export default function AboutPage({ fireConfetti }) {
           <Reveal>
             <div className="daily-strip">
               {[
-                { tag: 'Classroom moments', src: IMG.kindergarten },
-                { tag: 'Learning together', src: IMG.students[0] },
-                { tag: 'Happy learners', src: IMG.students[1] },
-                { tag: 'Community vibes', src: IMG.students[2] },
-                { tag: 'Teaching moments', src: IMG.tuition[0] },
-                { tag: 'Language immersion', src: IMG.tuition[1] },
-                { tag: 'Joyful learning', src: IMG.kindergarten },
-                { tag: 'Growing together', src: IMG.students[0] },
+                { tag: 'Classroom moments',  src: LS.journey.classroom },
+                { tag: 'Learning together',  src: LS.journey.learning },
+                { tag: 'Happy learners',     src: LS.journey.happy },
+                { tag: 'Community vibes',    src: LS.journey.community },
+                { tag: 'Teaching moments',   src: LS.journey.teaching },
+                { tag: 'Language immersion', src: LS.journey.immersion },
               ].map((d, i) => (
                 <div key={i} className="daily-item">
                   <img src={d.src} alt={d.tag} />

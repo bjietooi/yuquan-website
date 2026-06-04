@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IMG } from '../data/images';
+import { IMG, LS } from '../data/images';
 import Reveal from '../components/Reveal';
 import SharedSections from '../components/SharedSections';
 
@@ -93,9 +93,9 @@ export default function LanguageSchoolPage({ go, fireConfetti }) {
           </div>
           <Reveal>
             <div className="hero-collage">
-              <div className="collage-item"><img src={IMG.tuition[0]} alt="Adults in class" /></div>
-              <div className="collage-item"><img src={IMG.tuition[1]} alt="Small group learning" /></div>
-              <div className="collage-item"><img src={IMG.students[1]} alt="Child learning" /></div>
+              <div className="collage-item"><img src={LS.hero[0]} alt="Adults in class" /></div>
+              <div className="collage-item"><img src={LS.hero[1]} alt="Small group learning" /></div>
+              <div className="collage-item"><img src={LS.hero[2]} alt="Child learning" /></div>
             </div>
           </Reveal>
         </div>
@@ -114,15 +114,21 @@ export default function LanguageSchoolPage({ go, fireConfetti }) {
           </Reveal>
           <div className="curriculum">
             {[
-              { ic: '🌱', bg: 'var(--jade-soft)',  title: 'Preschool',          zh: 'Nursery to Kindergarten',  desc: 'We build strong foundations through joyful learning — guiding children towards early character recognition and independent reading, preparing them confidently for primary school.' },
+              { ic: '🌱', bg: 'var(--jade-soft)',  img: LS.programmes.preschool, title: 'Preschool',          zh: 'Nursery to Kindergarten',  desc: 'We build strong foundations through joyful learning — guiding children towards early character recognition and independent reading, preparing them confidently for primary school.' },
               { ic: '📚', bg: '#e8f8f5',           title: 'Primary',            zh: 'Primary 1 to Primary 6',   desc: 'We deepen literacy and reading foundations in alignment with the MOE syllabus, systematically developing exam skills to equip students to approach the PSLE with confidence.' },
-              { ic: '🎯', bg: '#fff8e8',           title: 'Secondary',          zh: 'Secondary 1 to Secondary 4', desc: 'Clear strategies and effective methods to support students through the critical O-Level phase. Targeted training helps students achieve stronger results.' },
-              { ic: '👤', bg: '#eef0fb',           title: 'Adult',              zh: 'All proficiency levels',   desc: 'Not just for children — our adult programme is designed for anyone wanting to build real conversational ability, improve reading, or prepare for proficiency tests like the HSK.' },
-              { ic: '🗓️', bg: '#fde8ec',           title: 'Holiday Programmes', zh: 'All school levels · School holidays', desc: 'Thoughtfully curated holiday programmes combining structured language learning with meaningful experiential activities — building stronger foundations, key skills, confidence, and appreciation for Chinese language and culture.' },
+              { ic: '🎯', bg: '#fff8e8',           img: LS.programmes.secondary, title: 'Secondary',          zh: 'Secondary 1 to Secondary 4', desc: 'Clear strategies and effective methods to support students through the critical O-Level phase. Targeted training helps students achieve stronger results.' },
+              { ic: '👤', bg: '#eef0fb',           img: LS.programmes.adult,     title: 'Adult',              zh: 'All proficiency levels',   desc: 'Not just for children — our adult programme is designed for anyone wanting to build real conversational ability, improve reading, or prepare for proficiency tests like the HSK.' },
+              { ic: '🗓️', bg: '#fde8ec',           img: LS.programmes.holiday,   title: 'Holiday Programmes', zh: 'All school levels · School holidays', desc: 'Thoughtfully curated holiday programmes combining structured language learning with meaningful experiential activities — building stronger foundations, key skills, confidence, and appreciation for Chinese language and culture.' },
             ].map((c, i) => (
               <Reveal key={i} delay={i * 80}>
                 <div className="curri-card">
-                  <div className="curri-icon" style={{ background: c.bg, fontSize: 26 }}>{c.ic}</div>
+                  {c.img ? (
+                    <div style={{ borderRadius: 'var(--r-md)', overflow: 'hidden', aspectRatio: '16 / 10', marginBottom: 16, background: c.bg }}>
+                      <img src={c.img} alt={c.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    </div>
+                  ) : (
+                    <div className="curri-icon" style={{ background: c.bg, fontSize: 26 }}>{c.ic}</div>
+                  )}
                   <div className="curri-title">{c.title}</div>
                   <div className="curri-zh">{c.zh}</div>
                   <p className="curri-desc">{c.desc}</p>
