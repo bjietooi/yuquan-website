@@ -331,6 +331,24 @@ function PostCard({ post, delay = 0 }) {
 /* ─── Page ───────────────────────────────────────────────────────── */
 
 export default function PreschoolNewsPage() {
+  // ── Coming soon: content hidden for now (full page preserved below) ──
+  return (
+    <div className="page">
+      <section className="page-hero" style={{ minHeight: '66vh', display: 'flex', alignItems: 'center' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <span className="section-kicker">News &amp; Resources · 新闻与资源</span>
+          <h1 className="hero-title" style={{ fontSize: 'clamp(40px, 6vw, 78px)', margin: '8px 0 14px' }}>
+            News &amp; Resources
+          </h1>
+          <p className="page-hero-lede" style={{ maxWidth: 440, margin: '0 auto', color: 'var(--ink-mute)' }}>
+            Coming soon.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+
+  // eslint-disable-next-line no-unreachable
   const [activeTag, setActiveTag] = useState('all');
 
   const featured = POSTS.find(p => p.featured);
