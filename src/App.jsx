@@ -79,6 +79,7 @@ export default function App() {
   const Page = PAGES[page] || HomePage;
 
   const isGateway = page === 'home';
+  const footerVariant = page.startsWith('preschool') ? 'preschool' : 'language';
 
   return (
     <div className="app">
@@ -87,7 +88,7 @@ export default function App() {
       <main>
         <Page key={page} go={go} fireConfetti={fireConfetti} scrollToSection={scrollToSection} />
       </main>
-      {!isGateway && <Footer go={go} />}
+      {!isGateway && <Footer go={go} variant={footerVariant} />}
 
       {transitioning && (
         <div className={`swoosh-overlay ${transitioning}`}>
