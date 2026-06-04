@@ -3,7 +3,9 @@ export const IMG = {
   preschoolLogo: "https://ik.imagekit.io/cr8hodb6q/yuquan/preschool_logo.png",
   enrichmentLogo: "https://ik.imagekit.io/cr8hodb6q/yuquan/enrichment%20logo.png",
   btnPreschool: "https://ik.imagekit.io/cr8hodb6q/yuquan/btn_yuquanpreschool.png",
-  btnLanguageSchool: "https://ik.imagekit.io/cr8hodb6q/yuquan/btn_yuquanlanguageschool.png",
+  // Gateway cutout: transparent PNG cropped to upper body (?tr extract) so the
+  // girl reads at the same size as the Preschool cutout — not a full-body shot.
+  btnLanguageSchool: "https://ik.imagekit.io/cr8hodb6q/yuquan/btn_yuquanlanguageschool.png?tr=w-566,h-540,cm-extract,fo-top",
   sprouts: "https://ik.imagekit.io/cr8hodb6q/yuquan/sprouts.png",
   founder: "https://ik.imagekit.io/cr8hodb6q/yuquan/happy%20student%20images.png",
   students: [
@@ -33,7 +35,6 @@ const PS_CDN = "https://ik.imagekit.io/cr8hodb6q/yuquan/preschool_client";
 const ps = (n, w = 1000) => `${PS_CDN}/${n}_result.webp?tr=w-${w}`;
 
 export const PS = {
-  gatewayLS: ps(1, 700),                        // gateway · Language School card
   hero: [ps(2), ps(3), ps(4)],                  // preschool home hero collage
   why: [ps(5, 700), ps(6, 700), ps(7, 700), ps(8, 700), ps(9, 700)], // Why-Choose cards
   daily: {                                      // "A Day at Yuquan" strip
